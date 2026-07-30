@@ -3,49 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⏱️ چند ساعت؟ (ChandSaat) | نرم‌افزار دسکتاپ مدیریت، ثبت و تحلیل ساعات مطالعه</title>
-  <meta name="description" content="نرم‌افزار دسکتاپ مدرن برای ثبت ساعات مطالعه، تایمر پومودورو، تحلیل آمار روزانه، دیتابیس SQLite و خروجی اکسل ویژه داوطلبان کنکور و دانشجویان.">
-  <meta name="theme-color" content="#090d16">
-  
-  <!-- OpenGraph / Social Media -->
-  <meta property="og:title" content="چند ساعت؟ (ChandSaat) - دستیار مطالعه دسکتاپ">
-  <meta property="og:description" content="ثبت روزانه ساعات مطالعه، پومودورو مدرن، تحلیل آمار و خروجی اکسل بدون نیاز به اینترنت.">
-  <meta property="og:image" content="./assets/icon.png">
+  <title>چند ساعت؟ — نرم‌افزار دسکتاپ ثبت ساعات مطالعه و تمرکز ویندوز</title>
+  <meta name="description" content="نرم‌افزار دسکتاپ ویندوز چند ساعت؟ | ابزار ثبت ساعات مطالعه، تایمر پومودورو، شمارش تست و تحلیل عملکرد روزانه ویژه دانش‌آموزان و داوطلبان کنکور.">
+  <meta name="theme-color" content="#4F46E5">
   
   <link rel="icon" type="image/png" href="./assets/icon.png">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 
-  <!-- Ambient Glow Effect Background -->
-  <div class="ambient-bg">
-    <div class="glow-orb orb-1"></div>
-    <div class="glow-orb orb-2"></div>
-    <div class="glow-orb orb-3"></div>
-  </div>
+  <!-- Ambient Light Orbs -->
+  <div class="ambient-orb orb-1"></div>
+  <div class="ambient-orb orb-2"></div>
+  <div class="ambient-orb orb-3"></div>
 
-  <!-- Header / Navigation Bar -->
+  <!-- Header Navbar -->
   <header class="navbar">
     <div class="container nav-container">
-      <a href="#" class="logo-brand">
-        <img src="./assets/icon.png" alt="لوگوی چند ساعت؟" class="logo-img">
-        <span class="logo-text">چند ساعت؟</span>
-        <span class="logo-tag">v0.2.0</span>
+      <a href="#" class="brand-wrapper">
+        <div class="brand-icon">
+          <img src="./assets/icon.png" alt="لوگوی چند ساعت؟">
+        </div>
+        <div>
+          <div class="brand-name">چند ساعت؟</div>
+          <div class="brand-badge"><span></span>دستیار مطالعه ویندوز</div>
+        </div>
       </a>
 
       <nav>
-        <ul class="nav-links">
-          <li><a href="#simulator" class="nav-link">شبیه‌ساز برنامه</a></li>
-          <li><a href="#calculator" class="nav-link">محاسبه‌گر پیشرفت</a></li>
-          <li><a href="#features" class="nav-link">ویژگی‌ها</a></li>
-          <li><a href="#download" class="nav-link">دانلود</a></li>
-          <li><a href="#faq" class="nav-link">سوالات متداول</a></li>
+        <ul class="nav-links-list">
+          <li><a href="#simulator">پیش‌نمایش برنامه</a></li>
+          <li><a href="#bento-features">امکانات اصلی</a></li>
+          <li><a href="#download">دانلود ویندوز</a></li>
+          <li><a href="#faq">سوالات متداول</a></li>
         </ul>
       </nav>
 
-      <a href="https://github.com/yahaiz/chand-saat" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-        گیت‌هاب
+      <a href="#download" class="btn-tactile-primary" style="padding: 0.6rem 1.4rem; border-radius: 99px; font-size: 0.85rem;">
+        دانلود نسخه ویندوز
       </a>
     </div>
   </header>
@@ -53,360 +48,439 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <div class="badge-wrapper">
-        <div class="hero-badge">
-          <span class="hero-badge-dot"></span>
-          <span id="latest-version-badge">نسخه جدید v0.2.0 منتشر شد!</span>
-        </div>
+      <div class="hero-badge">
+        <span class="pulse-dot"></span>
+        <span>نسخه v0.2.0 — ۱۰۰٪ رایگان و آفلاین</span>
       </div>
 
       <h1 class="hero-title">
-        مدیریت و تحلیل ساعات مطالعه<br>
-        <span>بدون حواس‌پرتی و در کامپیوتر شما</span>
+        ساعات مطالعه و تست‌هایت را<br>
+        <span>دقیق، ساده و بدون حواس‌پرتی</span> ثبت کن.
       </h1>
 
-      <p class="hero-subtitle">
-        **«چند ساعت؟»** یک نرم‌افزار دسکتاپ نیتیو، سبک و آفلاین برای ثبت ساعات مطالعه، تعداد تست‌های روزانه، پومودورو حرفه‌ای و تحلیل نموداری پیشرفت تحصیلی است.
+      <p class="hero-desc">
+        «چند ساعت؟» یک نرم‌افزار دسکتاپ سبک و بسیار سریع برای ویندوز است که به شما کمک می‌کند زمان درس خواندن و تعداد تست‌های روزانه‌تان را ثبت کنید، با تایمر پومودورو تمرکز کنید و روند پیشرفت‌تان را ببینید.
       </p>
 
-      <div class="hero-cta">
-        <a href="https://github.com/yahaiz/chand-saat/releases/download/v0.2.0/ChandSaat_Setup_v0.2.0.exe" class="btn btn-primary btn-lg">
+      <div class="hero-ctas">
+        <a href="https://github.com/yahaiz/chand-saat/releases/download/v0.2.0/ChandSaat_Setup_v0.2.0.exe" class="btn-tactile-primary" style="padding: 1.1rem 2.5rem; border-radius: 1.25rem; font-size: 1.05rem;">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          دانلود نسخه نصب‌کننده (Setup)
+          دانلود فایل نصب (Setup.exe)
         </a>
-        
-        <a href="https://github.com/yahaiz/chand-saat/releases/download/v0.2.0/ChandSaat_v0.2.0_Portable.zip" class="btn btn-secondary btn-lg">
-          📦 دانلود نسخه بدون نیاز به نصب (Portable)
+        <a href="https://github.com/yahaiz/chand-saat/releases/download/v0.2.0/ChandSaat_v0.2.0_Portable.zip" class="btn-tactile-secondary" style="padding: 1.1rem 2.2rem; border-radius: 1.25rem; font-size: 1rem;">
+          📦 دانلود نسخه پرتابل (Portable.zip)
         </a>
       </div>
 
-      <div class="meta-stats">
-        <div class="stat-item">
-          <div class="stat-value">⚡ ۱۰۰٪ آفلاین</div>
-          <div class="stat-label">بدون نیاز به اینترنت یا سرور خارجی</div>
+      <!-- Quick Metrics Strip -->
+      <div class="metrics-strip">
+        <div class="metric-item">
+          <div class="metric-val">۱۰۰٪ آفلاین</div>
+          <div class="metric-lbl">ذخیره داده‌ها فقط روی کامپیوتر شما</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-value">🚀 FastAPI + PyWebView</div>
-          <div class="stat-label">سرعت فوق‌العاده و پنجره نیتیو دسکتاپ</div>
+        <div class="metric-item">
+          <div class="metric-val">بدون ثبت‌نام</div>
+          <div class="metric-lbl">اجرای فوری بدون نیاز به اکانت</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-value">📊 SQLite + Excel</div>
-          <div class="stat-label">ذخیره‌سازی امن داده‌ها و گرفتن خروجی</div>
+        <div class="metric-item">
+          <div class="metric-val">ویندوز ۱۰ و ۱۱</div>
+          <div class="metric-lbl">پشتیبانی کامل ۳۲ و ۶۴ بیتی</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Interactive Desktop Simulator Section -->
-  <section id="simulator" class="simulator-section">
+  <!-- Interactive Desktop Replica Preview Section (PIXEL PERFECT TO IMAGE 2) -->
+  <section id="simulator" class="preview-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">تجربه آنلاین محیط برنامه</span>
-        <h2 class="section-title">شبیه‌ساز پنجره دسکتاپ «چند ساعت؟»</h2>
-        <p class="section-desc">همین حالا بدون نیاز به نصب، تب‌های مختلف محیط برنامه را بررسی و امتحان کنید!</p>
+        <span class="section-tag">محیط واقعی نرم‌افزار</span>
+        <h2 class="section-title">پیش‌نمایش دقیق نرم‌افزار ویندوز</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.5rem;">برای دیدن بخش‌های مختلف نرم‌افزار، روی منوی سمت چپ کلیک کنید</p>
       </div>
 
-      <div class="app-window">
-        <!-- Window Titlebar -->
-        <div class="window-bar">
-          <div class="window-controls">
-            <span class="dot dot-close"></span>
-            <span class="dot dot-min"></span>
-            <span class="dot dot-max"></span>
+      <!-- Native App Frame Replica -->
+      <div class="app-frame">
+        <!-- Windows Top Titlebar (Purple Header in Image 2) -->
+        <div class="win-titlebar">
+          <div class="win-titlebar-right">
+            <span class="win-app-title">چند ساعت؟</span>
+            <img src="./assets/icon.png" alt="آیکون" class="win-app-icon">
           </div>
-          <div class="window-title">
-            <img src="./assets/icon.png" width="16" height="16" alt="Icon">
-            ⏱️ چند ساعت؟ (ChandSaat) - Desktop App v0.2.0
+          <div class="win-titlebar-controls">
+            <button title="کوچک کردن" class="win-btn">
+              <svg width="10" height="1" viewBox="0 0 10 1"><rect width="10" height="1" fill="currentColor"/></svg>
+            </button>
+            <button title="بزرگ کردن" class="win-btn">
+              <svg width="10" height="10" viewBox="0 0 10 10"><path d="M1 1h8v8H1V1zm1 1v6h6V2H2z" fill="currentColor"/></svg>
+            </button>
+            <button title="بستن" class="win-btn win-btn-close">
+              <svg width="10" height="10" viewBox="0 0 10 10"><path d="M1 0l4 4 4-4 1 1-4 4 4 4-1 1-4-4-4 4-1-1 4-4-4-4 1-1z" fill="currentColor"/></svg>
+            </button>
           </div>
-          <div style="width: 50px;"></div>
         </div>
 
-        <!-- Window Navigation Tabs -->
-        <div class="window-tabs">
-          <button class="tab-btn active" data-tab="dashboard">
-            📊 داشبورد آمار
-          </button>
-          <button class="tab-btn" data-tab="log">
-            ✏️ ثبت مطالعه روزانه
-          </button>
-          <button class="tab-btn" data-tab="pomodoro">
-            ⏱️ تایمر پومودورو + صدا
-          </button>
-          <button class="tab-btn" data-tab="settings">
-            ⚙️ تنظیمات و اکسل
-          </button>
+        <!-- Application Header Bar (Exact App Header) -->
+        <div class="app-header-bar">
+          <div class="flex-center gap-3">
+            <div class="app-logo-box">
+              <svg class="w-5 h-5 text-indigo" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div class="flex-col" style="text-align: right;">
+              <h1 class="app-title-text">چند ساعت؟</h1>
+              <span class="app-subtitle-text">ثبت و تحلیل هوشمند زمان مطالعه و تست</span>
+            </div>
+          </div>
+          <div style="flex: 1;"></div>
         </div>
 
-        <!-- Window Content Panes -->
-        <div class="window-content">
-          <!-- Tab 1: Dashboard -->
-          <div id="tab-dashboard" class="tab-pane active">
-            <div class="dashboard-grid">
-              <div class="dash-card">
-                <div class="dash-card-header">
-                  <span class="dash-card-title">مطالعه امروز</span>
-                  <span class="dash-icon">⏱️</span>
-                </div>
-                <div class="dash-value">۶ ساعت و ۴۵ دقیقه</div>
-                <div class="dash-sub">▲ ۱۵٪ بیشتر از دیروز</div>
+        <!-- App Main Shell Body -->
+        <div class="app-shell">
+          <!-- Sidebar (LEFT Side - Exact Image 2 Alignment) -->
+          <aside class="app-sidebar">
+            <div class="sidebar-top">
+              <div>
+                <span class="sidebar-label">منوی اصلی</span>
+                <nav class="sidebar-nav">
+                  <button class="nav-item active" data-target="home">
+                    <div class="nav-item-content">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                      <span>خانه و آمار عملکرد</span>
+                    </div>
+                  </button>
+
+                  <button class="nav-item" data-target="timer">
+                    <div class="nav-item-content">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                      <span>تایمر مطالعه (پومودورو)</span>
+                    </div>
+                  </button>
+
+                  <button class="nav-item" data-target="history">
+                    <div class="nav-item-content flex-between w-full">
+                      <div class="flex-center gap-3">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                        <span>تاریخچه گزارش‌ها</span>
+                      </div>
+                      <span class="badge-mono">۱۴</span>
+                    </div>
+                  </button>
+
+                  <button class="nav-item" data-target="settings">
+                    <div class="nav-item-content">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                      <span>تنظیمات پیشرفته</span>
+                    </div>
+                  </button>
+
+                  <!-- EXCEL ITEM (Badge on left) -->
+                  <div class="nav-disabled-item">
+                    <div class="flex-center gap-3">
+                      <svg class="w-4 h-4 text-emerald" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                      <span>خروجی اکسل</span>
+                    </div>
+                    <span class="badge-amber">به‌زودی</span>
+                  </div>
+                </nav>
               </div>
 
-              <div class="dash-card">
-                <div class="dash-card-header">
-                  <span class="dash-card-title">تعداد تست‌های امروز</span>
-                  <span class="dash-icon">📝</span>
+              <!-- Daily Progress Widget (Exact Image 2 Structure) -->
+              <div class="widget-card">
+                <span class="widget-title">هدف‌گذاری امروز</span>
+                <div class="prog-item">
+                  <div class="prog-header flex-between text-xs text-slate-600 mb-1">
+                    <span>زمان مطالعه</span>
+                    <span class="font-bold text-indigo font-mono">4.5h / 6h</span>
+                  </div>
+                  <div class="prog-bar-bg">
+                    <div class="prog-fill-indigo" style="width: 75%;"></div>
+                  </div>
                 </div>
-                <div class="dash-value">۱۸۰ تست</div>
-                <div class="dash-sub">▲ زیست‌شناسی و ریاضی</div>
-              </div>
-
-              <div class="dash-card">
-                <div class="dash-card-header">
-                  <span class="dash-card-title">جلسات پومودورو</span>
-                  <span class="dash-icon">🔥</span>
+                <div class="prog-item">
+                  <div class="prog-header flex-between text-xs text-slate-600 mb-1">
+                    <span>تعداد تست</span>
+                    <span class="font-bold text-emerald font-mono">85 / 100</span>
+                  </div>
+                  <div class="prog-bar-bg">
+                    <div class="prog-fill-emerald" style="width: 85%;"></div>
+                  </div>
                 </div>
-                <div class="dash-value">۸ پومودورو</div>
-                <div class="dash-sub">تمرکز ۲۰۰ دقیقه‌ای کامل</div>
               </div>
             </div>
 
-            <div class="chart-sim">
-              <div class="chart-title">
-                <span>📈 روند مطالعه هفته اخیر</span>
-                <span style="font-weight: 400; font-size: 0.85rem; color: var(--accent-cyan);">میانگین: ۶.۲ ساعت/روز</span>
-              </div>
-              <div class="chart-bars">
-                <div class="bar-col">
-                  <div class="bar-fill" style="height: 65%;" data-val="۵.۵ ساعت"></div>
-                  <span class="bar-label">شنبه</span>
-                </div>
-                <div class="bar-col">
-                  <div class="bar-fill" style="height: 80%;" data-val="۶.۸ ساعت"></div>
-                  <span class="bar-label">یکشنبه</span>
-                </div>
-                <div class="bar-col">
-                  <div class="bar-fill" style="height: 50%;" data-val="۴.۲ ساعت"></div>
-                  <span class="bar-label">دوشنبه</span>
-                </div>
-                <div class="bar-col">
-                  <div class="bar-fill" style="height: 90%;" data-val="۷.۵ ساعت"></div>
-                  <span class="bar-label">سه‌شنبه</span>
-                </div>
-                <div class="bar-col">
-                  <div class="bar-fill" style="height: 75%;" data-val="۶.۰ ساعت"></div>
-                  <span class="bar-label">چهارشنبه</span>
-                </div>
-                <div class="bar-col">
-                  <div class="bar-fill" style="height: 100%;" data-val="۸.۲ ساعت"></div>
-                  <span class="bar-label">پنج‌شنبه</span>
-                </div>
-                <div class="bar-col">
-                  <div class="bar-fill" style="height: 85%;" data-val="۷.۰ ساعت"></div>
-                  <span class="bar-label">جمعه</span>
-                </div>
-              </div>
+            <!-- Muted Sidebar Footer -->
+            <div class="sidebar-footer">
+              <span class="flex-center gap-1-5">
+                <span class="status-dot-emerald"></span>
+                پایگاه داده محلی
+              </span>
+              <span class="font-mono text-9">Offline Ready</span>
             </div>
-          </div>
+          </aside>
 
-          <!-- Tab 2: Study Log Form -->
-          <div id="tab-log" class="tab-pane">
-            <div style="max-width: 600px; margin: 0 auto; background: rgba(255,255,255,0.03); padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-              <h3 style="margin-bottom: 1.5rem; color: var(--accent-cyan); font-size: 1.2rem;">✏️ ثبت گزارش مطالعه جدید</h3>
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-                <div>
-                  <label style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">تاریخ:</label>
-                  <input type="text" value="1405/05/09" readonly style="width: 100%; padding: 0.6rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: #fff;">
+          <!-- Workspace Content Area (RIGHT Side) -->
+          <main class="app-content">
+            <div class="workspace-wrapper">
+
+              <!-- VIEW 1: HOME PAGE OVERVIEW -->
+              <div id="view-home" class="view-panel active space-y-6">
+                <div class="card-5xl flex-between">
+                  <div style="text-align: right;">
+                    <h2 class="text-base font-bold text-slate-900">خلاصه عملکرد امروز</h2>
+                    <p class="text-xs text-slate-400 mt-0-5">وضعیت مطالعه و فعالیت‌های ثبت‌شده در یک نگاه</p>
+                  </div>
+                  <button class="btn-tactile-indigo">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                    <span>ثبت مطالعه دستی</span>
+                  </button>
                 </div>
-                <div>
-                  <label style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">نام درس:</label>
-                  <input type="text" value="زیست‌شناسی - فصل ۳" readonly style="width: 100%; padding: 0.6rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: #fff;">
+
+                <!-- Stats Cards Grid (Exact Order from Right to Left: زمان مطالعه امروز | تست‌های امروز | کل پارت‌ها) -->
+                <div class="grid-cols-3">
+                  <div class="card-4xl space-y-2 text-right">
+                    <span class="text-xs font-semibold text-slate-400 block">زمان مطالعه امروز</span>
+                    <div class="flex-baseline gap-2 justify-end">
+                      <span class="text-3xl font-bold text-slate-900 font-mono">۴.۵</span>
+                      <span class="text-xs text-slate-400">ساعت</span>
+                    </div>
+                    <div class="prog-bar-bg mt-2 h-1-5">
+                      <div class="prog-fill-indigo" style="width: 75%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="card-4xl space-y-2 text-right">
+                    <span class="text-xs font-semibold text-slate-400 block">تست‌های امروز</span>
+                    <div class="flex-baseline gap-2 justify-end">
+                      <span class="text-3xl font-bold text-slate-900 font-mono">۸۵</span>
+                      <span class="text-xs text-slate-400">تست</span>
+                    </div>
+                    <div class="prog-bar-bg mt-2 h-1-5">
+                      <div class="prog-fill-emerald" style="width: 85%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="card-4xl space-y-2 text-right">
+                    <span class="text-xs font-semibold text-slate-400 block">کل پارت‌های ثبت‌شده</span>
+                    <div class="flex-baseline gap-2 justify-end">
+                      <span class="text-3xl font-bold text-slate-900 font-mono">۱۴</span>
+                      <span class="text-xs text-slate-400">جلسه</span>
+                    </div>
+                    <span class="text-10 text-slate-400 block mt-2">تاریخچه کامل ذخیره‌شده</span>
+                  </div>
+                </div>
+
+                <!-- Recent Logs Preview Container -->
+                <div class="card-5xl space-y-4">
+                  <div class="flex-between pb-3 border-b border-slate-100">
+                    <h3 class="text-xs font-bold text-slate-900">آخرین جلسات ثبت‌شده</h3>
+                    <span class="text-xs text-indigo font-semibold cursor-pointer">مشاهده همه</span>
+                  </div>
+                  
+                  <div class="space-y-3">
+                    <div class="log-item-row">
+                      <div class="space-y-1 text-right">
+                        <div class="flex-center gap-2">
+                          <strong class="font-bold text-slate-900 text-xs">ریاضیات عمومی</strong>
+                          <span class="badge-date">۱۴۰۵/۰۵/۱۰</span>
+                        </div>
+                        <p class="text-11 text-slate-500">مبحث: مشتق و کاربردها</p>
+                      </div>
+                      <div class="text-left font-mono">
+                        <span class="font-bold text-indigo block text-xs">۱۲۰ دقیقه</span>
+                        <span class="text-10 text-emerald block">۴۵ تست</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
-                <div>
-                  <label style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">مدت مطالعه (ساعت):</label>
-                  <input type="text" value="2.5" readonly style="width: 100%; padding: 0.6rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: #fff;">
-                </div>
-                <div>
-                  <label style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">تعداد تست:</label>
-                  <input type="text" value="65" readonly style="width: 100%; padding: 0.6rem; background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: #fff;">
+
+              <!-- VIEW 2: TIMER SETUP -->
+              <div id="view-timer" class="view-panel space-y-6" style="display: none;">
+                <div class="card-5xl space-y-6">
+                  <div class="border-b border-slate-100 pb-5 space-y-4">
+                    <div class="text-right">
+                      <h2 class="text-base font-extrabold text-slate-900 flex-center gap-2">
+                        <span class="icon-square-indigo">
+                          <svg class="w-4 h-4 text-indigo" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </span>
+                        <span>تنظیم روش و زمان مطالعه</span>
+                      </h2>
+                      <p class="text-xs text-slate-400 mt-1">روش مطالعه دلخواه خود را انتخاب کنید تا زمان‌بندی جلسه دقیقاً طبق برنامه شما پیش برود.</p>
+                    </div>
+                    
+                    <div class="grid-cols-3">
+                      <div class="timer-mode-card active">
+                        <div class="flex-between mb-2">
+                          <span class="mode-card-icon-bg active">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                          </span>
+                          <span class="badge-default-indigo">پیش‌فرض</span>
+                        </div>
+                        <div>
+                          <h3 class="text-xs font-bold text-slate-800 mode-title">پومودورو هوشمند</h3>
+                          <p class="text-10 text-slate-400 mt-0-5">مطالعه با چرخه‌های استراحت منظم</p>
+                        </div>
+                      </div>
+
+                      <div class="timer-mode-card">
+                        <div class="flex-between mb-2">
+                          <span class="mode-card-icon-bg">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                          </span>
+                        </div>
+                        <div>
+                          <h3 class="text-xs font-bold text-slate-800 mode-title">تایمر معکوس</h3>
+                          <p class="text-10 text-slate-400 mt-0-5">شمارش معکوس زمان مشخص</p>
+                        </div>
+                      </div>
+
+                      <div class="timer-mode-card">
+                        <div class="flex-between mb-2">
+                          <span class="mode-card-icon-bg">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                          </span>
+                        </div>
+                        <div>
+                          <h3 class="text-xs font-bold text-slate-800 mode-title">کرنومتر آزاد</h3>
+                          <p class="text-10 text-slate-400 mt-0-5">شمارش صعودی زمان از صفر</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <button class="btn btn-primary" style="width: 100%; pointer-events: none;">💾 ذخیره در پایگاه داده SQLite</button>
+
+              <!-- VIEW 3: HISTORY VIEW -->
+              <div id="view-history" class="view-panel space-y-4" style="display: none;">
+                <div class="card-4xl flex-between gap-4">
+                  <div class="relative flex-1">
+                    <input type="text" placeholder="جستجو در دروس یا مباحث..." class="input-native-text pr-10">
+                    <svg class="w-4 h-4 text-slate-400 absolute right-3-5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                  </div>
+                  <span class="text-xs text-slate-400 font-mono whitespace-nowrap">۱۴ جلسه ثبت‌شده</span>
+                </div>
+              </div>
+
+              <!-- VIEW 4: SETTINGS VIEW -->
+              <div id="view-settings" class="view-panel space-y-6" style="display: none;">
+                <div class="card-5xl space-y-6">
+                  <div class="pb-4 border-b border-slate-100 text-right">
+                    <h2 class="text-base font-bold text-slate-900">تنظیمات اهداف و پومودورو</h2>
+                    <p class="text-xs text-slate-400 mt-1">اهداف روزانه و تنظیمات محاسبه زمان پومودورو را مدیریت کنید</p>
+                  </div>
+                </div>
+              </div>
+
             </div>
-          </div>
-
-          <!-- Tab 3: Pomodoro Sandbox & Audio Player -->
-          <div id="tab-pomodoro" class="tab-pane">
-            <div class="pomo-sim-box">
-              <div id="sim-pomo-status" class="pomo-status">آماده برای جلسه ۲۵ دقیقه‌ای تمرکز</div>
-              <div id="sim-pomo-display" class="pomo-timer-display">25:00</div>
-              
-              <div class="pomo-actions">
-                <button id="pomo-start-btn" class="btn btn-primary btn-lg">▶️ شروع پومودورو</button>
-                <button id="pomo-reset-btn" class="btn btn-secondary btn-lg">🔄 بازنشانی</button>
-              </div>
-
-              <div class="sound-toggle-box">
-                <button id="ambient-sound-btn" class="sound-btn">
-                  🌧️ پخش نویز سفید / صدای باران
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tab 4: Settings & Excel Export -->
-          <div id="tab-settings" class="tab-pane">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-              <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-                <h4 style="margin-bottom: 0.75rem; color: var(--accent-cyan);">📥 خروجی اکسل (Excel)</h4>
-                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;">دریافت گزارش کامل و تفکیک‌شده سوابق مطالعه در قالب فایل .xlsx استاندارد.</p>
-                <button class="btn btn-outline btn-sm">📊 دانلود فایل Excel سوابق</button>
-              </div>
-              <div style="background: rgba(255,255,255,0.03); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-                <h4 style="margin-bottom: 0.75rem; color: var(--accent-emerald);">🗄️ پایگاه داده محلی</h4>
-                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;">تمام داده‌ها در SQLite ذخیره شده و در مسیر %LOCALAPPDATA% ویندوز ایمن می‌باشند.</p>
-                <span style="font-size: 0.8rem; color: var(--text-dim);">مسیر دیتابیس: study_log.db</span>
-              </div>
-            </div>
-          </div>
+          </main>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Interactive Study Progress Calculator Section -->
-  <section id="calculator" class="calculator-section">
+  <!-- Mobbin Bento Grid Features Section -->
+  <section id="bento-features" class="bento-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">ابزار تخمین هوشمند</span>
-        <h2 class="section-title">محاسبه‌گر پیشرفت و انگیزه مطالعه</h2>
-        <p class="section-desc">ببینید با مطالعه منظم و روزانه در طول زمان به چه دستاوردهای شگفت‌انگیزی خواهید رسید!</p>
+        <span class="section-tag">ویژگی‌های کاربردی</span>
+        <h2 class="section-title">چرا از «چند ساعت؟» استفاده کنیم؟</h2>
       </div>
 
-      <div class="calc-card">
-        <div class="calc-inputs">
-          <div class="input-group">
-            <div class="input-label">
-              <span>تعداد روزهای مطالعه:</span>
-              <span id="val-days" class="input-val">90 روز</span>
-            </div>
-            <input type="range" id="range-days" min="10" max="365" value="90">
+      <div class="bento-grid">
+        <!-- Bento Card 1 (Hero Card - Span 2) -->
+        <div class="bento-card span-2 bento-hero-card">
+          <div class="bento-card-content">
+            <div class="bento-pill">تایمر چندحالتـه</div>
+            <h3 class="bento-title">تایمر پومودورو، معکوس و کرنومتر</h3>
+            <p class="bento-text">
+              با چرخه‌های منظم درس و استراحت، جلوی خستگی ذهنت را بگیر. می‌توانی از حالت پومودورو (مثلاً ۲۵ دقیقه درس + ۵ دقیقه استراحت) یا تایمر معکوس و کرنومتر آزاد استفاده کنی.
+            </p>
           </div>
-
-          <div class="input-group">
-            <div class="input-label">
-              <span>میانگین مطالعه روزانه:</span>
-              <span id="val-hours" class="input-val">6.5 ساعت</span>
-            </div>
-            <input type="range" id="range-hours" min="1" max="14" step="0.5" value="6.5">
-          </div>
-
-          <div class="input-group">
-            <div class="input-label">
-              <span>تعداد تست در روز:</span>
-              <span id="val-tests" class="input-val">50 تست</span>
-            </div>
-            <input type="range" id="range-tests" min="10" max="300" step="10" value="50">
-          </div>
-        </div>
-
-        <div class="calc-results">
-          <div class="res-title">📊 دستاورد کل پیش‌بینی‌شده شما:</div>
-
-          <div class="res-grid">
-            <div class="res-box">
-              <div id="res-total-hours" class="res-num">۵۸۵</div>
-              <div class="res-sub">مجموع ساعات مطالعه مفید</div>
-            </div>
-            <div class="res-box">
-              <div id="res-total-tests" class="res-num">۴,۵۰۰</div>
-              <div class="res-sub">مجموع تست‌های تست‌زنی‌شده</div>
+          <div class="bento-card-graphic">
+            <div style="background: rgba(255,255,255,0.7); border: 1px solid var(--border-color); backdrop-filter: blur(12px); border-radius: 1.25rem; padding: 1.25rem; text-align: center; box-shadow: var(--shadow-card);">
+              <span style="font-size: 0.75rem; font-weight: 800; color: var(--primary-color);">حالت فعال: پومودورو</span>
+              <div style="font-size: 2.2rem; font-weight: 900; color: var(--text-main); margin: 0.2rem 0; font-family: sans-serif;">25:00</div>
+              <span style="font-size: 0.7rem; color: var(--emerald-color); font-weight: 800;">⚡ تمرکز کامل بر مطالعه</span>
             </div>
           </div>
+        </div>
 
-          <div id="level-badge" class="badge-level">
-            🔥 تسلط عالی و آمادگی بالا
+        <!-- Row 2: Card 2 & Card 3 (50% / 50%) -->
+        <div class="bento-card">
+          <div>
+            <div class="bento-icon-badge">📊</div>
+            <h3 class="bento-title">بررسی آمار و پیشرفت</h3>
+            <p class="bento-text">
+              ساعات مطالعه و تعداد تست‌های روزانه‌ات را به تفکیک درس‌ها ببین و عملکردت را با هدفی که گذاشتی مقایسه کن.
+            </p>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Features Grid Section -->
-  <section id="features" class="features-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">امکانات کلیدی</span>
-        <h2 class="section-title">چرا نرم‌افزار «چند ساعت؟»</h2>
-        <p class="section-desc">طراحی شده برای بیشترین کارایی، سادگی و حفظ تمرکز کامل دانش‌آموزان و داوطلبان</p>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feat-icon">⏱️</div>
-          <h3 class="feat-title">تایمر پومودورو هوشمند</h3>
-          <p class="feat-desc">زمان‌بندی استاندارد ۲۵ دقیقه مطالعه و ۵ دقیقه استراحت برای جلوگیری از خستگی ذهنی و افزایش راندمان یادگیری.</p>
+        <div class="bento-card">
+          <div>
+            <div class="bento-icon-badge">🔒</div>
+            <h3 class="bento-title">۱۰۰٪ آفلاین و شخصی</h3>
+            <p class="bento-text">
+              تمام اطلاعات فقط روی کامپیوتر خودت ذخیره می‌شود. هیچ نیازی به اینترنت، فیلترشکن یا ثبت‌نام نداری.
+            </p>
+          </div>
         </div>
 
-        <div class="feature-card">
-          <div class="feat-icon">📊</div>
-          <h3 class="feat-title">تحلیل و گزارش‌های تصویری</h3>
-          <p class="feat-desc">نمایش روند مطالعه و تست‌زنی با نمودارها، خلاصه عملکرد روزانه و هفتگی برای ارزیابی مداوم پیشرفت.</p>
+        <!-- Row 3: Card 4 & Card 5 (50% / 50%) -->
+        <div class="bento-card">
+          <div>
+            <div class="bento-icon-badge">💻</div>
+            <h3 class="bento-title">سبک و سریع برای ویندوز</h3>
+            <p class="bento-text">
+              طراحی‌شده ویژه ویندوز ۱۰ و ۱۱. فوق‌العاده سریع اجرا می‌شود و هیچ سنگینی روی سیستم ایجاد نمی‌کند.
+            </p>
+          </div>
         </div>
 
-        <div class="feature-card">
-          <div class="feat-icon">🗄️</div>
-          <h3 class="feat-title">پایگاه داده آفلاین SQLite</h3>
-          <p class="feat-desc">ذخیره‌سازی کاملاً محلی و امن اطلاعات در کامپیوتر بدون ریسک قطعی اینترنت یا فیلترینگ.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feat-icon">📥</div>
-          <h3 class="feat-title">خروجی فایل اکسل (Excel)</h3>
-          <p class="feat-desc">دریافت گزارش خروجی استاندارد با یک کلیک جهت ارائه به مشاوران تحصیلی یا جمع‌بندی شخص.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feat-icon">💻</div>
-          <h3 class="feat-title">پنجره نیتیو دسکتاپ (PyWebView)</h3>
-          <p class="feat-desc">اجرا در محیط مستقل بدون نیاز به باز کردن مرورگر و عاری از تب‌های حواس‌پرت‌کننده وب.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feat-icon">⚡</div>
-          <h3 class="feat-title">بک‌اند مدرن و سریع FastAPI</h3>
-          <p class="feat-desc">استفاده از FastAPI پایتون برای پاسخ‌دهی لحظه‌ای، مصرف بهینه RAM و پایداری کامل سیستم.</p>
+        <div class="bento-card">
+          <div>
+            <div class="bento-pill" style="background: var(--amber-light); color: var(--amber-text); border-color: #FDE68A;">در دست توسعه</div>
+            <h3 class="bento-title">خروجی فایل اکسل (به‌زودی)</h3>
+            <p class="bento-text">
+              امکان خروجی گرفتن گزارش ساعات مطالعه و تست‌ها در قالب فایل اکسل برای مشاور یا والدین.
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Download Section -->
+  <!-- Download Banner Section -->
   <section id="download" class="download-section">
     <div class="container">
-      <div class="download-box">
-        <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; color: #fff;">
-          🚀 دانلود آخرین نسخه نرم‌افزار «چند ساعت؟»
+      <div class="download-banner-card">
+        <h2 class="dl-banner-title">
+          🚀 دانلود نرم‌افزار «چند ساعت؟» برای ویندوز
         </h2>
-        <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem;">
-          نسخه v0.2.0 با پشتیبانی کامل از ویندوز ۱۰ و ۱۱ و آماده استفاده برای ثبت روزانه ساعات مطالعه و تست.
+        <p class="dl-banner-desc">
+          کاملاً رایگان • سازگار با ویندوز ۱۰ و ویندوز ۱۱
         </p>
 
-        <div class="download-options">
-          <div class="dl-card">
-            <div class="dl-type">💿 نسخه نصب‌کننده (Setup)</div>
-            <div class="dl-meta">ویندوز ۱۰ و ۱۱ | حجم ~۳۵ مگابایت</div>
-            <a href="https://github.com/yahaiz/chand-saat/releases/download/v0.2.0/ChandSaat_Setup_v0.2.0.exe" class="btn btn-primary" style="width: 100%;">
-              دانلود فایل Setup.exe
+        <div class="download-cards-flex">
+          <div class="dl-card-item">
+            <div class="dl-card-icon">💻</div>
+            <div class="dl-card-info">
+              <h3 class="dl-card-title">نسخه نصب‌کننده (Setup)</h3>
+              <p class="dl-card-desc">فایل نصب خودکار و رسمی ویندوز</p>
+            </div>
+            <a href="https://github.com/yahaiz/chand-saat/releases/download/v0.2.0/ChandSaat_Setup_v0.2.0.exe" class="btn-tactile-primary dl-btn">
+              دانلود Setup.exe (~۳۵MB)
             </a>
           </div>
 
-          <div class="dl-card">
-            <div class="dl-type">📦 نسخه پرتابل (Portable)</div>
-            <div class="dl-meta">بدون نیاز به نصب | فایل .zip</div>
-            <a href="https://github.com/yahaiz/chand-saat/releases/download/v0.2.0/ChandSaat_v0.2.0_Portable.zip" class="btn btn-secondary" style="width: 100%;">
-              دانلود فایل Portable.zip
+          <div class="dl-card-item">
+            <div class="dl-card-icon">📦</div>
+            <div class="dl-card-info">
+              <h3 class="dl-card-title">نسخه پرتابل (Portable)</h3>
+              <p class="dl-card-desc">بدون نیاز به نصب، اجرای مستقیم از Zip</p>
+            </div>
+            <a href="https://github.com/yahaiz/chand-saat/releases/download/v0.2.0/ChandSaat_v0.2.0_Portable.zip" class="btn-tactile-secondary dl-btn">
+              دانلود Portable.zip
             </a>
           </div>
         </div>
@@ -414,42 +488,42 @@
     </div>
   </section>
 
-  <!-- FAQ Section -->
+  <!-- FAQ Accordion Section -->
   <section id="faq" class="faq-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">پرسش‌های متداول</span>
-        <h2 class="section-title">سوالات شما</h2>
+        <span class="section-tag">پاسخ به سوالات شما</span>
+        <h2 class="section-title">سوالات متداول</h2>
       </div>
 
-      <div class="faq-list">
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>آیا این نرم‌افزار رایگان و متن‌باز (Open Source) است؟</span>
-            <span class="faq-toggle">▼</span>
+      <div class="faq-list-wrapper">
+        <div class="faq-item-card">
+          <div class="faq-question-btn">
+            <span>این برنامه روی چه سیستم‌عامل‌هایی نصب می‌شود؟</span>
+            <span class="faq-icon">+</span>
           </div>
-          <div class="faq-answer">
-            بله، نرم‌افزار «چند ساعت؟» کاملاً رایگان بوده و تحت لایسنس MIT توسعه یافته است. سورس‌کد کامل آن در گیت‌هاب در دسترس می‌باشد.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>اطلاعات ثبت‌شده در کجا ذخیره می‌شوند؟</span>
-            <span class="faq-toggle">▼</span>
-          </div>
-          <div class="faq-answer">
-            تمام گزارش‌ها و اطلاعات شما در یک پایگاه داده آفلاین SQLite در پوشه استاندارد %LOCALAPPDATA%\ChandSaat کامپیوتر شخص شما ذخیره می‌شوند و هیچ اطلاعاتی به اینترنت ارسال نمی‌گردد.
+          <div class="faq-answer-pane">
+            نرم‌افزار «چند ساعت؟» ویژه سیستم‌عامل ویندوز (Windows 10 و Windows 11) طراحی شده است.
           </div>
         </div>
 
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>چگونه می‌توانم از اطلاعات نسخه قبلی پشتیبان (Backup) بگیرم؟</span>
-            <span class="faq-toggle">▼</span>
+        <div class="faq-item-card">
+          <div class="faq-question-btn">
+            <span>اطلاعات مطالعه من کجا ذخیره می‌شود؟</span>
+            <span class="faq-icon">+</span>
           </div>
-          <div class="faq-answer">
-            می‌توانید به راحتی با استفاده از کلید «دانلود خروجی Excel» در تب تنظیمات برنامه، یک فایل اکسل کامل از تمام سوابق ثبت‌شده خود ذخیره و نگهداری کنید.
+          <div class="faq-answer-pane">
+            تمام گزارش‌ها به صورت ۱۰۰٪ آفلاین درون کامپیوتر شخصی خودتان ذخیره می‌شود و هیچ اطلاعاتی به اینترنت ارسال نمی‌شود.
+          </div>
+        </div>
+
+        <div class="faq-item-card">
+          <div class="faq-question-btn">
+            <span>آیا استفاده از برنامه رایگان است؟</span>
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer-pane">
+            بله، این نرم‌افزار کاملاً رایگان و متن‌باز (Open-Source) است.
           </div>
         </div>
       </div>
@@ -459,12 +533,11 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <ul class="footer-links">
-        <li><a href="https://github.com/yahaiz/chand-saat" class="footer-link" target="_blank">مخزن گیت‌هاب</a></li>
-        <li><a href="https://github.com/yahaiz/chand-saat/releases" class="footer-link" target="_blank">نسخه‌ها و انتشارها</a></li>
-        <li><a href="https://github.com/yahaiz/chand-saat/blob/main/LICENSE" class="footer-link" target="_blank">لایسنس MIT</a></li>
+      <ul class="footer-nav-links">
+        <li><a href="https://github.com/yahaiz/chand-saat" target="_blank">کدهای گیت‌هاب</a></li>
+        <li><a href="https://github.com/yahaiz/chand-saat/releases" target="_blank">نسخه‌ها و انتشار</a></li>
       </ul>
-      <p>© ۱۴۰۵ - توسعه‌یافته با ❤️ برای دانش‌آموزان و داوطلبان آزمون‌ها | پروژه «چند ساعت؟» (ChandSaat)</p>
+      <p>© ۱۴۰۵ - نرم‌افزار ثبت مطالعه و تمرکز «چند ساعت؟» (ChandSaat) ویژه ویندوز</p>
     </div>
   </footer>
 
