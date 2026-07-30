@@ -25,10 +25,9 @@ jobs:
           python-version: "3.13"
           cache: "pip"
 
-      - name: Install Inno Setup
-        uses: sauce-labs/setup-inno-setup@v1
-        with:
-          inno-version: "6.2.2"
+      - name: Install Inno Setup Compiler via Chocolatey
+        run: |
+          choco install innosetup --no-progress -y
 
       - name: Install Python Dependencies
         run: |

@@ -1,25 +1,51 @@
 import os
+import sys
 import zipfile
 import subprocess
 import shutil
 
 VERSION = "0.1.0"
-DIST_DIR = r"g:\my-daily-log\dist\ChandSaat"
-OUTPUT_DIR = r"g:\my-daily-log\installer"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DIST_DIR = os.path.join(BASE_DIR, "dist", "ChandSaat")
+OUTPUT_DIR = os.path.join(BASE_DIR, "installer")
 
 if not os.path.exists(OUTPUT_DIR):
     os.makedirs(OUTPUT_DIR)
 
-# 1. Re-build with PyInstaller
+# 1. Re-build with PyInstaller using current Python environment
 print(f"Building PyInstaller EXE for version {VERSION}...")
-pyinstaller_cmd = [r"g:\my-daily-log\.venv\Scripts\pyinstaller.exe", "ChandSaat.spec", "--noconfirm"]
-subprocess.run(pyinstaller_cmd, check=True)
+spec_path = os.path.join(BASE_DIR, "ChandSaat.spec")
+pyinstaller_cmd = [sys.executable, "-m", "PyInstaller", spec_path, "--noconfirm"]
+subprocess.run(pyinstaller_cmd, check=True, cwd=BASE_DIR)
 
-# 2. Build Windows Installer (.exe Setup)
-inno_compiler = r"C:\Users\ASUS\AppData\Local\Programs\Inno Setup 6\ISCC.exe"
-if os.path.exists(inno_compiler):
+# 2. Find and execute Inno Setup compiler (ISCC.exe)
+def find_inno_compiler():
+    # Check PATH first
+    path_iscc = shutil.which("iscc") or shutil.which("ISCC.exe")
+    if path_iscc:
+        return path_iscc
+
+    # Common Windows installation locations
+    candidate_paths = [
+        r"C:\Program Files (x86)\Inno Setup 6\ISCC.exe",
+        r"C:\Program Files\Inno Setup 6\ISCC.exe",
+        os.path.join(os.environ.get("LOCALAPPDATA", ""), "Programs", "Inno Setup 6", "ISCC.exe"),
+        os.path.join(os.environ.get("ProgramFiles(x86)", ""), "Inno Setup 6", "ISCC.exe"),
+        os.path.join(os.environ.get("ProgramFiles", ""), "Inno Setup 6", "ISCC.exe")
+    ]
+    for p in candidate_paths:
+        if p and os.path.exists(p):
+            return p
+    return None
+
+inno_compiler = find_inno_compiler()
+if inno_compiler:
+    print(f"Found Inno Setup Compiler at: {inno_compiler}")
     print(f"Building Windows Setup Installer (ChandSaat_Setup_v{VERSION}.exe)...")
-    subprocess.run([inno_compiler, "setup.iss"], check=True)
+    iss_path = os.path.join(BASE_DIR, "setup.iss")
+    subprocess.run([inno_compiler, iss_path], check=True, cwd=BASE_DIR)
+else:
+    print("WARNING: Inno Setup compiler (ISCC.exe) not found. Skipping Setup.exe creation.")
 
 # 3. Create Standalone ZIP Bundle
 zip_filename = os.path.join(OUTPUT_DIR, f"ChandSaat_v{VERSION}_Portable.zip")

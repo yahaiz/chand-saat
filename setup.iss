@@ -12,9 +12,9 @@ AppPublisher={#MyAppPublisher}
 DefaultDirName={autopf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes
-OutputDir=g:\my-daily-log\installer
+OutputDir=installer
 OutputBaseFilename=ChandSaat_Setup_v0.1.0
-SetupIconFile=g:\my-daily-log\icon.ico
+SetupIconFile=icon.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}
 Compression=lzma
 SolidCompression=yes
@@ -27,8 +27,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "g:\my-daily-log\dist\ChandSaat\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "g:\my-daily-log\dist\ChandSaat\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "dist\ChandSaat\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\ChandSaat\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
