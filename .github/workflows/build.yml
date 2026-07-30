@@ -1,0 +1,59 @@
+name: Build ChandSaat Desktop App
+
+on:
+  push:
+    branches: [ "main", "master" ]
+    tags: [ "v*" ]
+  pull_request:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: "pip"
+
+      - name: Install Inno Setup
+        uses: sauce-labs/setup-inno-setup@v1
+        with:
+          inno-version: "6.2.2"
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Run Release Build Script
+        run: |
+          python make_release.py
+
+      - name: Upload Installer Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ChandSaat-Release-v0.1.0
+          path: |
+            installer/ChandSaat_Setup_v0.1.0.exe
+            installer/ChandSaat_v0.1.0_Portable.zip
+
+      - name: Release Assets (On Tag Push)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            installer/ChandSaat_Setup_v0.1.0.exe
+            installer/ChandSaat_v0.1.0_Portable.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

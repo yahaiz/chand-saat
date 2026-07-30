@@ -1,0 +1,40 @@
+# Python Virtual Environment
+.venv/
+env/
+venv/
+ENV/
+
+# Python Cache & Compiled Files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Design & Raw Assets
+design/
+*.psd
+
+# Build & Release Artifacts
+build/
+dist/
+installer/
+*.spec.bak
+
+# Application Runtime & User Logs
+*.log
+app.log
+*.db
+*.sqlite
+*.sqlite3
+study_log.db
+study_log.xlsx
+*.tmp*
+settings.json
+
+# IDE & Editor Settings
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store

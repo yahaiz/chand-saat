@@ -1,0 +1,54 @@
+/* Custom Styles for ChandSaat */
+body { 
+    font-family: 'Vazirmatn', sans-serif;
+    background-color: #F8FAFC;
+    color: #0F172A;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #E2E8F0; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #CBD5E1; }
+
+.window-titlebar { -webkit-app-region: drag; }
+.window-no-drag { -webkit-app-region: no-drag; }
+
+.view-panel {
+    animation: viewFadeIn 0.25s ease-out forwards;
+}
+
+@keyframes viewFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.focus-enter-anim {
+    animation: focusZoomIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes focusZoomIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.94);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-morph {
+    animation: modalFadeIn 0.25s ease-out forwards;
+    border-radius: 2.5rem !important;
+}
+
+@keyframes modalFadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.nav-item {
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
