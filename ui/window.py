@@ -1,6 +1,7 @@
+import os
 import time
 import webview
-from core.config import logger
+from core.config import logger, APP_DATA_DIR
 
 class WindowAPI:
     def __init__(self, window_instance=None):
@@ -57,14 +58,24 @@ def create_main_window(url: str = "http://127.0.0.1:28475/"):
 
     def on_shown():
         try:
+            from routes.pages import set_window_ready
+            set_window_ready()
             time.sleep(0.1)
             window.restore()
-            if callable(getattr(window, 'focus', None)):
-                window.focus()
+            focus_attr = getattr(window, 'focus', None)
+            if callable(focus_attr):
+                focus_attr()
             if hasattr(window, 'gui_handle') and window.gui_handle:
                 import ctypes
                 ctypes.windll.user32.SetForegroundWindow(window.gui_handle)
         except Exception as e:
             logger.error(f"Focus window error: {e}")
 
-    webview.start(on_shown)
+    storage_dir = os.path.join(APP_DATA_DIR, "webcache")
+    os.makedirs(storage_dir, exist_ok=True)
+
+    try:
+        webview.start(on_shown, storage_path=storage_dir)
+    except Exception as e:
+        logger.critical(f"PyWebView start failure: {e}", exc_info=True)
+

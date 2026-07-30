@@ -1,5 +1,5 @@
+import os
 from datetime import datetime
-import pandas as pd
 from database.db import get_connection
 from core.config import FILE_LOCK, EXCEL_FILE, REQUIRED_COLUMNS, logger
 
@@ -76,6 +76,7 @@ def get_today_stats() -> tuple[float, int]:
             conn.close()
 
 def export_to_excel() -> str:
+    import pandas as pd
     with FILE_LOCK:
         conn = get_connection()
         try:

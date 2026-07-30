@@ -1,6 +1,6 @@
 import os
 from fastapi import APIRouter, Request
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.responses import HTMLResponse, FileResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 from core.config import TEMPLATES_DIR, BASE_DIR, logger
 from database import repository
@@ -39,6 +39,18 @@ async def read_root(request: Request):
         logger.error(f"Error rendering root page: {e}")
         return HTMLResponse(content=f"<h3>خطا در بارگذاری برنامه: {e}</h3>", status_code=500)
 
+WINDOW_READY = False
+
+def set_window_ready():
+    global WINDOW_READY
+    WINDOW_READY = True
+
+@router.get("/splash_ready")
+async def is_splash_ready():
+    if WINDOW_READY:
+        return {"ready": True}
+    return JSONResponse(status_code=503, content={"ready": False})
+
 @router.get("/icon.png")
 async def get_icon():
     icon_path = os.path.join(BASE_DIR, "icon.png")
@@ -52,3 +64,4 @@ async def get_splash():
     if os.path.exists(splash_path):
         return FileResponse(splash_path, media_type="image/png")
     return HTMLResponse(status_code=404)
+

@@ -55,7 +55,7 @@ def show_splash(server_port: int = 28475):
         def check_ready():
             is_ready = False
             try:
-                req = urllib.request.Request(f"http://127.0.0.1:{server_port}/", headers={'User-Agent': 'Mozilla/5.0'})
+                req = urllib.request.Request(f"http://127.0.0.1:{server_port}/splash_ready", headers={'User-Agent': 'Mozilla/5.0'})
                 with urllib.request.urlopen(req, timeout=0.3) as resp:
                     if resp.status == 200:
                         is_ready = True
@@ -63,7 +63,7 @@ def show_splash(server_port: int = 28475):
                 pass
 
             elapsed = time.time() - start_time
-            if (is_ready and elapsed >= 1.5) or elapsed > 10.0:
+            if (is_ready and elapsed >= 0.5) or elapsed > 10.0:
                 splash_root.destroy()
             else:
                 splash_root.after(100, check_ready)

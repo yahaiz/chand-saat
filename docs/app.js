@@ -1,4 +1,4 @@
-// Interactive Desktop Simulator Tab Navigation & FAQ Accordion
+// Interactive Desktop Simulator Tab Navigation, FAQ Accordion, & GitHub Release Auto-Sync
 document.addEventListener('DOMContentLoaded', () => {
   // Tab Switcher for Desktop Simulator Demo
   const menuButtons = document.querySelectorAll('.nav-item[data-target]');
@@ -50,4 +50,52 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Fetch Latest Release Version and Asset Links dynamically from GitHub Releases API
+  async function syncLatestRelease() {
+    try {
+      const response = await fetch('https://api.github.com/repos/yahaiz/chand-saat/releases/latest');
+      if (!response.ok) return;
+      const data = await response.json();
+
+      const tagName = data.tag_name; // e.g. "v0.2.1"
+      const verClean = tagName.replace(/^v/, '');
+
+      // Update Hero Version Badge
+      const versionBadge = document.getElementById('version-badge');
+      if (versionBadge) {
+        versionBadge.textContent = `نسخه v${verClean} — ۱۰۰٪ رایگان و آفلاین`;
+      }
+
+      // Locate Asset URLs from API
+      let setupUrl = `https://github.com/yahaiz/chand-saat/releases/download/${tagName}/ChandSaat_Setup_v${verClean}.exe`;
+      let portableUrl = `https://github.com/yahaiz/chand-saat/releases/download/${tagName}/ChandSaat_v${verClean}_Portable.zip`;
+
+      if (data.assets && Array.isArray(data.assets)) {
+        const setupAsset = data.assets.find(a => a.name.includes('Setup') && a.name.endsWith('.exe'));
+        const portableAsset = data.assets.find(a => a.name.includes('Portable') && a.name.endsWith('.zip'));
+
+        if (setupAsset && setupAsset.browser_download_url) {
+          setupUrl = setupAsset.browser_download_url;
+        }
+        if (portableAsset && portableAsset.browser_download_url) {
+          portableUrl = portableAsset.browser_download_url;
+        }
+      }
+
+      // Update all Setup download buttons
+      document.querySelectorAll('.btn-dl-setup').forEach(el => {
+        el.href = setupUrl;
+      });
+
+      // Update all Portable download buttons
+      document.querySelectorAll('.btn-dl-portable').forEach(el => {
+        el.href = portableUrl;
+      });
+    } catch (err) {
+      console.log('GitHub Release sync info:', err);
+    }
+  }
+
+  syncLatestRelease();
 });

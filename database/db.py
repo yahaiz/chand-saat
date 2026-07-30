@@ -1,6 +1,5 @@
 import sqlite3
 import os
-import pandas as pd
 from core.config import DB_FILE, EXCEL_FILE, REQUIRED_COLUMNS, FILE_LOCK, logger
 
 def get_connection():
@@ -34,6 +33,7 @@ def init_db():
             if count == 0 and os.path.exists(EXCEL_FILE):
                 logger.info("Migrating legacy study_log.xlsx into SQLite database...")
                 try:
+                    import pandas as pd
                     df = pd.read_excel(EXCEL_FILE)
                     if not df.empty:
                         for _, row in df.iterrows():
