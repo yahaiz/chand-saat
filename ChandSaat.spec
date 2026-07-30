@@ -21,7 +21,9 @@ a = Analysis(
         'jinja2',
         'openpyxl',
         'pandas',
-        'sqlite3'
+        'sqlite3',
+        'multipart',
+        'python_multipart'
     ],
     hookspath=[],
     hooksconfig={},
