@@ -6,6 +6,7 @@
 
 **نرم‌افزار مدیریت، ثبت و تحلیل ساعات مطالعه روزانه و تست‌زنی دسکتاپ**
 
+[![Website](https://img.shields.io/badge/Website-GitHub%20Pages-purple.svg)](https://yahaiz.github.io/chand-saat/)
 [![Build Status](https://github.com/yahaiz/chand-saat/actions/workflows/build.yml/badge.svg)](https://github.com/yahaiz/chand-saat/actions)
 [![Python Version](https://img.shields.io/badge/Python-3.13%2B-blue.svg)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100%2B-009688.svg)](https://fastapi.tiangolo.com)
