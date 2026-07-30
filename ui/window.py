@@ -59,7 +59,8 @@ def create_main_window(url: str = "http://127.0.0.1:28475/"):
         try:
             time.sleep(0.1)
             window.restore()
-            window.focus()
+            if callable(getattr(window, 'focus', None)):
+                window.focus()
             if hasattr(window, 'gui_handle') and window.gui_handle:
                 import ctypes
                 ctypes.windll.user32.SetForegroundWindow(window.gui_handle)

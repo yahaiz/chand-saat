@@ -1,6 +1,6 @@
 ; ChandSaat - Inno Setup Script
 #define MyAppName "ChandSaat"
-#define MyAppVersion "0.1.0"
+#define MyAppVersion "0.2.0"
 #define MyAppPublisher "ChandSaat Team"
 #define MyAppExeName "ChandSaat.exe"
 
@@ -13,7 +13,7 @@ DefaultDirName={autopf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes
 OutputDir=installer
-OutputBaseFilename=ChandSaat_Setup_v0.1.0
+OutputBaseFilename=ChandSaat_Setup_v{#MyAppVersion}
 SetupIconFile=icon.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}
 Compression=lzma

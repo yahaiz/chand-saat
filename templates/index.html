@@ -154,13 +154,6 @@
                     <span class="text-[10px] font-medium text-slate-400">ثبت و تحلیل هوشمند زمان مطالعه و تست</span>
                 </div>
             </div>
-
-            <div class="flex items-center gap-3">
-                <a href="/export" title="خروجی اکسل" class="h-8.5 px-4 text-xs bg-slate-50 hover:bg-slate-100/90 border border-slate-200/90 text-slate-600 hover:text-slate-900 rounded-xl flex items-center gap-2 font-medium transition-all shadow-subtle cursor-pointer">
-                    <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                    <span>دانلود اکسل</span>
-                </a>
-            </div>
         </header>
 
         <!-- APP MAIN SHELL BODY -->
@@ -195,6 +188,15 @@
                                 <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
                                 <span>تنظیمات پیشرفته</span>
                             </button>
+
+                            <!-- EXCEL EXPORT SIDEBAR ITEM WITH 'به‌زودی' BADGE -->
+                            <div class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl text-xs text-slate-400 bg-slate-50/50 border border-slate-100/60 text-right font-medium select-none">
+                                <div class="flex items-center gap-3">
+                                    <svg class="w-4 h-4 text-emerald-600/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                    <span>خروجی اکسل</span>
+                                </div>
+                                <span class="bg-amber-50 border border-amber-200/70 text-amber-700 text-[10px] font-bold px-2 py-0.5 rounded-full">به‌زودی</span>
+                            </div>
                         </nav>
                     </div>
 
@@ -243,7 +245,7 @@
                                 <h2 class="text-base font-bold text-slate-900">خلاصه عملکرد امروز</h2>
                                 <p class="text-xs text-slate-400 mt-0.5">وضعیت مطالعه و فعالیت‌های ثبت‌شده در یک نگاه</p>
                             </div>
-                            <button onclick="openManualWizard()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-5 py-3 rounded-2xl text-xs flex items-center gap-2 shadow-sm btn-interact">
+                            <button onclick="openManualWizard()" class="btn-tactile-indigo text-white font-bold px-5 py-3 rounded-2xl text-xs flex items-center gap-2 btn-interact">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
                                 <span>ثبت مطالعه دستی</span>
                             </button>
@@ -315,38 +317,123 @@
 
                     </div>
 
-                    <!-- VIEW 2: TIMER SETUP (FIXED EQUAL PADDING & PROPORTIONAL GRID) -->
+                    <!-- VIEW 2: TIMER SETUP (REFINED & CRYSTAL CLEAR UX) -->
                     <div id="view-timer" class="view-panel space-y-6 hidden">
-                        <div id="timer-setup-panel" class="bg-white border border-slate-200 rounded-5xl p-8 shadow-subtle text-center space-y-8 card-morph">
-                            <div>
-                                <h2 class="text-base font-bold text-slate-900">تنظیم زمان جلسه مطالعه</h2>
-                                <p class="text-xs text-slate-400 mt-1">مدت زمان کل این جلسه را تعیین کنید. سیستم بر اساس تنظیمات پومودورو، چرخه مطالعه و استراحت را مدیریت می‌کند.</p>
+                        <div id="timer-setup-panel" class="bg-white border border-slate-200 rounded-5xl p-7 shadow-subtle space-y-6 card-morph">
+                            
+                            <!-- Header & Mode Guidance -->
+                            <div class="border-b border-slate-100 pb-5 space-y-4">
+                                <div class="text-right">
+                                    <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                                        <span class="w-8 h-8 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shadow-subtle">
+                                            <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                        </span>
+                                        <span>تنظیم روش و زمان مطالعه</span>
+                                    </h2>
+                                    <p class="text-xs text-slate-400 mt-1">روش مطالعه دلخواه خود را انتخاب کنید تا زمان‌بندی جلسه دقیقاً طبق برنامه شما پیش برود.</p>
+                                </div>
+                                
+                                <!-- 3 Clear Visual Mode Selector Cards -->
+                                <div class="grid grid-cols-3 gap-3">
+                                    <button type="button" onclick="setTimerMode('pomodoro', this)" id="mode-card-pomodoro" class="timer-mode-card active p-3.5 rounded-3xl text-right flex flex-col justify-between btn-interact">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="w-7 h-7 rounded-xl bg-indigo-100 border border-indigo-200 text-indigo-700 flex items-center justify-center mode-card-icon-bg">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                            </span>
+                                            <span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded-full">پیش‌فرض</span>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xs font-bold text-slate-800 mode-card-title">پومودورو هوشمند</h3>
+                                            <p class="text-[10px] text-slate-400 mt-0.5 leading-snug">مطالعه با چرخه‌های استراحت منظم</p>
+                                        </div>
+                                    </button>
+
+                                    <button type="button" onclick="setTimerMode('countdown', this)" id="mode-card-countdown" class="timer-mode-card p-3.5 rounded-3xl text-right flex flex-col justify-between btn-interact">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="w-7 h-7 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 flex items-center justify-center mode-card-icon-bg">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xs font-bold text-slate-800 mode-card-title">تایمر معکوس</h3>
+                                            <p class="text-[10px] text-slate-400 mt-0.5 leading-snug">شمارش معکوس زمان مشخص</p>
+                                        </div>
+                                    </button>
+
+                                    <button type="button" onclick="setTimerMode('stopwatch', this)" id="mode-card-stopwatch" class="timer-mode-card p-3.5 rounded-3xl text-right flex flex-col justify-between btn-interact">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <span class="w-7 h-7 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 flex items-center justify-center mode-card-icon-bg">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xs font-bold text-slate-800 mode-card-title">کرنومتر آزاد</h3>
+                                            <p class="text-[10px] text-slate-400 mt-0.5 leading-snug">شمارش صعودی زمان از صفر</p>
+                                        </div>
+                                    </button>
+                                </div>
+
+                                <!-- Dynamic Mode Hint Box -->
+                                <div id="timer-mode-hint" class="bg-indigo-50/60 border border-indigo-100/80 rounded-2xl p-3 text-xs text-indigo-900 flex items-start gap-2.5 text-right">
+                                    <svg class="w-4 h-4 text-indigo-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                                    <span id="timer-mode-hint-text" class="leading-relaxed font-medium">
+                                        <strong>روش پومودورو:</strong> زمان مطالعه شما به بازه‌های کاری و استراحت (مثلاً ۲۵ دقیقه درس + ۵ دقیقه استراحت) تقسیم می‌شود و سیستم زمان استراحت را مدیریت می‌کند.
+                                    </span>
+                                </div>
                             </div>
 
-                            <!-- Target Session Duration Adjuster (+ / -) -->
-                            <div class="bg-slate-50 border border-slate-200 rounded-4xl p-6 max-w-md mx-auto space-y-3">
-                                <span class="text-xs font-bold text-slate-600 block">زمان کل جلسه مطالعه</span>
-                                <div class="flex items-center justify-center gap-6">
-                                    <button type="button" onclick="adjustTotalTargetMinutes(-5)" class="w-12 h-12 bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 rounded-2xl text-xl font-bold flex items-center justify-center btn-interact">-</button>
-                                    <div class="text-center w-32">
-                                        <span id="setup-target-display" class="text-4xl font-black text-indigo-600 font-mono">50</span>
-                                        <span class="block text-xs font-medium text-slate-400 mt-0.5">دقیقه</span>
+                            <!-- 1. COURSE & TOPIC SELECTION -->
+                            <div class="space-y-3 bg-slate-50/70 border border-slate-200/60 rounded-4xl p-5 text-right">
+                                <div class="flex items-center justify-between">
+                                    <label class="block text-xs font-extrabold text-slate-800">
+                                        ۱. درسی که قصد مطالعه آن را دارید انتخاب کنید:
+                                    </label>
+                                    <span class="text-[10px] text-indigo-600 font-bold">*ثبت خودکار در گزارش</span>
+                                </div>
+
+                                <input type="hidden" id="timer-selected-course" value="{{ settings.courses[0] if settings.courses else '' }}">
+                                <div class="flex flex-wrap gap-2" id="timer-course-pills">
+                                    {% for c in settings.courses %}
+                                    <button type="button" onclick="selectTimerCourse('{{ c }}', this)" class="timer-course-pill px-4 py-2.5 rounded-2xl border border-slate-200 bg-white text-slate-800 text-xs font-bold hover:bg-indigo-50 hover:border-indigo-400 flex items-center gap-2 transition-all shadow-subtle {% if loop.first %}selected{% endif %}">
+                                        <svg class="w-3.5 h-3.5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                        <span>{{ c }}</span>
+                                    </button>
+                                    {% endfor %}
+                                </div>
+
+                                <div>
+                                    <input type="text" id="timer-selected-topic" placeholder="عنوان مبحث (اختیاری)..." class="w-full bg-white border border-slate-200 text-slate-900 rounded-2xl px-4 py-2.5 text-xs outline-none focus:border-indigo-500 placeholder-slate-400 font-medium">
+                                </div>
+                            </div>
+
+                            <!-- 2. DURATION ADJUSTER (Hidden for Stopwatch mode) -->
+                            <div id="timer-duration-section" class="space-y-4">
+                                <div class="bg-slate-50 border border-slate-200 rounded-4xl p-5 max-w-md mx-auto space-y-2.5 text-center">
+                                    <span class="text-xs font-extrabold text-slate-700 block">۲. تعیین زمان کل جلسه مطالعه</span>
+                                    <div class="flex items-center justify-center gap-6">
+                                        <button type="button" onclick="adjustTotalTargetMinutes(-5)" class="btn-tactile-slate w-11 h-11 rounded-2xl text-xl font-bold flex items-center justify-center btn-interact">-</button>
+                                        <div class="text-center w-32">
+                                            <span id="setup-target-display" class="text-4xl font-black text-indigo-600 font-mono">50</span>
+                                            <span class="block text-xs font-medium text-slate-400 mt-0.5">دقیقه</span>
+                                        </div>
+                                        <button type="button" onclick="adjustTotalTargetMinutes(5)" class="btn-tactile-slate w-11 h-11 rounded-2xl text-xl font-bold flex items-center justify-center btn-interact">+</button>
                                     </div>
-                                    <button type="button" onclick="adjustTotalTargetMinutes(5)" class="w-12 h-12 bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 rounded-2xl text-xl font-bold flex items-center justify-center btn-interact">+</button>
+                                </div>
+
+                                <!-- SMART PRESET CHIPS -->
+                                <div class="max-w-md mx-auto space-y-2 text-center">
+                                    <span class="text-[11px] font-medium text-slate-400 block" id="preset-chips-label">زمان‌های پیشنهادی پرکاربرد</span>
+                                    <div class="grid grid-cols-4 gap-3" id="preset-chips-container">
+                                        <!-- Populated dynamically via JS -->
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- PERFECT EQUAL PADDING & PROPORTIONAL GRID PRESETS -->
-                            <div class="max-w-md mx-auto space-y-2">
-                                <span class="text-[11px] font-medium text-slate-400 block" id="preset-chips-label">زمان‌های پیشنهادی پرکاربرد</span>
-                                <div class="grid grid-cols-4 gap-3" id="preset-chips-container">
-                                    <!-- Populated dynamically via JS -->
-                                </div>
-                            </div>
-
-                            <div class="pt-2">
-                                <button onclick="startPomodoroSession()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-9 py-3.5 rounded-2xl text-xs shadow-sm flex items-center justify-center gap-2 mx-auto btn-interact">
-                                    <span>شروع مطالعه</span>
+                            <!-- START BUTTON -->
+                            <div class="pt-2 text-center">
+                                <button onclick="startPomodoroSession()" class="btn-tactile-indigo text-white font-bold px-10 py-3.5 rounded-2xl text-xs flex items-center justify-center gap-2 mx-auto btn-interact shadow-md">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    <span id="start-timer-btn-text">شروع مطالعه پومودورو</span>
                                 </button>
                             </div>
                         </div>
@@ -408,26 +495,46 @@
                             <form action="/settings" method="POST" class="space-y-6 text-xs">
                                 <div class="grid grid-cols-2 gap-5">
                                     <div>
-                                        <label class="block text-slate-600 font-medium mb-2">هدف مطالعه روزانه (ساعت)</label>
-                                        <input type="number" step="0.5" name="daily_target_hours" value="{{ settings.daily_target_hours }}" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl p-3 font-mono outline-none focus:bg-white focus:border-indigo-500">
+                                        <label class="block text-slate-600 font-medium mb-1.5 text-xs">هدف مطالعه روزانه</label>
+                                        <div class="flex items-center gap-2">
+                                            <button type="button" onclick="stepNumberInput('setting-daily-hours', -0.5, 0.5)" class="btn-tactile-slate w-9 h-9 rounded-xl text-base font-bold flex items-center justify-center shrink-0 btn-interact">-</button>
+                                            <input type="number" step="0.5" name="daily_target_hours" id="setting-daily-hours" value="{{ settings.daily_target_hours }}" required class="w-24 text-center bg-slate-50 border border-slate-200 text-slate-900 rounded-xl p-2 text-xs font-mono font-bold outline-none focus:bg-white focus:border-indigo-500">
+                                            <button type="button" onclick="stepNumberInput('setting-daily-hours', 0.5, 0.5)" class="btn-tactile-slate w-9 h-9 rounded-xl text-base font-bold flex items-center justify-center shrink-0 btn-interact">+</button>
+                                            <span class="text-xs text-slate-500 font-medium">ساعت</span>
+                                        </div>
                                     </div>
 
                                     <div>
-                                        <label class="block text-slate-600 font-medium mb-2">هدف تست روزانه (تعداد)</label>
-                                        <input type="number" name="daily_target_tests" value="{{ settings.daily_target_tests }}" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl p-3 font-mono outline-none focus:bg-white focus:border-indigo-500">
+                                        <label class="block text-slate-600 font-medium mb-1.5 text-xs">هدف تست روزانه</label>
+                                        <div class="flex items-center gap-2">
+                                            <button type="button" onclick="stepNumberInput('setting-daily-tests', -5, 0)" class="btn-tactile-slate w-9 h-9 rounded-xl text-base font-bold flex items-center justify-center shrink-0 btn-interact">-</button>
+                                            <input type="number" name="daily_target_tests" id="setting-daily-tests" value="{{ settings.daily_target_tests }}" required class="w-24 text-center bg-slate-50 border border-slate-200 text-slate-900 rounded-xl p-2 text-xs font-mono font-bold outline-none focus:bg-white focus:border-indigo-500">
+                                            <button type="button" onclick="stepNumberInput('setting-daily-tests', 5, 0)" class="btn-tactile-slate w-9 h-9 rounded-xl text-base font-bold flex items-center justify-center shrink-0 btn-interact">+</button>
+                                            <span class="text-xs text-slate-500 font-medium">تست</span>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="space-y-4 border-t border-slate-100 pt-5">
                                     <div class="grid grid-cols-2 gap-5">
                                         <div>
-                                            <label class="block text-slate-600 font-medium mb-2">طول بازه مطالعه (دقیقه)</label>
-                                            <input type="number" name="pomo_study_min" id="settings-pomo-study-input" value="{{ settings.pomo_study_min }}" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl p-3 font-mono outline-none focus:bg-white focus:border-indigo-500">
+                                            <label class="block text-slate-600 font-medium mb-1.5 text-xs">طول بازه مطالعه</label>
+                                            <div class="flex items-center gap-2">
+                                                <button type="button" onclick="stepNumberInput('settings-pomo-study-input', -5, 5)" class="btn-tactile-slate w-9 h-9 rounded-xl text-base font-bold flex items-center justify-center shrink-0 btn-interact">-</button>
+                                                <input type="number" name="pomo_study_min" id="settings-pomo-study-input" value="{{ settings.pomo_study_min }}" required class="w-24 text-center bg-slate-50 border border-slate-200 text-slate-900 rounded-xl p-2 text-xs font-mono font-bold outline-none focus:bg-white focus:border-indigo-500">
+                                                <button type="button" onclick="stepNumberInput('settings-pomo-study-input', 5, 5)" class="btn-tactile-slate w-9 h-9 rounded-xl text-base font-bold flex items-center justify-center shrink-0 btn-interact">+</button>
+                                                <span class="text-xs text-slate-500 font-medium">دقیقه</span>
+                                            </div>
                                         </div>
 
                                         <div>
-                                            <label class="block text-slate-600 font-medium mb-2">طول بازه استراحت (دقیقه)</label>
-                                            <input type="number" name="pomo_break_min" id="settings-pomo-break-input" value="{{ settings.pomo_break_min }}" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl p-3 font-mono outline-none focus:bg-white focus:border-indigo-500">
+                                            <label class="block text-slate-600 font-medium mb-1.5 text-xs">طول بازه استراحت</label>
+                                            <div class="flex items-center gap-2">
+                                                <button type="button" onclick="stepNumberInput('settings-pomo-break-input', -1, 1)" class="btn-tactile-slate w-9 h-9 rounded-xl text-base font-bold flex items-center justify-center shrink-0 btn-interact">-</button>
+                                                <input type="number" name="pomo_break_min" id="settings-pomo-break-input" value="{{ settings.pomo_break_min }}" required class="w-24 text-center bg-slate-50 border border-slate-200 text-slate-900 rounded-xl p-2 text-xs font-mono font-bold outline-none focus:bg-white focus:border-indigo-500">
+                                                <button type="button" onclick="stepNumberInput('settings-pomo-break-input', 1, 1)" class="btn-tactile-slate w-9 h-9 rounded-xl text-base font-bold flex items-center justify-center shrink-0 btn-interact">+</button>
+                                                <span class="text-xs text-slate-500 font-medium">دقیقه</span>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -438,22 +545,52 @@
                                         </div>
                                         <label class="relative inline-flex items-center cursor-pointer shrink-0 mr-4">
                                             <input type="checkbox" name="pomo_include_break" id="settings-include-break-toggle" value="true" class="sr-only peer" {% if settings.pomo_include_break %}checked{% endif %}>
-                                            <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                                            <div class="toggle-switch-track">
+                                                <div class="toggle-switch-knob"></div>
+                                            </div>
                                         </label>
                                     </div>
                                 </div>
 
-                                <div>
-                                    <label class="block text-slate-600 font-medium mb-2">مدیریت لیست دروس (هر درس در یک خط)</label>
-                                    <textarea name="courses_raw" rows="4" class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl p-3.5 leading-relaxed outline-none focus:bg-white focus:border-indigo-500">{% for c in settings.courses %}{{ c }}
-{% endfor %}</textarea>
-                                </div>
+                                 <!-- INTERACTIVE COURSE MANAGEMENT -->
+                                 <div class="bg-slate-50/80 border border-slate-200/80 rounded-3xl p-5 space-y-4 text-right">
+                                     <div class="flex items-center justify-between">
+                                         <div>
+                                             <h4 class="text-xs font-extrabold text-slate-900 flex items-center gap-2">
+                                                 <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                                 <span>لیست دروس فعال شما</span>
+                                             </h4>
+                                             <p class="text-[11px] text-slate-400 mt-0.5">دروس خود را به راحتی اضافه، حذف یا مدیریت کنید.</p>
+                                         </div>
+                                         <button type="button" onclick="restoreDefaultCourses()" class="text-[11px] font-bold text-indigo-600 hover:bg-indigo-50 px-3 py-1.5 rounded-xl border border-indigo-100 transition-all btn-interact">
+                                             بازگردانی پیش‌فرض
+                                         </button>
+                                     </div>
+
+                                     <!-- Hidden Form Input for Backend -->
+                                     <input type="hidden" name="courses_raw" id="settings-courses-raw-input" value="{% for c in settings.courses %}{{ c }}{% if not loop.last %}
+{% endif %}{% endfor %}">
+
+                                     <!-- ADD COURSE INLINE FORM -->
+                                     <div class="flex items-center gap-2">
+                                         <input type="text" id="new-course-name-input" placeholder="عنوان درس جدید (مثلاً: هندسه ۳)..." onkeydown="if(event.key==='Enter'){event.preventDefault(); addCourseTag();}" class="flex-1 bg-white border border-slate-300 text-slate-900 rounded-2xl px-4 py-2.5 text-xs font-medium outline-none focus:border-indigo-500 transition-all placeholder-slate-400">
+                                         <button type="button" onclick="addCourseTag()" class="btn-tactile-indigo font-bold px-5 py-2.5 rounded-2xl text-xs flex items-center gap-1.5 btn-interact shrink-0">
+                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                                             <span>افزودن درس</span>
+                                         </button>
+                                     </div>
+
+                                     <!-- DYNAMIC COURSE TAGS CONTAINER -->
+                                     <div id="course-tags-container" class="flex flex-wrap gap-2 pt-1 max-h-48 overflow-y-auto">
+                                         <!-- JS will render course pills here -->
+                                     </div>
+                                 </div>
 
                                 <div class="pt-4 border-t border-slate-100 flex gap-3">
-                                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-7 py-3 rounded-2xl btn-interact">
+                                    <button type="submit" class="btn-tactile-indigo font-bold px-7 py-3 rounded-2xl">
                                         ذخیره تنظیمات
                                     </button>
-                                    <button type="button" onclick="switchView('home')" class="bg-slate-100 text-slate-600 font-bold px-6 py-3 rounded-2xl hover:bg-slate-200 btn-interact">
+                                    <button type="button" onclick="switchView('home')" class="btn-tactile-slate font-bold px-6 py-3 rounded-2xl">
                                         انصراف
                                     </button>
                                 </div>
@@ -468,15 +605,26 @@
 
     <!-- ELEGANT FULL SCREEN FOCUS STUDY MODE OVERLAY -->
     <div id="focus-overlay" class="fixed inset-0 bg-slate-950/95 backdrop-blur-xl z-50 hidden flex flex-col items-center justify-center p-8 text-white focus-enter-anim">
-        <div class="max-w-md w-full text-center space-y-10">
+        <div class="max-w-md w-full text-center space-y-7">
             
-            <div id="focus-badge" class="inline-flex items-center gap-2 px-5 py-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 rounded-full text-xs font-semibold tracking-wide">
-                <span id="focus-badge-dot" class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
-                <span id="focus-badge-text">جلسه مطالعه</span>
+            <!-- COURSE & MODE BADGES -->
+            <div class="space-y-2.5">
+                <div id="focus-course-badge" class="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 border border-white/15 text-slate-200 rounded-full text-xs font-bold tracking-wide shadow-sm">
+                    <svg class="w-3.5 h-3.5 text-indigo-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    <span id="focus-course-title">درس انتخاب شده</span>
+                </div>
+
+                <div>
+                    <div id="focus-badge" class="inline-flex items-center gap-2 px-5 py-2 bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 rounded-full text-xs font-semibold tracking-wide">
+                        <span id="focus-badge-dot" class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+                        <span id="focus-badge-text">جلسه مطالعه</span>
+                    </div>
+                </div>
             </div>
 
+            <!-- CLOCK & RING -->
             <div class="relative w-72 h-72 mx-auto flex items-center justify-center">
-                <div class="absolute inset-0 rounded-full bg-indigo-600/10 filter blur-2xl animate-pulse"></div>
+                <div id="focus-glow" class="absolute inset-0 rounded-full bg-indigo-600/15 filter blur-2xl animate-pulse"></div>
 
                 <svg class="w-full h-full relative z-10" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="42" stroke="#1E293B" stroke-width="4" fill="none" />
@@ -489,197 +637,263 @@
                 </div>
             </div>
 
-            <div class="flex items-center justify-center gap-4 pt-4">
-                <button id="pause-btn" onclick="togglePauseTimer()" class="bg-white/10 hover:bg-white/20 border border-white/10 text-white font-medium px-7 py-3 rounded-2xl text-xs backdrop-blur-md transition-all btn-interact">
+            <!-- CONTROLS & EXTEND BUTTON -->
+            <div class="flex items-center justify-center gap-3 pt-2">
+                <button id="pause-btn" onclick="togglePauseTimer()" class="btn-tactile-slate font-bold px-6 py-2.5 rounded-2xl text-xs btn-interact">
                     توقف موقت
                 </button>
-                <button onclick="stopTimerEarly()" class="bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 text-rose-300 font-medium px-7 py-3 rounded-2xl text-xs backdrop-blur-md transition-all btn-interact">
+                <button type="button" id="extend-btn" onclick="extendTimerFiveMins()" class="btn-tactile-slate font-bold px-5 py-2.5 rounded-2xl text-xs btn-interact text-indigo-300">
+                    +۵ دقیقه تمدید
+                </button>
+                <button onclick="stopTimerEarly()" class="btn-tactile-rose font-bold px-6 py-2.5 rounded-2xl text-xs btn-interact">
                     اتمام جلسه
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- POST-TIMER WIZARD MODAL (PROPERLY ROUNDED CORNERS: rounded-5xl / rounded-4xl) -->
-    <div id="post-timer-wizard-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="modal-morph bg-white max-w-md w-full p-8 shadow-floating space-y-6 border border-slate-100" style="border-radius: 2.5rem;">
+    <!-- POST-TIMER LOGGING MODAL (SUMMARY CARD WITH EDIT TOGGLE + PROMINENT ACTIVE INPUTS) -->
+    <div id="post-timer-wizard-modal" class="fixed inset-0 bg-slate-900/45 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="modal-morph bg-white w-[500px] max-w-full p-6 space-y-4 border border-slate-200/90 relative overflow-hidden shrink-0" style="border-radius: 2.25rem;">
             
+            <!-- HEADER -->
             <div class="flex justify-between items-center border-b border-slate-100 pb-3">
-                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider">ثبت گزارش پارت مطالعه</h3>
-                <!-- CANCEL TIMER WIZARD BUTTON WITH CONFIRMATION -->
-                <button type="button" onclick="cancelTimerWizardWithConfirm()" class="text-xs font-semibold text-rose-500 hover:bg-rose-50 px-3 py-1.5 rounded-xl transition-all btn-interact">
-                    انصراف (بدون ثبت)
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 shadow-subtle">
+                        <svg class="w-4.5 h-4.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-extrabold text-slate-900">ثبت پارت مطالعه جدید</h3>
+                        <p class="text-[11px] text-slate-400 font-medium">اطلاعات مبحث و تست را وارد و گزارش را ثبت کنید.</p>
+                    </div>
+                </div>
+                <button type="button" onclick="cancelTimerWizardWithConfirm()" title="انصراف" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-all btn-interact">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
             </div>
 
-            <form action="/add" method="POST" id="post-timer-form">
+            <!-- FORM START -->
+            <form action="/add" method="POST" id="post-timer-form" class="space-y-4">
+                <input type="hidden" name="course" id="timer-wizard-course" value="{{ settings.courses[0] if settings.courses else '' }}" required>
                 
-                <!-- STEP 1 -->
-                <div id="timer-wizard-step-1" class="space-y-5">
-                    <div class="text-right pb-1">
-                        <span class="text-[10px] text-indigo-600 font-bold uppercase block">مرحله ۱ از ۳</span>
-                        <h3 class="text-sm font-bold text-slate-900 mt-0.5">در کدام درس مطالعه کردید؟</h3>
+                <!-- READ-ONLY SUMMARY CARD (COURSE & REAL DURATION) WITH EDIT BUTTON -->
+                <div class="bg-slate-50 border border-slate-200/80 rounded-3xl p-4 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3 text-right">
+                            <span class="w-9 h-9 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shrink-0">
+                                <svg class="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                            </span>
+                            <div>
+                                <h4 id="post-timer-course-display" class="text-xs font-black text-slate-900">درس: {{ settings.courses[0] if settings.courses else 'عمومی' }}</h4>
+                                <p id="post-timer-duration-display" class="text-[11px] text-slate-500 font-medium mt-0.5">زمان ثبت: ۲ دقیقه (واقعی)</p>
+                            </div>
+                        </div>
+
+                        <button type="button" onclick="togglePostTimerEditDrawer()" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 bg-white border border-slate-200 hover:border-indigo-300 px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 shadow-subtle btn-interact">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                            <span>ویرایش</span>
+                        </button>
                     </div>
 
-                    <input type="hidden" name="course" id="timer-wizard-course" value="{{ settings.courses[0] if settings.courses else '' }}" required>
-                    <div class="flex flex-wrap gap-2">
-                        {% for c in settings.courses %}
-                        <button type="button" onclick="pickTimerWizardCourse('{{ c }}', this)" class="timer-course-pill px-4 py-2.5 rounded-2xl border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium hover:bg-slate-100 flex items-center gap-1.5 {% if loop.first %}selected{% endif %}">
-                            <span>📚</span>
-                            <span>{{ c }}</span>
-                        </button>
-                        {% endfor %}
-                    </div>
+                    <!-- EXPANDABLE EDIT DRAWER FOR COURSE & DURATION (HIDDEN BY DEFAULT) -->
+                    <div id="post-timer-edit-drawer" class="hidden pt-3 border-t border-slate-200/80 space-y-3">
+                        <!-- COURSE SELECTION PILLS -->
+                        <div class="space-y-1.5 text-right">
+                            <label class="block text-slate-700 font-bold text-[11px]">تغییر درس:</label>
+                            <div class="flex flex-wrap gap-2 max-h-28 overflow-y-auto p-1">
+                                {% for c in settings.courses %}
+                                <button type="button" onclick="pickTimerWizardCourse('{{ c }}', this)" class="timer-course-pill px-3 py-1.5 rounded-xl border border-slate-200 bg-white text-slate-700 text-xs font-bold hover:bg-indigo-50 hover:border-indigo-400 flex items-center gap-1.5 transition-all shadow-subtle {% if loop.first %}selected{% endif %}">
+                                    <svg class="w-3.5 h-3.5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                    <span>{{ c }}</span>
+                                </button>
+                                {% endfor %}
+                            </div>
+                        </div>
 
-                    <div class="pt-2 flex justify-end">
-                        <button type="button" onclick="goTimerWizardStep(2)" class="bg-indigo-600 text-white font-bold px-6 py-2.5 rounded-2xl text-xs hover:bg-indigo-700 btn-interact">
-                            مرحله بعد
-                        </button>
+                        <!-- DURATION INPUT -->
+                        <div class="text-right">
+                            <label class="block text-slate-700 font-bold text-[11px] mb-1">تغییر زمان ثبت (دقیقه):</label>
+                            <div class="flex items-center gap-2">
+                                <button type="button" onclick="stepNumberInput('timer-wizard-duration', -5, 1); updatePostTimerDurationDisplay();" class="btn-tactile-slate w-8 h-8 rounded-xl text-sm font-bold flex items-center justify-center shrink-0 btn-interact">-</button>
+                                <input type="number" name="duration" id="timer-wizard-duration" required min="1" oninput="updatePostTimerDurationDisplay()" class="w-24 text-center bg-white border border-slate-300 text-slate-900 rounded-xl p-1.5 text-xs font-mono font-bold outline-none focus:border-indigo-500">
+                                <button type="button" onclick="stepNumberInput('timer-wizard-duration', 5, 1); updatePostTimerDurationDisplay();" class="btn-tactile-slate w-8 h-8 rounded-xl text-sm font-bold flex items-center justify-center shrink-0 btn-interact">+</button>
+                                <span class="text-xs font-semibold text-slate-500">دقیقه</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- STEP 2 -->
-                <div id="timer-wizard-step-2" class="space-y-4 hidden">
-                    <div class="text-right pb-1">
-                        <span class="text-[10px] text-indigo-600 font-bold uppercase block">مرحله ۲ از ۳</span>
-                        <h3 class="text-sm font-bold text-slate-900 mt-0.5">مبحث و زمان جلسه</h3>
+                <!-- PRIMARY ACTIVE INPUTS: TOPIC & TEST COUNT -->
+                <div class="grid grid-cols-3 gap-3 text-right">
+                    <div class="col-span-2">
+                        <label class="block text-slate-800 font-extrabold mb-1.5 text-xs">عنوان مبحث</label>
+                        <input type="text" name="topic" placeholder="مثلاً: حل تست‌های مبحث مشتق..." class="w-full bg-white border border-slate-300 text-slate-900 rounded-2xl p-2.5 text-xs font-medium outline-none focus:border-indigo-500 transition-all placeholder-slate-400">
                     </div>
 
                     <div>
-                        <label class="block text-slate-600 font-medium mb-1.5 text-xs">عنوان مبحث</label>
-                        <input type="text" name="topic" placeholder="مثلاً: حل تست‌های مبحث مربوطه" class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl p-3 text-xs outline-none focus:bg-white focus:border-indigo-500">
-                    </div>
-
-                    <div>
-                        <label class="block text-slate-600 font-medium mb-1.5 text-xs">زمان ثبت در گزارش (دقیقه)</label>
-                        <input type="number" name="duration" id="timer-wizard-duration" required class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl p-3 text-xs font-mono outline-none">
-                    </div>
-
-                    <div class="pt-2 flex justify-between">
-                        <button type="button" onclick="goTimerWizardStep(1)" class="bg-slate-100 text-slate-600 font-bold px-5 py-2.5 rounded-2xl text-xs hover:bg-slate-200 btn-interact">
-                            قبلی
-                        </button>
-                        <button type="button" onclick="goTimerWizardStep(3)" class="bg-indigo-600 text-white font-bold px-6 py-2.5 rounded-2xl text-xs hover:bg-indigo-700 btn-interact">
-                            مرحله بعد
-                        </button>
+                        <label class="block text-slate-800 font-extrabold mb-1.5 text-xs">تعداد تست</label>
+                        <div class="flex items-center gap-1">
+                            <button type="button" onclick="stepNumberInput('timer-wizard-tests', -5, 0)" class="btn-tactile-slate w-7 h-7 rounded-xl text-xs font-bold flex items-center justify-center shrink-0 btn-interact">-</button>
+                            <input type="number" name="tests" id="timer-wizard-tests" placeholder="0" min="0" class="w-full text-center bg-white border border-slate-300 text-slate-900 rounded-xl p-1.5 text-xs font-mono font-bold outline-none focus:border-indigo-500">
+                            <button type="button" onclick="stepNumberInput('timer-wizard-tests', 5, 0)" class="btn-tactile-slate w-7 h-7 rounded-xl text-xs font-bold flex items-center justify-center shrink-0 btn-interact">+</button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- STEP 3 -->
-                <div id="timer-wizard-step-3" class="space-y-4 hidden">
-                    <div class="text-right pb-1">
-                        <span class="text-[10px] text-indigo-600 font-bold uppercase block">مرحله ۳ از ۳</span>
-                        <h3 class="text-sm font-bold text-slate-900 mt-0.5">تست‌ها و یادداشت کیفیت</h3>
-                    </div>
-
-                    <div>
-                        <label class="block text-slate-600 font-medium mb-1.5 text-xs">تعداد تست کارشده</label>
-                        <input type="number" name="tests" placeholder="0" class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl p-3 text-xs font-mono outline-none">
-                    </div>
-
-                    <div>
-                        <label class="block text-slate-600 font-medium mb-1.5 text-xs">تست‌های مرور (اختیاری)</label>
-                        <input type="text" name="wrongs" placeholder="شماره تست‌های مهم..." class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl p-3 text-xs outline-none">
-                    </div>
-
-                    <div>
-                        <label class="block text-slate-600 font-medium mb-1.5 text-xs">یادداشت کیفیت</label>
-                        <input type="text" name="notes" placeholder="کیفیت تمرکز..." class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl p-3 text-xs outline-none">
-                    </div>
-
-                    <div class="pt-2 flex justify-between">
-                        <button type="button" onclick="goTimerWizardStep(2)" class="bg-slate-100 text-slate-600 font-bold px-5 py-2.5 rounded-2xl text-xs hover:bg-slate-200 btn-interact">
-                            قبلی
-                        </button>
-                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-7 py-2.5 rounded-2xl text-xs btn-interact">
-                            ثبت نهایی گزارش
-                        </button>
-                    </div>
+                <!-- EXPANDED NOTES TEXTAREA -->
+                <div class="text-right space-y-1.5">
+                    <label class="block text-slate-800 font-extrabold text-xs">یادداشت / تست‌های مرور (اختیاری)</label>
+                    <textarea name="notes" rows="3" placeholder="یادداشت کیفیت مطالعه، شماره تست‌های مهم برای مرور..." class="w-full bg-white border border-slate-300 text-slate-900 rounded-2xl p-3 text-xs font-medium outline-none focus:border-indigo-500 placeholder-slate-400 resize-none transition-all leading-relaxed"></textarea>
                 </div>
 
+                <!-- ACTION BUTTONS -->
+                <div class="pt-2 border-t border-slate-100 flex justify-between gap-3">
+                    <button type="button" onclick="cancelTimerWizardWithConfirm()" class="btn-tactile-slate font-bold px-5 py-2.5 rounded-2xl text-xs btn-interact">
+                        انصراف
+                    </button>
+                    <button type="submit" class="btn-tactile-emerald font-bold px-8 py-2.5 rounded-2xl text-xs btn-interact flex items-center gap-1.5 shadow-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <span>ثبت نهایی گزارش</span>
+                    </button>
+                </div>
             </form>
         </div>
     </div>
 
-    <!-- MANUAL ENTRY WIZARD MODAL (PROPERLY ROUNDED CORNERS) -->
-    <div id="manual-wizard-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
-        <div class="modal-morph bg-white max-w-md w-full p-8 shadow-floating space-y-6 border border-slate-100" style="border-radius: 2.5rem;">
+            <!-- MANUAL ENTRY WIZARD MODAL -->
+    <div id="manual-wizard-modal" class="fixed inset-0 bg-slate-900/45 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="modal-morph bg-white w-[500px] max-w-full p-6 border border-slate-200/90 flex flex-col space-y-4 relative overflow-hidden shrink-0" style="border-radius: 2.25rem;">
             
-            <div class="flex justify-between items-center border-b border-slate-100 pb-3">
-                <h3 class="text-sm font-bold text-slate-900">ثبت جلسه مطالعه دستی (ویزارد)</h3>
-                <button onclick="closeModal('manual-wizard-modal')" class="text-slate-400 hover:text-slate-600 font-bold btn-interact">&times;</button>
+            <!-- FIXED HEADER WITH SVG ICON -->
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3 shrink-0">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center shadow-subtle text-indigo-600">
+                        <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-extrabold text-slate-900">ثبت مطالعه جدید</h3>
+                        <p class="text-[11px] text-slate-400 font-medium">گزارش پارت مطالعه را در ۳ گام ساده ثبت کنید</p>
+                    </div>
+                </div>
+                <button onclick="closeModal('manual-wizard-modal')" title="بستن" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-all btn-interact">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
             </div>
 
-            <form action="/add" method="POST" id="manual-wizard-form">
+            <!-- SIMPLIFIED UNIFIED STEPPER INDICATOR (PROPER TAILWIND W-5 H-5 CIRCLES) -->
+            <div class="grid grid-cols-3 gap-2 bg-slate-100/70 p-1.5 rounded-2xl border border-slate-200/80 text-center text-xs shrink-0">
+                <div id="manual-step-indicator-1" class="py-1.5 px-3 rounded-xl btn-tactile-indigo text-white flex items-center justify-center gap-2 font-bold shadow-sm transition-all">
+                    <span class="w-5 h-5 rounded-full bg-white/30 text-white text-[11px] flex items-center justify-center font-extrabold shrink-0">۱</span>
+                    <span>درس</span>
+                </div>
+                <div id="manual-step-indicator-2" class="py-1.5 px-3 rounded-xl bg-slate-200/60 text-slate-700 border border-slate-200/80 flex items-center justify-center gap-2 font-semibold transition-all">
+                    <span class="w-5 h-5 rounded-full bg-slate-300 text-slate-800 text-[11px] flex items-center justify-center font-extrabold shrink-0">۲</span>
+                    <span>زمان و مبحث</span>
+                </div>
+                <div id="manual-step-indicator-3" class="py-1.5 px-3 rounded-xl bg-slate-200/60 text-slate-700 border border-slate-200/80 flex items-center justify-center gap-2 font-semibold transition-all">
+                    <span class="w-5 h-5 rounded-full bg-slate-300 text-slate-800 text-[11px] flex items-center justify-center font-extrabold shrink-0">۳</span>
+                    <span>تست و کیفیت</span>
+                </div>
+            </div>
+
+            <!-- FORM CONTENTS -->
+            <form action="/add" method="POST" id="manual-wizard-form" onsubmit="return validateManualWizardFinalSubmit(event)" class="space-y-4">
+                
+                <input type="hidden" name="course" id="manual-wizard-course" value="{{ settings.courses[0] if settings.courses else '' }}" required>
+
+                <!-- STEP 1: COURSE SELECTION -->
                 <div id="manual-wizard-step-1" class="space-y-4">
-                    <span class="text-[10px] text-indigo-600 font-bold uppercase block">مرحله ۱ از ۳</span>
-                    <label class="block text-slate-600 font-medium text-xs">انتخاب درس</label>
-                    <input type="hidden" name="course" id="manual-wizard-course" value="{{ settings.courses[0] if settings.courses else '' }}" required>
-                    
-                    <div class="flex flex-wrap gap-2">
-                        {% for c in settings.courses %}
-                        <button type="button" onclick="pickManualWizardCourse('{{ c }}', this)" class="wizard-course-pill px-4 py-2.5 rounded-2xl border border-slate-200 bg-slate-50 text-slate-700 text-xs font-medium hover:bg-slate-100 flex items-center gap-1.5 {% if loop.first %}selected{% endif %}">
-                            <span>📚</span>
-                            <span>{{ c }}</span>
-                        </button>
-                        {% endfor %}
+                    <div class="bg-slate-50/70 border border-slate-200/60 rounded-3xl p-4 space-y-2.5">
+                        <label class="block text-slate-800 font-extrabold text-xs">لطفاً درسی که مطالعه کرده‌اید را انتخاب کنید:</label>
+                        <div class="flex flex-wrap gap-2 max-h-48 overflow-y-auto p-1">
+                            {% for c in settings.courses %}
+                            <button type="button" onclick="pickManualWizardCourse('{{ c }}', this)" class="wizard-course-pill px-4 py-2.5 rounded-2xl border border-slate-200 bg-white text-slate-800 text-xs font-bold hover:bg-indigo-50 hover:border-indigo-400 flex items-center gap-2 transition-all shadow-subtle {% if loop.first %}selected{% endif %}">
+                                <svg class="w-3.5 h-3.5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                                <span>{{ c }}</span>
+                            </button>
+                            {% endfor %}
+                        </div>
+                        <div id="manual-step1-error" class="hidden text-xs text-rose-700 font-bold bg-rose-50 border border-rose-200 p-2.5 rounded-xl flex items-center gap-1.5">
+                            <svg class="w-4 h-4 text-rose-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                            <span>لطفاً ابتدا یک درس را انتخاب کنید.</span>
+                        </div>
                     </div>
 
-                    <div class="pt-2 flex justify-end">
-                        <button type="button" onclick="goManualWizardStep(2)" class="bg-indigo-600 text-white font-bold px-6 py-2.5 rounded-2xl text-xs hover:bg-indigo-700 btn-interact">
-                            مرحله بعد
+                    <div class="pt-2 border-t border-slate-100 flex justify-end shrink-0">
+                        <button type="button" onclick="validateAndGoManualStep(2)" class="btn-tactile-indigo font-bold px-7 py-2.5 rounded-2xl text-xs flex items-center gap-2 btn-interact">
+                            <span>بعدی</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                         </button>
                     </div>
                 </div>
 
+                <!-- STEP 2: DURATION & TOPIC -->
                 <div id="manual-wizard-step-2" class="space-y-4 hidden">
-                    <span class="text-[10px] text-indigo-600 font-bold uppercase block">مرحله ۲ از ۳</span>
-                    
-                    <div>
-                        <label class="block text-slate-600 font-medium mb-1.5 text-xs">عنوان مبحث</label>
-                        <input type="text" name="topic" placeholder="عنوان مبحث..." class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl p-3 text-xs outline-none focus:bg-white focus:border-indigo-500">
+                    <div class="bg-slate-50/70 border border-slate-200/60 rounded-3xl p-4 space-y-3">
+                        <div>
+                            <label class="block text-slate-800 font-extrabold mb-1.5 text-xs">
+                                زمان مطالعه <span class="text-rose-600 font-bold">*اجباری</span>
+                            </label>
+                            <div class="flex items-center gap-2">
+                                <button type="button" onclick="stepNumberInput('manual-wizard-duration', -5, 1)" class="btn-tactile-slate w-9 h-9 rounded-xl text-base font-bold flex items-center justify-center shrink-0 btn-interact">-</button>
+                                <input type="number" name="duration" id="manual-wizard-duration" min="1" value="60" required class="w-24 text-center bg-white border border-slate-300 text-slate-900 rounded-xl p-2 text-xs font-mono font-bold outline-none focus:border-indigo-500">
+                                <button type="button" onclick="stepNumberInput('manual-wizard-duration', 5, 1)" class="btn-tactile-slate w-9 h-9 rounded-xl text-base font-bold flex items-center justify-center shrink-0 btn-interact">+</button>
+                                <span class="text-xs font-bold text-slate-700">دقیقه</span>
+                            </div>
+                            <span id="manual-duration-error" class="hidden text-[11px] text-rose-700 font-bold mt-1 flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5 text-rose-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                                <span>ورود زمان مطالعه الزامی است (حداقل ۱ دقیقه).</span>
+                            </span>
+                        </div>
+
+                        <div>
+                            <label class="block text-slate-800 font-extrabold mb-1.5 text-xs">عنوان مبحث مطالعه‌شده (اختیاری)</label>
+                            <input type="text" name="topic" id="manual-wizard-topic" placeholder="مثلاً: مشتق توابع مثلثاتی..." class="w-full bg-white border border-slate-300 text-slate-900 rounded-2xl p-3 text-xs font-medium outline-none focus:border-indigo-500 transition-all placeholder-slate-400">
+                        </div>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label class="block text-slate-600 font-medium mb-1.5 text-xs">زمان (دقیقه)</label>
-                            <input type="number" name="duration" required placeholder="90" class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl p-3 text-xs font-mono outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-slate-600 font-medium mb-1.5 text-xs">تعداد تست</label>
-                            <input type="number" name="tests" placeholder="0" class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl p-3 text-xs font-mono outline-none">
-                        </div>
-                    </div>
-
-                    <div class="pt-2 flex justify-between">
-                        <button type="button" onclick="goManualWizardStep(1)" class="bg-slate-100 text-slate-600 font-bold px-5 py-2.5 rounded-2xl text-xs hover:bg-slate-200 btn-interact">
+                    <div class="pt-2 border-t border-slate-100 flex justify-between shrink-0">
+                        <button type="button" onclick="goManualWizardStep(1)" class="btn-tactile-slate font-bold px-6 py-2.5 rounded-2xl text-xs btn-interact">
                             قبلی
                         </button>
-                        <button type="button" onclick="goManualWizardStep(3)" class="bg-indigo-600 text-white font-bold px-6 py-2.5 rounded-2xl text-xs hover:bg-indigo-700 btn-interact">
-                            مرحله بعد
+                        <button type="button" onclick="validateAndGoManualStep(3)" class="btn-tactile-indigo font-bold px-7 py-2.5 rounded-2xl text-xs flex items-center gap-2 btn-interact">
+                            <span>بعدی</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                         </button>
                     </div>
                 </div>
 
+                <!-- STEP 3: TESTS & NOTES -->
                 <div id="manual-wizard-step-3" class="space-y-4 hidden">
-                    <span class="text-[10px] text-indigo-600 font-bold uppercase block">مرحله ۳ از ۳</span>
+                    <div class="bg-slate-50/70 border border-slate-200/60 rounded-3xl p-4 space-y-3">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-slate-800 font-extrabold mb-1.5 text-xs">تعداد تست (اختیاری)</label>
+                                <div class="flex items-center gap-2">
+                                    <button type="button" onclick="stepNumberInput('manual-wizard-tests', -5, 0)" class="btn-tactile-slate w-8 h-8 rounded-xl text-sm font-bold flex items-center justify-center shrink-0 btn-interact">-</button>
+                                    <input type="number" name="tests" id="manual-wizard-tests" min="0" placeholder="0" class="w-20 text-center bg-white border border-slate-300 text-slate-900 rounded-xl p-2 text-xs font-mono font-bold outline-none focus:border-indigo-500">
+                                    <button type="button" onclick="stepNumberInput('manual-wizard-tests', 5, 0)" class="btn-tactile-slate w-8 h-8 rounded-xl text-sm font-bold flex items-center justify-center shrink-0 btn-interact">+</button>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-slate-800 font-extrabold mb-1.5 text-xs">تست‌های مرور (اختیاری)</label>
+                                <input type="text" name="wrongs" placeholder="مثلاً: 5, 12, 15" class="w-full bg-white border border-slate-300 text-slate-900 rounded-2xl p-3 text-xs font-medium outline-none focus:border-indigo-500 placeholder-slate-400">
+                            </div>
+                        </div>
 
-                    <div>
-                        <label class="block text-slate-600 font-medium mb-1.5 text-xs">تست‌های مرور (اختیاری)</label>
-                        <input type="text" name="wrongs" placeholder="شماره تست‌های مهم..." class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl p-3 text-xs outline-none">
+                        <div>
+                            <label class="block text-slate-800 font-extrabold mb-1.5 text-xs">یادداشت کیفیت (اختیاری)</label>
+                            <input type="text" name="notes" placeholder="کیفیت مطالعه، نکات مهم..." class="w-full bg-white border border-slate-300 text-slate-900 rounded-2xl p-3 text-xs font-medium outline-none focus:border-indigo-500 placeholder-slate-400">
+                        </div>
                     </div>
 
-                    <div>
-                        <label class="block text-slate-600 font-medium mb-1.5 text-xs">یادداشت کیفیت</label>
-                        <input type="text" name="notes" placeholder="نکات یا کیفیت..." class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-2xl p-3 text-xs outline-none">
-                    </div>
-
-                    <div class="pt-2 flex justify-between">
-                        <button type="button" onclick="goManualWizardStep(2)" class="bg-slate-100 text-slate-600 font-bold px-5 py-2.5 rounded-2xl text-xs hover:bg-slate-200 btn-interact">
+                    <div class="pt-2 border-t border-slate-100 flex justify-between shrink-0">
+                        <button type="button" onclick="goManualWizardStep(2)" class="btn-tactile-slate font-bold px-6 py-2.5 rounded-2xl text-xs btn-interact">
                             قبلی
                         </button>
-                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-7 py-2.5 rounded-2xl text-xs btn-interact">
-                            ثبت نهایی
+                        <button type="submit" class="btn-tactile-emerald font-bold px-8 py-2.5 rounded-2xl text-xs btn-interact flex items-center gap-1.5">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <span>ثبت نهایی</span>
                         </button>
                     </div>
                 </div>
@@ -690,16 +904,16 @@
     <!-- CUSTOM NATIVE CONFIRMATION MODAL FOR CANCELING WIZARD REPORT -->
     <div id="cancel-confirm-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-[60] hidden flex items-center justify-center p-4">
         <div class="modal-morph bg-white max-w-xs w-full p-6 shadow-floating text-center space-y-4 border border-slate-100" style="border-radius: 2rem;">
-            <div class="w-10 h-10 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mx-auto text-sm font-bold">
-                ⚠️
+            <div class="w-10 h-10 bg-amber-100 border border-amber-200 text-amber-600 rounded-2xl flex items-center justify-center mx-auto shadow-subtle">
+                <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
             </div>
             <div>
                 <h3 class="text-sm font-bold text-slate-900">انصراف از ثبت گزارش</h3>
                 <p class="text-xs text-slate-500 mt-1">آیا از لغو ثبت این جلسه مطالعه اطمینان دارید؟ اطلاعات این تایمر ذخیره نخواهد شد.</p>
             </div>
             <div class="flex gap-2">
-                <button type="button" onclick="confirmCancelWizardReport()" class="flex-1 bg-rose-500 hover:bg-rose-600 text-white font-bold py-2.5 rounded-2xl text-xs btn-interact">بله، انصراف</button>
-                <button type="button" onclick="closeModal('cancel-confirm-modal')" class="flex-1 bg-slate-100 text-slate-700 font-bold py-2.5 rounded-2xl text-xs btn-interact">ادامه ثبت</button>
+                <button type="button" onclick="confirmCancelWizardReport()" class="flex-1 btn-tactile-rose font-bold py-2.5 rounded-2xl text-xs btn-interact">بله، انصراف</button>
+                <button type="button" onclick="closeModal('cancel-confirm-modal')" class="flex-1 btn-tactile-slate font-bold py-2.5 rounded-2xl text-xs btn-interact">ادامه ثبت</button>
             </div>
         </div>
     </div>
@@ -707,16 +921,16 @@
     <!-- DELETE MODAL -->
     <div id="delete-modal" class="fixed inset-0 bg-slate-900/40 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
         <div class="modal-morph bg-white max-w-xs w-full p-6 shadow-floating text-center space-y-4 border border-slate-100" style="border-radius: 2rem;">
-            <div class="w-10 h-10 bg-rose-100 text-rose-600 rounded-2xl flex items-center justify-center mx-auto text-sm font-bold">
-                ✕
+            <div class="w-10 h-10 bg-rose-100 border border-rose-200 text-rose-600 rounded-2xl flex items-center justify-center mx-auto shadow-subtle">
+                <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
             </div>
             <div>
                 <h3 class="text-sm font-bold text-slate-900">حذف پارت مطالعه</h3>
                 <p class="text-xs text-slate-500 mt-1">آیا از حذف این رکورد اطمینان دارید؟</p>
             </div>
             <form id="delete-form" method="POST" class="flex gap-2">
-                <button type="submit" class="flex-1 bg-rose-500 hover:bg-rose-600 text-white font-bold py-2.5 rounded-2xl text-xs btn-interact">حذف شود</button>
-                <button type="button" onclick="closeModal('delete-modal')" class="flex-1 bg-slate-100 text-slate-700 font-bold py-2.5 rounded-2xl text-xs btn-interact">انصراف</button>
+                <button type="submit" class="flex-1 btn-tactile-rose font-bold py-2.5 rounded-2xl text-xs btn-interact">حذف شود</button>
+                <button type="button" onclick="closeModal('delete-modal')" class="flex-1 btn-tactile-slate font-bold py-2.5 rounded-2xl text-xs btn-interact">انصراف</button>
             </form>
         </div>
     </div>
@@ -731,6 +945,58 @@
         let isPaused = false;
         let totalTargetMinutesRequested = 50;
         let actualStudyTimeLogged = 0;
+        let currentTimerMode = 'pomodoro'; // 'pomodoro', 'countdown', 'stopwatch'
+        let stopwatchElapsedSeconds = 0;
+        let activeStudySeconds = 0;
+
+        function setTimerMode(mode, btnEl) {
+            currentTimerMode = mode;
+            document.querySelectorAll('.timer-mode-card').forEach(el => {
+                el.classList.remove('active');
+            });
+            if (btnEl) btnEl.classList.add('active');
+
+            const durationSec = document.getElementById('timer-duration-section');
+            const startText = document.getElementById('start-timer-btn-text');
+            const hintText = document.getElementById('timer-mode-hint-text');
+
+            if (mode === 'stopwatch') {
+                if (durationSec) durationSec.classList.add('hidden');
+                if (startText) startText.innerText = 'شروع کرنومتر آزاد';
+                if (hintText) hintText.innerHTML = '<strong>روش کرنومتر آزاد:</strong> تایمر از صفر شروع به شمارش صعودی می‌کند. هر زمان مطالعه شما تمام شد، دکمه اتمام را بزنید تا زمان دقیق ثبت شود.';
+            } else if (mode === 'countdown') {
+                if (durationSec) durationSec.classList.remove('hidden');
+                if (startText) startText.innerText = 'شروع تایمر معکوس';
+                if (hintText) hintText.innerHTML = '<strong>روش تایمر معکوس:</strong> تایمر به میزان زمان مشخص‌شده توسط شما (مثلاً ۴۵ دقیقه) معکوس می‌شمارد و پس از اتمام مستقیم وارد مرحله ثبت گزارش می‌شود.';
+            } else { // pomodoro
+                if (durationSec) durationSec.classList.remove('hidden');
+                if (startText) startText.innerText = 'شروع مطالعه پومودورو';
+                if (hintText) hintText.innerHTML = '<strong>روش پومودورو:</strong> زمان مطالعه شما به بازه‌های کاری و استراحت (مثلاً ۲۵ دقیقه درس + ۵ دقیقه استراحت) تقسیم می‌شود و سیستم زمان استراحت را مدیریت می‌کند.';
+            }
+        }
+
+        function selectTimerCourse(val, btnEl) {
+            document.getElementById('timer-selected-course').value = val;
+            document.querySelectorAll('#timer-course-pills .timer-course-pill').forEach(el => el.classList.remove('selected'));
+            btnEl.classList.add('selected');
+        }
+
+        function extendTimerFiveMins() {
+            if (currentTimerMode === 'stopwatch') return;
+            totalSeconds += 300;
+            initialSeconds += 300;
+            updateClockDisplay();
+        }
+
+        function stepNumberInput(id, delta, minVal = 0) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            let current = parseFloat(el.value);
+            if (isNaN(current)) current = minVal;
+            let updated = current + delta;
+            if (minVal !== null && updated < minVal) updated = minVal;
+            el.value = Number.isInteger(updated) ? updated : parseFloat(updated.toFixed(1));
+        }
 
         const CIRCLE_CIRCUMFERENCE = 263.89;
 
@@ -773,10 +1039,69 @@
             let topDurations = allDurations.slice(0, 4);
 
             container.innerHTML = topDurations.map(m => `
-                <button onclick="setTargetPreset(${m})" class="w-full py-2.5 bg-slate-50 hover:bg-indigo-50 hover:text-indigo-600 border border-slate-200 text-slate-700 text-xs font-medium rounded-2xl btn-interact transition-all text-center">
+                <button onclick="setTargetPreset(${m})" class="preset-chip w-full py-2.5 text-xs font-semibold rounded-2xl btn-interact transition-all text-center">
                     ${m} دقیقه
                 </button>
             `).join('');
+        }
+
+        let currentCoursesList = [{% for c in settings.courses %}"{{ c }}",{% endfor %}];
+        if (!currentCoursesList.length) {
+            currentCoursesList = ["ریاضی کنکور", "زیست‌شناسی", "فیزیک", "شیمی", "ادبیات فارسی", "زبان انگلیسی"];
+        }
+
+        function renderCourseTags() {
+            const container = document.getElementById('course-tags-container');
+            const hiddenInput = document.getElementById('settings-courses-raw-input');
+            if (!container) return;
+
+            if (hiddenInput) {
+                hiddenInput.value = currentCoursesList.join('\n');
+            }
+
+            if (!currentCoursesList.length) {
+                container.innerHTML = `<p class="text-xs text-slate-400 font-medium py-2">هیچ درسی تعریف نشده است. لطفاً درس جدیدی بیفزایید.</p>`;
+                return;
+            }
+
+            container.innerHTML = currentCoursesList.map((course, idx) => `
+                <div class="px-3.5 py-2 rounded-2xl border border-slate-200 bg-white text-slate-800 text-xs font-bold flex items-center gap-2 shadow-subtle group hover:border-indigo-300 transition-all">
+                    <svg class="w-3.5 h-3.5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    <span>${course}</span>
+                    <button type="button" onclick="removeCourseTag(${idx})" title="حذف درس" class="w-5 h-5 rounded-full hover:bg-rose-100 text-slate-400 hover:text-rose-600 flex items-center justify-center transition-all ml-0.5 btn-interact">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function addCourseTag() {
+            const input = document.getElementById('new-course-name-input');
+            if (!input) return;
+            const name = input.value.trim();
+            if (!name) return;
+
+            if (currentCoursesList.includes(name)) {
+                input.classList.add('border-rose-400');
+                setTimeout(() => input.classList.remove('border-rose-400'), 1500);
+                return;
+            }
+
+            currentCoursesList.push(name);
+            input.value = '';
+            renderCourseTags();
+        }
+
+        function removeCourseTag(index) {
+            if (index >= 0 && index < currentCoursesList.length) {
+                currentCoursesList.splice(index, 1);
+                renderCourseTags();
+            }
+        }
+
+        function restoreDefaultCourses() {
+            currentCoursesList = ["ریاضی کنکور", "زیست‌شناسی", "فیزیک", "شیمی", "ادبیات فارسی", "زبان انگلیسی"];
+            renderCourseTags();
         }
 
         function switchView(viewName) {
@@ -800,6 +1125,8 @@
 
             if (viewName === 'timer') {
                 renderSmartPresetChips();
+            } else if (viewName === 'settings') {
+                renderCourseTags();
             }
         }
 
@@ -817,40 +1144,97 @@
         }
 
         function startPomodoroSession() {
+            activeStudySeconds = 0;
+            const selectedCourse = document.getElementById('timer-selected-course')?.value || 'درس عمومی';
+            const selectedTopic = document.getElementById('timer-selected-topic')?.value || '';
+
+            // Pre-fill course and topic in post-timer wizard
+            document.getElementById('timer-wizard-course').value = selectedCourse;
+            document.querySelectorAll('#post-timer-wizard-modal .timer-course-pill').forEach(el => {
+                if (el.textContent.trim().includes(selectedCourse)) {
+                    el.classList.add('selected');
+                } else {
+                    el.classList.remove('selected');
+                }
+            });
+            const topicInput = document.querySelector('#post-timer-wizard-modal input[name="topic"]');
+            if (topicInput) topicInput.value = selectedTopic;
+
+            // Set focus mode course badge
+            const courseTitleEl = document.getElementById('focus-course-title');
+            if (courseTitleEl) courseTitleEl.innerText = selectedCourse + (selectedTopic ? ' (' + selectedTopic + ')' : '');
+
+            const extendBtn = document.getElementById('extend-btn');
+
+            if (currentTimerMode === 'stopwatch') {
+                stopwatchElapsedSeconds = 0;
+                actualStudyTimeLogged = 0;
+                if (extendBtn) extendBtn.classList.add('hidden');
+                
+                const badgeText = document.getElementById('focus-badge-text');
+                const badgeDot = document.getElementById('focus-badge-dot');
+                const subtitle = document.getElementById('focus-status-subtitle');
+                if (badgeText) badgeText.innerText = 'کرنومتر مطالعه آزاد';
+                if (badgeDot) badgeDot.className = 'w-2 h-2 rounded-full bg-indigo-400 animate-pulse';
+                if (subtitle) subtitle.innerText = 'زمان سپری‌شده مطالعه';
+
+                isPaused = false;
+                document.getElementById('focus-overlay').classList.remove('hidden');
+
+                clearInterval(timerInterval);
+                timerInterval = setInterval(() => {
+                    if (!isPaused) {
+                        stopwatchElapsedSeconds++;
+                        activeStudySeconds++;
+                        let m = Math.floor(stopwatchElapsedSeconds / 60);
+                        let s = stopwatchElapsedSeconds % 60;
+                        document.getElementById('focus-clock').innerText = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+                    }
+                }, 1000);
+                return;
+            }
+
+            if (extendBtn) extendBtn.classList.remove('hidden');
+
             totalTargetMinutesRequested = parseInt(document.getElementById('setup-target-display').innerText) || 50;
             recordPresetUsage(totalTargetMinutesRequested);
 
-            const studyLen = parseInt(document.getElementById('settings-pomo-study-input')?.value) || POMO_STUDY_DEFAULT;
-            const breakLen = parseInt(document.getElementById('settings-pomo-break-input')?.value) || POMO_BREAK_DEFAULT;
-            const includeBreak = document.getElementById('settings-include-break-toggle')?.checked ?? POMO_INCLUDE_BREAK;
+            if (currentTimerMode === 'countdown') {
+                pomodoroQueue = [{ type: 'study', durationMin: totalTargetMinutesRequested }];
+                actualStudyTimeLogged = totalTargetMinutesRequested;
+            } else { // pomodoro
+                const studyLen = parseInt(document.getElementById('settings-pomo-study-input')?.value) || POMO_STUDY_DEFAULT;
+                const breakLen = parseInt(document.getElementById('settings-pomo-break-input')?.value) || POMO_BREAK_DEFAULT;
+                const includeBreak = document.getElementById('settings-include-break-toggle')?.checked ?? POMO_INCLUDE_BREAK;
 
-            pomodoroQueue = [];
-            actualStudyTimeLogged = 0;
-            let remaining = totalTargetMinutesRequested;
+                pomodoroQueue = [];
+                actualStudyTimeLogged = 0;
+                let remaining = totalTargetMinutesRequested;
 
-            if (!includeBreak) {
-                while (remaining > 0) {
-                    let sTime = Math.min(studyLen, remaining);
-                    pomodoroQueue.push({ type: 'study', durationMin: sTime });
-                    remaining -= sTime;
-                    actualStudyTimeLogged += sTime;
+                if (!includeBreak) {
+                    while (remaining > 0) {
+                        let sTime = Math.min(studyLen, remaining);
+                        pomodoroQueue.push({ type: 'study', durationMin: sTime });
+                        remaining -= sTime;
+                        actualStudyTimeLogged += sTime;
 
-                    if (remaining > 0 && breakLen > 0) {
-                        pomodoroQueue.push({ type: 'break', durationMin: breakLen });
+                        if (remaining > 0 && breakLen > 0) {
+                            pomodoroQueue.push({ type: 'break', durationMin: breakLen });
+                        }
                     }
-                }
-            } else {
-                while (remaining > 0) {
-                    let sTime = Math.min(studyLen, remaining);
-                    pomodoroQueue.push({ type: 'study', durationMin: sTime });
-                    remaining -= sTime;
-                    actualStudyTimeLogged += sTime;
+                } else {
+                    while (remaining > 0) {
+                        let sTime = Math.min(studyLen, remaining);
+                        pomodoroQueue.push({ type: 'study', durationMin: sTime });
+                        remaining -= sTime;
+                        actualStudyTimeLogged += sTime;
 
-                    if (remaining > 0 && breakLen > 0) {
-                        let bTime = Math.min(breakLen, remaining);
-                        pomodoroQueue.push({ type: 'break', durationMin: bTime });
-                        remaining -= bTime;
-                        actualStudyTimeLogged += bTime;
+                        if (remaining > 0 && breakLen > 0) {
+                            let bTime = Math.min(breakLen, remaining);
+                            pomodoroQueue.push({ type: 'break', durationMin: bTime });
+                            remaining -= bTime;
+                            actualStudyTimeLogged += bTime;
+                        }
                     }
                 }
             }
@@ -877,7 +1261,7 @@
             const subtitle = document.getElementById('focus-status-subtitle');
 
             if (item.type === 'study') {
-                if (badgeText) badgeText.innerText = 'جلسه مطالعه (' + (currentQueueIndex + 1) + '/' + pomodoroQueue.length + ')';
+                if (badgeText) badgeText.innerText = currentTimerMode === 'countdown' ? 'تایمر معکوس مطالعه' : 'جلسه مطالعه (' + (currentQueueIndex + 1) + '/' + pomodoroQueue.length + ')';
                 if (badgeDot) badgeDot.className = 'w-2 h-2 rounded-full bg-indigo-400 animate-pulse';
                 if (subtitle) subtitle.innerText = 'زمان باقی‌مانده مطالعه';
                 if (ring) ring.setAttribute('stroke', '#6366F1');
@@ -896,6 +1280,9 @@
                 if (!isPaused) {
                     if (totalSeconds > 0) {
                         totalSeconds--;
+                        if (pomodoroQueue[currentQueueIndex] && pomodoroQueue[currentQueueIndex].type === 'study') {
+                            activeStudySeconds++;
+                        }
                         updateClockDisplay();
                     } else {
                         currentQueueIndex++;
@@ -928,13 +1315,52 @@
             finishTimerSession();
         }
 
+        function togglePostTimerEditDrawer() {
+            const drawer = document.getElementById('post-timer-edit-drawer');
+            if (drawer) drawer.classList.toggle('hidden');
+        }
+
+        function updatePostTimerDurationDisplay() {
+            const durInput = document.getElementById('timer-wizard-duration');
+            const durDisplay = document.getElementById('post-timer-duration-display');
+            if (durInput && durDisplay) {
+                durDisplay.innerText = `زمان ثبت: ${durInput.value} دقیقه`;
+            }
+        }
+
         function finishTimerSession() {
             clearInterval(timerInterval);
             document.getElementById('focus-overlay').classList.add('hidden');
 
-            document.getElementById('timer-wizard-duration').value = actualStudyTimeLogged > 0 ? actualStudyTimeLogged : totalTargetMinutesRequested;
+            // Calculate exact actual elapsed study time in minutes
+            let minutesToLog = 0;
+            if (activeStudySeconds > 0) {
+                minutesToLog = Math.max(1, Math.round(activeStudySeconds / 60));
+            } else if (currentTimerMode === 'stopwatch') {
+                minutesToLog = Math.max(1, Math.round(stopwatchElapsedSeconds / 60));
+            } else {
+                minutesToLog = totalTargetMinutesRequested;
+            }
 
-            goTimerWizardStep(1);
+            const selectedCourse = document.getElementById('timer-wizard-course')?.value || 'عمومی';
+            const courseDisplay = document.getElementById('post-timer-course-display');
+            if (courseDisplay) courseDisplay.innerText = `درس: ${selectedCourse}`;
+
+            const durationDisplay = document.getElementById('post-timer-duration-display');
+            if (durationDisplay) {
+                if (currentTimerMode === 'stopwatch') {
+                    durationDisplay.innerText = `زمان ثبت: ${minutesToLog} دقیقه (کرنومتر آزاد)`;
+                } else {
+                    durationDisplay.innerText = `زمان ثبت: ${minutesToLog} دقیقه (واقعی از ${totalTargetMinutesRequested} دقیقه)`;
+                }
+            }
+
+            document.getElementById('timer-wizard-duration').value = minutesToLog;
+            
+            // Hide edit drawer by default for clean presentation
+            const drawer = document.getElementById('post-timer-edit-drawer');
+            if (drawer) drawer.classList.add('hidden');
+
             openModal('post-timer-wizard-modal');
         }
 
@@ -948,29 +1374,94 @@
             closeModal('post-timer-wizard-modal');
         }
 
-        function goTimerWizardStep(step) {
-            document.getElementById('timer-wizard-step-1').classList.add('hidden');
-            document.getElementById('timer-wizard-step-2').classList.add('hidden');
-            document.getElementById('timer-wizard-step-3').classList.add('hidden');
-            document.getElementById('timer-wizard-step-' + step).classList.remove('hidden');
-        }
-
         function pickTimerWizardCourse(val, btnEl) {
             document.getElementById('timer-wizard-course').value = val;
             document.querySelectorAll('#post-timer-wizard-modal .timer-course-pill').forEach(el => el.classList.remove('selected'));
-            btnEl.classList.add('selected');
+            if (btnEl) btnEl.classList.add('selected');
+            const courseDisplay = document.getElementById('post-timer-course-display');
+            if (courseDisplay) courseDisplay.innerText = `درس: ${val}`;
         }
 
         function openManualWizard() {
+            // Reset errors and fields
+            const durationErr = document.getElementById('manual-duration-error');
+            if (durationErr) durationErr.classList.add('hidden');
+            const durationInput = document.getElementById('manual-wizard-duration');
+            if (durationInput) durationInput.classList.remove('border-rose-500');
+            
             goManualWizardStep(1);
             openModal('manual-wizard-modal');
         }
 
+        function validateAndGoManualStep(targetStep) {
+            if (targetStep === 2) {
+                const courseVal = document.getElementById('manual-wizard-course').value;
+                const errEl = document.getElementById('manual-step1-error');
+                if (!courseVal || !courseVal.trim()) {
+                    if (errEl) errEl.classList.remove('hidden');
+                    return false;
+                }
+                if (errEl) errEl.classList.add('hidden');
+            } else if (targetStep === 3) {
+                const durationInput = document.getElementById('manual-wizard-duration');
+                const durationVal = durationInput ? parseInt(durationInput.value) : 0;
+                const errEl = document.getElementById('manual-duration-error');
+
+                if (!durationVal || isNaN(durationVal) || durationVal <= 0) {
+                    if (durationInput) durationInput.classList.add('border-rose-500');
+                    if (errEl) errEl.classList.remove('hidden');
+                    return false;
+                }
+                if (durationInput) durationInput.classList.remove('border-rose-500');
+                if (errEl) errEl.classList.add('hidden');
+            }
+
+            goManualWizardStep(targetStep);
+        }
+
         function goManualWizardStep(step) {
-            document.getElementById('manual-wizard-step-1').classList.add('hidden');
-            document.getElementById('manual-wizard-step-2').classList.add('hidden');
-            document.getElementById('manual-wizard-step-3').classList.add('hidden');
-            document.getElementById('manual-wizard-step-' + step).classList.remove('hidden');
+            for (let i = 1; i <= 3; i++) {
+                const el = document.getElementById('manual-wizard-step-' + i);
+                if (el) {
+                    el.classList.add('hidden');
+                    el.classList.remove('wizard-step-slide-in');
+                }
+            }
+            const activeEl = document.getElementById('manual-wizard-step-' + step);
+            if (activeEl) {
+                activeEl.classList.remove('hidden');
+                void activeEl.offsetWidth;
+                activeEl.classList.add('wizard-step-slide-in');
+            }
+
+            const stepLabels = ['', 'درس', 'زمان و مبحث', 'تست و کیفیت'];
+            const faNums = ['', '۱', '۲', '۳'];
+
+            // Simplified Stepper UI: High contrast numbers across active vs inactive
+            for (let i = 1; i <= 3; i++) {
+                const ind = document.getElementById('manual-step-indicator-' + i);
+                if (ind) {
+                    if (i === step) {
+                        ind.className = "py-1.5 px-3 rounded-xl btn-tactile-indigo text-white flex items-center justify-center gap-2 font-bold shadow-sm transition-all";
+                        ind.innerHTML = `<span class="w-5 h-5 rounded-full bg-white/30 text-white text-[11px] flex items-center justify-center font-extrabold shrink-0">${faNums[i]}</span><span>${stepLabels[i]}</span>`;
+                    } else {
+                        ind.className = "py-1.5 px-3 rounded-xl bg-slate-200/60 text-slate-700 border border-slate-200/80 flex items-center justify-center gap-2 font-semibold transition-all";
+                        ind.innerHTML = `<span class="w-5 h-5 rounded-full bg-slate-300 text-slate-800 text-[11px] flex items-center justify-center font-extrabold shrink-0">${faNums[i]}</span><span>${stepLabels[i]}</span>`;
+                    }
+                }
+            }
+        }
+
+        function validateManualWizardFinalSubmit(event) {
+            const durationInput = document.getElementById('manual-wizard-duration');
+            const durationVal = durationInput ? parseInt(durationInput.value) : 0;
+            if (!durationVal || isNaN(durationVal) || durationVal <= 0) {
+                event.preventDefault();
+                goManualWizardStep(2);
+                validateAndGoManualStep(3);
+                return false;
+            }
+            return true;
         }
 
         function pickManualWizardCourse(val, btnEl) {
@@ -986,6 +1477,16 @@
         function closeModal(id) {
             document.getElementById(id).classList.add('hidden');
         }
+
+        // Close Modals on Escape key press
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal('manual-wizard-modal');
+                closeModal('post-timer-wizard-modal');
+                closeModal('delete-modal');
+                closeModal('cancel-confirm-modal');
+            }
+        });
 
         function askDelete(id) {
             const deleteForm = document.getElementById('delete-form');
