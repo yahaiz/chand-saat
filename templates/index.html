@@ -46,6 +46,11 @@
 </head>
 <body class="h-full overflow-hidden flex bg-window-bg p-0">
 
+    <!-- MOBILE / APP SPLASH OVERLAY (Guarantees zero white screen gap) -->
+    <div id="app-splash-overlay" class="fixed inset-0 z-[100] bg-[#eef5fd] flex items-center justify-center transition-opacity duration-500">
+        <img src="./splash_android.png" alt="Splash Screen" class="w-full h-full object-cover max-w-md mx-auto">
+    </div>
+
     <!-- Embedded Initial Data Container for Client-Side Hydration -->
     <script id="initial-data" type="application/json">
         {% if initial_data_json %}{{ initial_data_json | safe }}{% else %}{}{% endif %}
@@ -604,11 +609,13 @@
             calculateStats();
             renderUI();
 
-            try {
-                if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.SplashScreen) {
-                    window.Capacitor.Plugins.SplashScreen.hide();
+            setTimeout(() => {
+                const splash = document.getElementById('app-splash-overlay');
+                if (splash) {
+                    splash.style.opacity = '0';
+                    setTimeout(() => splash.remove(), 500);
                 }
-            } catch(e) {}
+            }, 1200);
         }
 
         function saveLocalStorage() {
