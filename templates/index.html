@@ -631,6 +631,49 @@
         </div>
     </div>
 
+    <!-- MODAL 4: ACTIVE FOCUS TIMER OVERLAY -->
+    <div id="focus-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white border border-slate-200/80 rounded-5xl w-full max-w-md p-8 shadow-2xl space-y-6 modal-morph text-center relative">
+            <div class="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 rounded-full px-4 py-1.5 text-xs font-bold text-indigo-700 mx-auto">
+                <span id="focus-badge-dot" class="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse"></span>
+                <span id="focus-badge-text">جلسه مطالعه فعال</span>
+            </div>
+
+            <div class="space-y-1">
+                <h2 id="focus-course-name" class="text-lg font-extrabold text-slate-900">ریاضیات عمومی</h2>
+                <p id="focus-topic-name" class="text-xs text-slate-400 font-medium">مبحث مشتق و انحناها</p>
+            </div>
+
+            <!-- CLOCK DISPLAY WITH PROGRESS RING -->
+            <div class="relative w-48 h-48 mx-auto flex items-center justify-center">
+                <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="42" stroke="#E2E8F0" stroke-width="6" fill="transparent"/>
+                    <circle id="timer-progress-ring" cx="50" cy="50" r="42" stroke="#6366F1" stroke-width="6" stroke-linecap="round" fill="transparent" stroke-dasharray="263.89" stroke-dashoffset="0" class="transition-all duration-1000 ease-linear"/>
+                </svg>
+                <div class="absolute flex flex-col items-center">
+                    <span id="focus-clock" class="text-4xl font-black text-slate-900 font-mono tracking-tight">25:00</span>
+                    <span id="focus-status-subtitle" class="text-[11px] font-medium text-slate-400 mt-1">زمان باقی‌مانده</span>
+                </div>
+            </div>
+
+            <!-- TIMER CONTROLS -->
+            <div class="flex items-center justify-center gap-3 pt-2">
+                <button type="button" onclick="togglePauseTimer()" id="pause-btn" class="btn-tactile-indigo text-white font-bold px-6 py-3 rounded-2xl text-xs btn-interact shrink-0">
+                    توقف موقت
+                </button>
+                <button type="button" onclick="stopTimerEarly()" class="btn-tactile-emerald text-white font-bold px-6 py-3 rounded-2xl text-xs btn-interact shrink-0">
+                    پایان و ثبت جلسه
+                </button>
+            </div>
+            
+            <div>
+                <button type="button" onclick="cancelTimerWithConfirm()" class="text-xs text-slate-400 hover:text-rose-600 font-bold transition-colors btn-interact">
+                    انصراف بدون ثبت
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- CLIENT-SIDE APPLICATION LOGIC & ADAPTER -->
     <script>
         async function exportExcel() {
@@ -758,12 +801,200 @@
             document.getElementById('settings-pomo-break-input').value = appData.settings.pomo_break_min;
             document.getElementById('settings-include-break-toggle').checked = !!appData.settings.pomo_include_break;
 
-            // Render Course Pills
+            // Render Course Pills & Preset Chips
             renderCoursePills();
+            renderSmartPresetChips();
             
             // Render Logs
             renderRecentLogs();
             renderHistoryLogs();
+        }
+
+        // ==========================================
+        // TIMER ENGINE & ACTIVE FOCUS CONTROLS
+        // ==========================================
+        let selectedTimerMode = 'pomodoro'; // 'pomodoro' | 'countdown' | 'stopwatch'
+        let totalTargetMinutesRequested = 25;
+        let timerInterval = null;
+        let totalSeconds = 1500;
+        let initialSeconds = 1500;
+        let isPaused = false;
+        let actualStudyTimeLogged = 0;
+        let activeSecondsCounter = 0;
+
+        function setTimerMode(mode, btnEl) {
+            triggerHaptic(10);
+            selectedTimerMode = mode;
+            
+            document.querySelectorAll('.timer-mode-card').forEach(el => el.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+
+            const hintText = document.getElementById('timer-mode-hint-text');
+            const startBtnText = document.getElementById('start-timer-btn-text');
+            const durationSection = document.getElementById('timer-duration-section');
+
+            if (mode === 'pomodoro') {
+                if (hintText) hintText.innerHTML = '<strong>روش پومودورو:</strong> زمان مطالعه شما به بازه‌های کاری و استراحت (مثلاً ۲۵ دقیقه درس + ۵ دقیقه استراحت) تقسیم می‌شود و سیستم زمان استراحت را مدیریت می‌کند.';
+                if (startBtnText) startBtnText.textContent = 'شروع مطالعه پومودورو';
+                if (durationSection) durationSection.classList.remove('hidden');
+            } else if (mode === 'countdown') {
+                if (hintText) hintText.innerHTML = '<strong>تایمر معکوس:</strong> شمارش معکوس زمان مشخص که با اتمام آن زمان جلسه مطالعه پایان می‌یابد.';
+                if (startBtnText) startBtnText.textContent = 'شروع تایمر معکوس';
+                if (durationSection) durationSection.classList.remove('hidden');
+            } else if (mode === 'stopwatch') {
+                if (hintText) hintText.innerHTML = '<strong>کرنومتر آزاد:</strong> زمان شما از صفر به صورت صعودی شمارش می‌شود تا هروقت خواستید پایان دهید.';
+                if (startBtnText) startBtnText.textContent = 'شروع کرنومتر آزاد';
+                if (durationSection) durationSection.classList.add('hidden');
+            }
+
+            renderSmartPresetChips();
+        }
+
+        function adjustTotalTargetMinutes(delta) {
+            triggerHaptic(8);
+            totalTargetMinutesRequested = Math.max(5, Math.min(240, totalTargetMinutesRequested + delta));
+            const display = document.getElementById('setup-target-display');
+            if (display) display.textContent = totalTargetMinutesRequested;
+            renderSmartPresetChips();
+        }
+
+        function setTargetMinutesFromPreset(mins) {
+            triggerHaptic(10);
+            totalTargetMinutesRequested = mins;
+            const display = document.getElementById('setup-target-display');
+            if (display) display.textContent = totalTargetMinutesRequested;
+            renderSmartPresetChips();
+        }
+
+        function renderSmartPresetChips() {
+            const container = document.getElementById('preset-chips-container');
+            if (!container) return;
+
+            const presets = [15, 25, 45, 60];
+            container.innerHTML = presets.map(m => `
+                <button type="button" onclick="setTargetMinutesFromPreset(${m})" class="preset-chip px-3 py-2 rounded-2xl text-xs font-bold font-mono text-slate-700 btn-interact ${totalTargetMinutesRequested === m ? 'active' : ''}">
+                    ${m} دقیقه
+                </button>
+            `).join('');
+        }
+
+        function startPomodoroSession() {
+            triggerHaptic(15);
+            const courseInput = document.getElementById('timer-selected-course');
+            const courseVal = courseInput ? courseInput.value : '';
+            const topicVal = document.getElementById('timer-selected-topic')?.value || '';
+
+            if (!courseVal || !courseVal.trim()) {
+                showToast("لطفاً ابتدا یک درس را برای مطالعه انتخاب کنید", "warning");
+                return;
+            }
+
+            document.getElementById('focus-course-name').textContent = courseVal;
+            document.getElementById('focus-topic-name').textContent = topicVal || 'بدون مبحث ثبت‌شده';
+            
+            isPaused = false;
+            activeSecondsCounter = 0;
+
+            if (selectedTimerMode === 'stopwatch') {
+                totalSeconds = 0;
+                initialSeconds = 0;
+                document.getElementById('focus-badge-text').textContent = 'کرنومتر مطالعه آزاد';
+                document.getElementById('focus-status-subtitle').textContent = 'زمان سپری‌شده';
+            } else {
+                totalSeconds = totalTargetMinutesRequested * 60;
+                initialSeconds = totalSeconds;
+                document.getElementById('focus-badge-text').textContent = selectedTimerMode === 'pomodoro' ? 'پومودورو هوشمند' : 'تایمر معکوس';
+                document.getElementById('focus-status-subtitle').textContent = 'زمان باقی‌مانده';
+            }
+
+            document.getElementById('pause-btn').textContent = 'توقف موقت';
+            updateClockDisplay();
+            openModal('focus-overlay');
+
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (!isPaused) {
+                    activeSecondsCounter++;
+                    if (selectedTimerMode === 'stopwatch') {
+                        totalSeconds++;
+                        updateClockDisplay();
+                    } else {
+                        if (totalSeconds > 0) {
+                            totalSeconds--;
+                            updateClockDisplay();
+                        } else {
+                            finishTimerSession();
+                        }
+                    }
+                }
+            }, 1000);
+        }
+
+        function updateClockDisplay() {
+            let m = Math.floor(totalSeconds / 60);
+            let s = totalSeconds % 60;
+            let str = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+            const clockEl = document.getElementById('focus-clock');
+            if (clockEl) clockEl.textContent = str;
+
+            const ring = document.getElementById('timer-progress-ring');
+            if (ring) {
+                const circumference = 263.89;
+                if (selectedTimerMode === 'stopwatch') {
+                    ring.style.strokeDashoffset = 0;
+                } else if (initialSeconds > 0) {
+                    let fraction = totalSeconds / initialSeconds;
+                    ring.style.strokeDashoffset = circumference * (1 - fraction);
+                }
+            }
+        }
+
+        function togglePauseTimer() {
+            triggerHaptic(10);
+            isPaused = !isPaused;
+            const pauseBtn = document.getElementById('pause-btn');
+            if (pauseBtn) {
+                pauseBtn.textContent = isPaused ? 'ادامه مطالعه' : 'توقف موقت';
+            }
+            showToast(isPaused ? 'تایمر متوقف شد' : 'تایمر دوباره فعال شد', 'info');
+        }
+
+        function stopTimerEarly() {
+            finishTimerSession();
+        }
+
+        function cancelTimerWithConfirm() {
+            if (confirm("آیا قصد انصراف از این جلسه مطالعه را دارید؟")) {
+                if (timerInterval) clearInterval(timerInterval);
+                closeModal('focus-overlay');
+                showToast("جلسه مطالعه لغو شد", "info");
+            }
+        }
+
+        function finishTimerSession() {
+            if (timerInterval) clearInterval(timerInterval);
+            closeModal('focus-overlay');
+
+            actualStudyTimeLogged = Math.max(1, Math.round(activeSecondsCounter / 60));
+            const courseVal = document.getElementById('timer-selected-course')?.value || 'سایر';
+            const topicVal = document.getElementById('timer-selected-topic')?.value || '-';
+
+            document.getElementById('manual-wizard-course').value = courseVal;
+            document.getElementById('manual-wizard-duration').value = actualStudyTimeLogged;
+            document.getElementById('manual-wizard-topic').value = topicVal;
+
+            openManualWizard();
+            goManualWizardStep(3);
+            showToast(`خسته نباشید! ${actualStudyTimeLogged} دقیقه مطالعه ثبت گردید.`, "success");
+        }
+
+        function askDelete(id) {
+            triggerHaptic(10);
+            const deleteForm = document.getElementById('delete-form');
+            if (deleteForm) {
+                deleteForm.action = '/delete/' + id;
+            }
+            openModal('delete-modal');
         }
 
         function renderCoursePills() {
