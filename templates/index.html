@@ -105,14 +105,6 @@
                                 <span>تنظیمات پیشرفته</span>
                             </button>
 
-                            <!-- EXCEL EXPORT SIDEBAR ITEM WITH 'به‌زودی' BADGE -->
-                            <div class="w-full flex items-center justify-between px-3.5 py-3 rounded-2xl text-xs text-slate-400 bg-slate-50/50 border border-slate-100/60 text-right font-medium select-none">
-                                <div class="flex items-center gap-3">
-                                    <svg class="w-4 h-4 text-emerald-600/70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-                                    <span>خروجی اکسل</span>
-                                </div>
-                                <span class="bg-amber-50 border border-amber-200/70 text-amber-700 text-[10px] font-bold px-2 py-0.5 rounded-full">به‌زودی</span>
-                            </div>
                         </nav>
                     </div>
 
@@ -452,6 +444,28 @@
                                 </div>
                             </form>
                         </div>
+
+                        <!-- DATA MANAGEMENT & EXCEL EXPORT SECTION -->
+                        <div class="bg-white border border-slate-200 rounded-4xl md:rounded-5xl p-5 md:p-7 shadow-subtle space-y-4 card-morph text-right">
+                            <div class="border-b border-slate-100 pb-3.5">
+                                <h3 class="text-sm font-bold text-slate-900 flex items-center gap-2">
+                                    <svg class="w-5 h-5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                    <span>خروجی و پشتیبان‌گیری از داده‌ها</span>
+                                </h3>
+                                <p class="text-xs text-slate-400 mt-1">گزارش کامل تمام جلسات مطالعه خود را به فرمت اکسل استاندارد دریافت و ذخیره کنید.</p>
+                            </div>
+                            
+                            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-emerald-50/60 border border-emerald-100/80 rounded-3xl p-4">
+                                <div class="space-y-1 text-right">
+                                    <span class="text-xs font-bold text-emerald-950 block">دانلود فایل اکسل گزارش‌ها (.xlsx)</span>
+                                    <p class="text-[11px] text-emerald-700">شامل تاریخ، دروس، مباحث، زمان مطالعه، تعداد تست و یادداشت‌ها با استایل سفارشی و چیدمان RTL.</p>
+                                </div>
+                                <button type="button" onclick="exportExcel()" class="btn-tactile-slate text-emerald-800 bg-emerald-100/90 hover:bg-emerald-200/90 border border-emerald-300/80 font-bold px-5 py-2.5 rounded-2xl text-xs flex items-center gap-2 shrink-0 btn-interact cursor-pointer shadow-sm">
+                                    <svg class="w-4 h-4 text-emerald-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                                    <span>دریافت فایل اکسل</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -549,6 +563,20 @@
 
     <!-- CLIENT-SIDE APPLICATION LOGIC & ADAPTER -->
     <script>
+        async function exportExcel() {
+            if (window.pywebview && window.pywebview.api && typeof window.pywebview.api.save_excel_dialog === 'function') {
+                try {
+                    const res = await window.pywebview.api.save_excel_dialog();
+                    if (res && (res.success || res.canceled)) {
+                        return;
+                    }
+                } catch (e) {
+                    console.error("PyWebView save dialog error, falling back:", e);
+                }
+            }
+            window.location.href = '/export';
+        }
+
         // Default Local Application State for Offline / Capacitor Mobile Mode
         const DEFAULT_STATE = {
             records: [],

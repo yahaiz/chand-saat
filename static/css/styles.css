@@ -130,21 +130,7 @@ button, a, input, select, textarea, .btn-interact {
     transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease !important;
 }
 
-/* TOUCH ACTIVE PRESS STATES (Universal for Touchscreens & Click) */
-button:active,
-.btn-tactile-indigo:active,
-.btn-tactile-emerald:active,
-.btn-tactile-slate:active,
-.btn-tactile-rose:active,
-.btn-interact:active,
-.timer-course-pill:active,
-.wizard-course-pill:active,
-.timer-mode-card:active {
-    transform: scale(0.96) !important;
-    opacity: 0.9 !important;
-}
-
-/* DESKTOP ONLY HOVER STATES (Enclosed in hover media query to prevent sticky touch hover bugs) */
+/* DESKTOP ONLY HOVER STATES (Must come BEFORE :active states in CSS cascade) */
 @media (hover: hover) and (pointer: fine) {
     .btn-tactile-indigo:hover {
         background: linear-gradient(180deg, #4F46E5 0%, #4338CA 100%) !important;
@@ -172,12 +158,68 @@ button:active,
     .timer-mode-card:hover {
         border-color: #A5B4FC;
         background: linear-gradient(180deg, #EEF2FF 0%, #E0E7FF 100%);
-        transform: translateY(-1px);
     }
     .history-item:hover {
         border-color: #CBD5E1 !important;
         background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%) !important;
     }
+}
+
+/* TOUCH & CLICK ACTIVE PRESS STATES (Must come AFTER :hover to override on click) */
+.btn-tactile-indigo:active,
+.btn-tactile-indigo:hover:active {
+    background: linear-gradient(180deg, #3730A3 0%, #312E81 100%) !important;
+    border-color: #312E81 !important;
+    box-shadow: 
+        inset 0 3px 6px rgba(0, 0, 0, 0.5),
+        inset 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+    transform: translateY(1px) scale(0.98) !important;
+    opacity: 0.98 !important;
+}
+
+.btn-tactile-emerald:active,
+.btn-tactile-emerald:hover:active {
+    background: linear-gradient(180deg, #047857 0%, #065F46 100%) !important;
+    border-color: #065F46 !important;
+    box-shadow: 
+        inset 0 3px 6px rgba(0, 0, 0, 0.5),
+        inset 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+    transform: translateY(1px) scale(0.98) !important;
+    opacity: 0.98 !important;
+}
+
+.btn-tactile-slate:active,
+.btn-tactile-slate:hover:active {
+    background: linear-gradient(180deg, #CBD5E1 0%, #94A3B8 100%) !important;
+    border-color: #64748B !important;
+    color: #0F172A !important;
+    box-shadow: 
+        inset 0 2.5px 5px rgba(15, 23, 42, 0.25),
+        inset 0 1px 1px rgba(15, 23, 42, 0.15) !important;
+    transform: translateY(1px) scale(0.98) !important;
+    opacity: 0.98 !important;
+}
+
+.btn-tactile-rose:active,
+.btn-tactile-rose:hover:active {
+    background: linear-gradient(180deg, #BE123C 0%, #9F1239 100%) !important;
+    border-color: #9F1239 !important;
+    box-shadow: 
+        inset 0 3px 6px rgba(0, 0, 0, 0.5),
+        inset 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+    transform: translateY(1px) scale(0.98) !important;
+    opacity: 0.98 !important;
+}
+
+button:active,
+.btn-interact:active,
+.timer-course-pill:active,
+.wizard-course-pill:active,
+.preset-chip:active,
+.timer-mode-card:active {
+    box-shadow: inset 0 2.5px 5px rgba(0, 0, 0, 0.25) !important;
+    transform: translateY(1px) scale(0.98) !important;
+    opacity: 0.98 !important;
 }
 
 /* TOGGLE SWITCH */

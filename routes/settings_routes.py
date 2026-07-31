@@ -43,10 +43,16 @@ async def update_settings(
 @router.get("/export")
 async def export_excel():
     try:
+        from urllib.parse import quote
         excel_path = repository.export_to_excel()
+        filename = f"گزارش_مطالعه_چند_ساعت_{datetime.now().strftime('%Y-%m-%d')}.xlsx"
+        encoded_filename = quote(filename)
+        headers = {
+            "Content-Disposition": f"attachment; filename=\"ChandSaat_Report.xlsx\"; filename*=UTF-8''{encoded_filename}"
+        }
         return FileResponse(
             excel_path,
-            filename=f"ChandSaat_Log_{datetime.now().strftime('%Y%m%d')}.xlsx",
+            headers=headers,
             media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
     except Exception as e:

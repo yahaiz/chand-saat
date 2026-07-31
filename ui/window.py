@@ -42,6 +42,33 @@ class WindowAPI:
         if self._window:
             self._window.destroy()
 
+    def save_excel_dialog(self):
+        if self._window:
+            try:
+                from database import repository
+                from datetime import datetime
+                import shutil
+
+                excel_path = repository.export_to_excel()
+                default_filename = f"گزارش_مطالعه_چند_ساعت_{datetime.now().strftime('%Y-%m-%d')}.xlsx"
+
+                result = self._window.create_file_dialog(
+                    webview.SAVE_DIALOG,
+                    save_filename=default_filename,
+                    file_types=('Excel Files (*.xlsx)', 'All Files (*.*)')
+                )
+                if result:
+                    dest_path = result[0] if isinstance(result, (tuple, list)) and len(result) > 0 else (result if isinstance(result, str) else None)
+                    if dest_path:
+                        shutil.copyfile(excel_path, dest_path)
+                        logger.info(f"Excel report saved successfully to: {dest_path}")
+                        return {"success": True, "path": dest_path}
+                return {"success": False, "canceled": True}
+            except Exception as e:
+                logger.error(f"Error in save_excel_dialog: {e}")
+                return {"success": False, "error": str(e)}
+        return {"success": False, "error": "No window"}
+
 window_api = WindowAPI()
 
 def create_main_window(url: str = "http://127.0.0.1:28475/"):
