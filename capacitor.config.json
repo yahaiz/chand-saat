@@ -1,0 +1,8 @@
+{
+  "appId": "com.yahaiz.chandsaat",
+  "appName": "چند ساعت؟",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}
