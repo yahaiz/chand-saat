@@ -19,6 +19,9 @@ design/
 build/
 dist/
 installer/
+www/
+android/
+node_modules/
 *.spec.bak
 
 # Application Runtime & User Logs

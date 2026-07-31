@@ -1,10 +1,31 @@
-/* Custom Styles for ChandSaat */
+/* Custom Styles for ChandSaat - Touch First & Desktop Responsive */
 body { 
     font-family: 'Vazirmatn', sans-serif;
     background-color: #F8FAFC;
     color: #0F172A;
     -webkit-user-select: none;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    overscroll-behavior-y: contain;
+}
+
+/* Touchscreen & Mobile Touch Dynamics */
+button, a, input, select, textarea, .btn-interact {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-nav-item {
+    min-width: 48px;
+    min-height: 48px;
+}
+
+.pt-safe {
+    padding-top: max(1rem, env(safe-area-inset-top, 0px));
+}
+.pb-safe {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom, 0px));
 }
 
 ::-webkit-scrollbar { width: 5px; height: 5px; }
@@ -20,8 +41,8 @@ body {
 }
 
 @keyframes viewFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { opacity: 0; transform: scale(0.99); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 .focus-enter-anim {
@@ -29,17 +50,11 @@ body {
 }
 
 @keyframes focusZoomIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.94);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+    0% { opacity: 0; transform: scale(0.94); }
+    100% { opacity: 1; transform: scale(1); }
 }
 
-/* Tactile Embossed Modal Dialogs (Deep Inset Shadow & Beveled 3D Borders) */
+/* Tactile Embossed Modal Dialogs */
 .modal-morph {
     animation: modalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%) !important;
@@ -56,29 +71,6 @@ body {
     100% { opacity: 1; transform: scale(1); }
 }
 
-/* Recessed Inset Stepper Track */
-.stepper-track-recessed {
-    background: linear-gradient(180deg, #F1F5F9 0%, #E2E8F0 100%);
-    box-shadow: inset 0 1.5px 3px rgba(15, 23, 42, 0.1);
-    border: 1px solid #CBD5E1;
-}
-
-/* Wizard Step Smooth Slide Animation */
-.wizard-step-slide-in {
-    animation: wizardStepSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes wizardStepSlideIn {
-    0% {
-        opacity: 0;
-        transform: translateX(-15px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
 .nav-item {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
@@ -91,10 +83,9 @@ body {
 }
 
 /* ==========================================
-   ELEGANT TACTILE 3D BUTTONS (No Translate & Clean Tight Shadows)
+   TACTILE 3D BUTTONS & TOUCH STATES
    ========================================== */
 
-/* Primary Indigo Button */
 .btn-tactile-indigo {
     background: linear-gradient(180deg, #6366F1 0%, #4F46E5 100%) !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
@@ -106,23 +97,6 @@ body {
     transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease !important;
 }
 
-.btn-tactile-indigo:hover {
-    background: linear-gradient(180deg, #4F46E5 0%, #4338CA 100%) !important;
-    box-shadow: 
-        inset 0 1px 1px rgba(255, 255, 255, 0.45),
-        inset 0 -1.5px 2px rgba(0, 0, 0, 0.25),
-        0 3px 7px rgba(79, 70, 229, 0.32) !important;
-}
-
-.btn-tactile-indigo:active {
-    background: linear-gradient(180deg, #4338CA 0%, #3730A3 100%) !important;
-    box-shadow: 
-        inset 0 2px 4px rgba(0, 0, 0, 0.35),
-        0 1px 2px rgba(79, 70, 229, 0.15) !important;
-    transform: translateY(1px);
-}
-
-/* Success Emerald Button */
 .btn-tactile-emerald {
     background: linear-gradient(180deg, #10B981 0%, #059669 100%) !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
@@ -134,23 +108,6 @@ body {
     transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease !important;
 }
 
-.btn-tactile-emerald:hover {
-    background: linear-gradient(180deg, #059669 0%, #047857 100%) !important;
-    box-shadow: 
-        inset 0 1px 1px rgba(255, 255, 255, 0.45),
-        inset 0 -1.5px 2px rgba(0, 0, 0, 0.25),
-        0 3px 7px rgba(16, 185, 129, 0.32) !important;
-}
-
-.btn-tactile-emerald:active {
-    background: linear-gradient(180deg, #047857 0%, #065F46 100%) !important;
-    box-shadow: 
-        inset 0 2px 4px rgba(0, 0, 0, 0.35),
-        0 1px 2px rgba(16, 185, 129, 0.15) !important;
-    transform: translateY(1px);
-}
-
-/* Neutral Slate / Light Secondary Button */
 .btn-tactile-slate {
     background: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%) !important;
     border: 1px solid #CBD5E1 !important;
@@ -162,22 +119,6 @@ body {
     transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease !important;
 }
 
-.btn-tactile-slate:hover {
-    background: linear-gradient(180deg, #F8FAFC 0%, #E2E8F0 100%) !important;
-    border-color: #94A3B8 !important;
-    color: #0F172A !important;
-    box-shadow: 
-        inset 0 1px 0 rgba(255, 255, 255, 0.95),
-        0 2px 5px rgba(0, 0, 0, 0.06) !important;
-}
-
-.btn-tactile-slate:active {
-    background: linear-gradient(180deg, #E2E8F0 0%, #CBD5E1 100%) !important;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.12) !important;
-    transform: translateY(1px);
-}
-
-/* Rose / Danger Button */
 .btn-tactile-rose {
     background: linear-gradient(180deg, #F43F5E 0%, #E11D48 100%) !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
@@ -189,22 +130,57 @@ body {
     transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease !important;
 }
 
-.btn-tactile-rose:hover {
-    background: linear-gradient(180deg, #E11D48 0%, #BE123C 100%) !important;
-    box-shadow: 
-        inset 0 1px 1px rgba(255, 255, 255, 0.45),
-        0 3px 7px rgba(244, 63, 94, 0.32) !important;
+/* TOUCH ACTIVE PRESS STATES (Universal for Touchscreens & Click) */
+button:active,
+.btn-tactile-indigo:active,
+.btn-tactile-emerald:active,
+.btn-tactile-slate:active,
+.btn-tactile-rose:active,
+.btn-interact:active,
+.timer-course-pill:active,
+.wizard-course-pill:active,
+.timer-mode-card:active {
+    transform: scale(0.96) !important;
+    opacity: 0.9 !important;
 }
 
-.btn-tactile-rose:active {
-    background: linear-gradient(180deg, #BE123C 0%, #9F1239 100%) !important;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.35) !important;
-    transform: translateY(1px);
+/* DESKTOP ONLY HOVER STATES (Enclosed in hover media query to prevent sticky touch hover bugs) */
+@media (hover: hover) and (pointer: fine) {
+    .btn-tactile-indigo:hover {
+        background: linear-gradient(180deg, #4F46E5 0%, #4338CA 100%) !important;
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.45), 0 3px 7px rgba(79, 70, 229, 0.32) !important;
+    }
+    .btn-tactile-emerald:hover {
+        background: linear-gradient(180deg, #059669 0%, #047857 100%) !important;
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.45), 0 3px 7px rgba(16, 185, 129, 0.32) !important;
+    }
+    .btn-tactile-slate:hover {
+        background: linear-gradient(180deg, #F8FAFC 0%, #E2E8F0 100%) !important;
+        border-color: #94A3B8 !important;
+        color: #0F172A !important;
+    }
+    .btn-tactile-rose:hover {
+        background: linear-gradient(180deg, #E11D48 0%, #BE123C 100%) !important;
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.45), 0 3px 7px rgba(244, 63, 94, 0.32) !important;
+    }
+    .wizard-course-pill:hover,
+    .timer-course-pill:hover,
+    .preset-chip:hover {
+        border-color: #A5B4FC;
+        background: linear-gradient(180deg, #EEF2FF 0%, #E0E7FF 100%);
+    }
+    .timer-mode-card:hover {
+        border-color: #A5B4FC;
+        background: linear-gradient(180deg, #EEF2FF 0%, #E0E7FF 100%);
+        transform: translateY(-1px);
+    }
+    .history-item:hover {
+        border-color: #CBD5E1 !important;
+        background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%) !important;
+    }
 }
 
-/* ==========================================
-   MODERN SLEEK TOGGLE SWITCH (Soft & Clean)
-   ========================================== */
+/* TOGGLE SWITCH */
 .toggle-switch-track {
     width: 2.75rem;
     height: 1.5rem;
@@ -239,35 +215,13 @@ input:checked + .toggle-switch-track .toggle-switch-knob {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-/* ==========================================
-   TACTILE CARDS, PILLS, INPUTS
-   ========================================== */
-
-/* Static Cards (No Shadow Elevation On Hover) */
+/* CARDS & PILLS */
 .card-morph {
     background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFC 100%);
-    box-shadow: 
-        inset 0 1px 0 rgba(255, 255, 255, 0.9),
-        0 1.5px 4px rgba(0, 0, 0, 0.03);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1.5px 4px rgba(0, 0, 0, 0.03);
     border: 1px solid #E2E8F0;
-    transition: border-color 0.15s ease;
 }
 
-.card-morph:hover {
-    border-color: #E2E8F0;
-}
-
-/* History List Item Hover (Subtle Highlight) */
-.history-item {
-    transition: border-color 0.15s ease, background 0.15s ease;
-}
-
-.history-item:hover {
-    border-color: #CBD5E1 !important;
-    background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%) !important;
-}
-
-/* Recessed Inset Form Inputs */
 input[type="text"],
 input[type="number"],
 textarea,
@@ -282,28 +236,16 @@ input[type="number"]:focus,
 textarea:focus,
 select:focus {
     border-color: #6366F1 !important;
-    box-shadow: 
-        inset 0 1.5px 2px rgba(15, 23, 42, 0.04),
-        0 0 0 3px rgba(99, 102, 241, 0.15) !important;
+    box-shadow: inset 0 1.5px 2px rgba(15, 23, 42, 0.04), 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
 }
 
-/* Tactile Course & Preset Pills */
 .wizard-course-pill,
 .timer-course-pill,
 .preset-chip {
     background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
     border: 1px solid #E2E8F0;
-    box-shadow: 
-        inset 0 1px 0 rgba(255, 255, 255, 0.9),
-        0 1px 2px rgba(0, 0, 0, 0.03);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1px 2px rgba(0, 0, 0, 0.03);
     transition: all 0.15s ease;
-}
-
-.wizard-course-pill:hover,
-.timer-course-pill:hover,
-.preset-chip:hover {
-    border-color: #A5B4FC;
-    background: linear-gradient(180deg, #EEF2FF 0%, #E0E7FF 100%);
 }
 
 .wizard-course-pill.selected,
@@ -312,10 +254,7 @@ select:focus {
     background: linear-gradient(180deg, #6366F1 0%, #4F46E5 100%) !important;
     border-color: #4338CA !important;
     color: #FFFFFF !important;
-    box-shadow: 
-        inset 0 1px 1px rgba(255, 255, 255, 0.38),
-        inset 0 -1px 2px rgba(0, 0, 0, 0.2),
-        0 2px 5px rgba(79, 70, 229, 0.22) !important;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.38), inset 0 -1px 2px rgba(0, 0, 0, 0.2), 0 2px 5px rgba(79, 70, 229, 0.22) !important;
 }
 
 .wizard-course-pill.selected svg,
@@ -324,12 +263,10 @@ select:focus {
     stroke: #FFFFFF !important;
 }
 
-/* Fix Scrollbar Layout Shift across pages and modes */
 main {
     scrollbar-gutter: stable;
 }
 
-/* Timer Mode Cards & Guidance Styling */
 .timer-mode-card {
     background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
     border: 1.5px solid #E2E8F0;
@@ -337,18 +274,10 @@ main {
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.timer-mode-card:hover {
-    border-color: #A5B4FC;
-    background: linear-gradient(180deg, #EEF2FF 0%, #E0E7FF 100%);
-    transform: translateY(-1px);
-}
-
 .timer-mode-card.active {
     background: linear-gradient(180deg, #EEF2FF 0%, #E0E7FF 100%) !important;
     border-color: #6366F1 !important;
-    box-shadow: 
-        inset 0 1px 1px rgba(255, 255, 255, 0.9),
-        0 4px 12px -2px rgba(79, 70, 229, 0.15) !important;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9), 0 4px 12px -2px rgba(79, 70, 229, 0.15) !important;
 }
 
 .timer-mode-card.active .mode-card-title {
@@ -361,6 +290,3 @@ main {
     color: #FFFFFF !important;
     border-color: #4338CA !important;
 }
-
-
-

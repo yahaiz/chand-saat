@@ -22,6 +22,18 @@ async def read_root(request: Request):
         progress_hours = min(int((today_hours / target_hours) * 100), 100) if target_hours > 0 else 0
         progress_tests = min(int((today_tests / target_tests) * 100), 100) if target_tests > 0 else 0
 
+        initial_data = {
+            "records": records,
+            "settings": settings,
+            "today_hours": today_hours,
+            "today_tests": today_tests,
+            "progress_hours": progress_hours,
+            "progress_tests": progress_tests,
+            "total_records": len(records)
+        }
+        import json
+        initial_data_json = json.dumps(initial_data, ensure_ascii=False)
+
         return templates.TemplateResponse(
             request=request,
             name="index.html",
@@ -32,7 +44,8 @@ async def read_root(request: Request):
                 "today_tests": today_tests,
                 "progress_hours": progress_hours,
                 "progress_tests": progress_tests,
-                "total_records": len(records)
+                "total_records": len(records),
+                "initial_data_json": initial_data_json
             }
         )
     except Exception as e:

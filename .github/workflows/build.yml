@@ -1,8 +1,8 @@
-name: Build ChandSaat Desktop App
+name: Build ChandSaat Apps (Desktop & Android)
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ "main", "master", "feature/android-build" ]
     tags: [ "v*" ]
   pull_request:
     branches: [ "main", "master" ]
@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  build-desktop:
     runs-on: windows-latest
 
     steps:
@@ -42,19 +42,162 @@ jobs:
       - name: Upload Installer Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ChandSaat-Release
+          name: ChandSaat-Desktop-Release
           path: |
             installer/ChandSaat_Setup_v*.exe
             installer/ChandSaat_v*_Portable.zip
 
-      - name: Release Assets (On Tag Push)
+      - name: Release Desktop Assets (On Tag Push)
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
+          prerelease: ${{ contains(github.ref, '-') }}
           body_path: CHANGELOG.md
           generate_release_notes: true
           files: |
             installer/ChandSaat_Setup_v*.exe
             installer/ChandSaat_v*_Portable.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-android:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Set up Python for Icon Padding
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Prepare Padded Icon for Android Adaptive Masking
+        run: |
+          pip install pillow
+          python -c "
+          from PIL import Image
+          img = Image.open('icon.png').convert('RGBA')
+          size = 512
+          canvas = Image.new('RGBA', (size, size), (0, 0, 0, 0))
+          target_size = int(size * 0.65)
+          resized = img.resize((target_size, target_size), Image.Resampling.LANCZOS)
+          offset = (size - target_size) // 2
+          canvas.paste(resized, (offset, offset), resized)
+          canvas.save('padded_icon.png')
+          "
+
+      - name: Prepare Web Assets for Capacitor
+        run: |
+          mkdir -p www/static
+          cp templates/index.html www/index.html
+          cp -r static/* www/static/
+          cp icon.png www/icon.png
+          cp splash_android.png www/splash_android.png
+
+      - name: Install Capacitor Dependencies
+        run: |
+          npm install
+
+      - name: Add Android Platform & Capacitor Sync
+        run: |
+          npx cap add android || true
+          npx cap sync android
+
+      - name: Configure Native Android Icons, Splash & System Colors
+        run: |
+          mkdir -p android/app/src/main/res/mipmap-hdpi
+          mkdir -p android/app/src/main/res/mipmap-mdpi
+          mkdir -p android/app/src/main/res/mipmap-xhdpi
+          mkdir -p android/app/src/main/res/mipmap-xxhdpi
+          mkdir -p android/app/src/main/res/mipmap-xxxhdpi
+
+          cp padded_icon.png android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+          cp padded_icon.png android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+
+          cp padded_icon.png android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png
+          cp padded_icon.png android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png
+
+          cp padded_icon.png android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png
+          cp padded_icon.png android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png
+
+          mkdir -p android/app/src/main/res/drawable
+          mkdir -p android/app/src/main/res/drawable-port-hdpi
+          mkdir -p android/app/src/main/res/drawable-port-mdpi
+          mkdir -p android/app/src/main/res/drawable-port-xhdpi
+          mkdir -p android/app/src/main/res/drawable-port-xxhdpi
+          mkdir -p android/app/src/main/res/drawable-port-xxxhdpi
+
+          cp splash_android.png android/app/src/main/res/drawable/splash.png
+          cp splash_android.png android/app/src/main/res/drawable-port-hdpi/splash.png
+          cp splash_android.png android/app/src/main/res/drawable-port-mdpi/splash.png
+          cp splash_android.png android/app/src/main/res/drawable-port-xhdpi/splash.png
+          cp splash_android.png android/app/src/main/res/drawable-port-xxhdpi/splash.png
+          cp splash_android.png android/app/src/main/res/drawable-port-xxxhdpi/splash.png
+
+          cat << 'EOF' > android/app/src/main/res/values/styles.xml
+          <?xml version="1.0" encoding="utf-8"?>
+          <resources>
+              <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+                  <item name="colorPrimary">#4F46E5</item>
+                  <item name="colorPrimaryDark">#FFFFFF</item>
+                  <item name="colorAccent">#4F46E5</item>
+                  <item name="android:statusBarColor">#FFFFFF</item>
+                  <item name="android:windowLightStatusBar">true</item>
+                  <item name="android:navigationBarColor">#FFFFFF</item>
+                  <item name="android:windowLightNavigationBar">true</item>
+              </style>
+              <style name="AppTheme.NoActionBar" parent="AppTheme">
+                  <item name="windowActionBar">false</item>
+                  <item name="windowNoTitle">true</item>
+                  <item name="android:background">#EEF5FD</item>
+              </style>
+              <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
+                  <item name="windowSplashScreenBackground">#EEF5FD</item>
+                  <item name="windowSplashScreenAnimatedIcon">@drawable/splash</item>
+                  <item name="postSplashScreenTheme">@style/AppTheme.NoActionBar</item>
+                  <item name="android:background">@drawable/splash</item>
+              </style>
+          </resources>
+          EOF
+
+      - name: Build Android APK via Gradle
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Upload Android APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ChandSaat-Android-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Release Android APK (On Tag Push)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          prerelease: ${{ contains(github.ref, '-') }}
+          files: android/app/build/outputs/apk/debug/app-debug.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
