@@ -84,6 +84,7 @@ jobs:
           cp templates/index.html www/index.html
           cp -r static/* www/static/
           cp icon.png www/icon.png
+          cp splash_android.png www/splash_android.png
 
       - name: Install Capacitor Dependencies
         run: |

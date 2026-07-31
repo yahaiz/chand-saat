@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>چند ساعت؟ - ChandSaat</title>
-    <link rel="stylesheet" href="/static/css/vazirmatn.css">
-    <link rel="stylesheet" href="/static/css/styles.css">
-    <script src="/static/js/tailwindcss.js"></script>
+    <link rel="stylesheet" href="./static/css/vazirmatn.css">
+    <link rel="stylesheet" href="./static/css/styles.css">
+    <script src="./static/js/tailwindcss.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -46,6 +46,11 @@
 </head>
 <body class="h-full overflow-hidden flex bg-window-bg p-0">
 
+    <!-- MOBILE / APP SPLASH OVERLAY -->
+    <div id="app-splash-overlay" class="fixed inset-0 z-[100] bg-[#eef5fd] flex items-center justify-center transition-opacity duration-500">
+        <img src="./splash_android.png" alt="Splash Screen" class="w-full h-full object-cover max-w-md mx-auto">
+    </div>
+
     <!-- Embedded Initial Data Container for Client-Side Hydration -->
     <script id="initial-data" type="application/json">
         {% if initial_data_json %}{{ initial_data_json | safe }}{% else %}{}{% endif %}
@@ -58,7 +63,7 @@
         <header id="app-header" class="h-14 bg-white/90 backdrop-blur-md border-b border-slate-200/80 flex items-center justify-between px-4 md:px-6 shrink-0 select-none shadow-subtle pt-safe">
             <div class="flex items-center gap-3">
                 <div class="w-9 h-9 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center p-1.5 shadow-sm">
-                    <img src="/icon.png" alt="لوگو" class="w-full h-full object-contain">
+                    <img src="./icon.png" alt="لوگو" class="w-full h-full object-contain">
                 </div>
                 <div class="flex flex-col">
                     <h1 class="text-sm font-black text-slate-800 tracking-tight">چند ساعت؟</h1>
@@ -603,6 +608,14 @@
 
             calculateStats();
             renderUI();
+
+            setTimeout(() => {
+                const splash = document.getElementById('app-splash-overlay');
+                if (splash) {
+                    splash.style.opacity = '0';
+                    setTimeout(() => splash.remove(), 500);
+                }
+            }, 1000);
         }
 
         function saveLocalStorage() {
