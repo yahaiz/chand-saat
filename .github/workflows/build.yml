@@ -95,6 +95,67 @@ jobs:
           npx cap add android || true
           npx cap sync android
 
+      - name: Configure Native Android Icons, Splash & System Colors
+        run: |
+          mkdir -p android/app/src/main/res/mipmap-hdpi
+          mkdir -p android/app/src/main/res/mipmap-mdpi
+          mkdir -p android/app/src/main/res/mipmap-xhdpi
+          mkdir -p android/app/src/main/res/mipmap-xxhdpi
+          mkdir -p android/app/src/main/res/mipmap-xxxhdpi
+
+          cp icon.png android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+          cp icon.png android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+          cp icon.png android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+          cp icon.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+          cp icon.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+
+          cp icon.png android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png
+          cp icon.png android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png
+          cp icon.png android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png
+          cp icon.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png
+          cp icon.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png
+
+          cp icon.png android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png
+          cp icon.png android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png
+          cp icon.png android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png
+          cp icon.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png
+          cp icon.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png
+
+          mkdir -p android/app/src/main/res/drawable
+          mkdir -p android/app/src/main/res/drawable-port-hdpi
+          mkdir -p android/app/src/main/res/drawable-port-mdpi
+          mkdir -p android/app/src/main/res/drawable-port-xhdpi
+          mkdir -p android/app/src/main/res/drawable-port-xxhdpi
+          mkdir -p android/app/src/main/res/drawable-port-xxxhdpi
+
+          cp splash_android.png android/app/src/main/res/drawable/splash.png
+          cp splash_android.png android/app/src/main/res/drawable-port-hdpi/splash.png
+          cp splash_android.png android/app/src/main/res/drawable-port-mdpi/splash.png
+          cp splash_android.png android/app/src/main/res/drawable-port-xhdpi/splash.png
+          cp splash_android.png android/app/src/main/res/drawable-port-xxhdpi/splash.png
+          cp splash_android.png android/app/src/main/res/drawable-port-xxxhdpi/splash.png
+
+          cat << 'EOF' > android/app/src/main/res/values/styles.xml
+          <?xml version="1.0" encoding="utf-8"?>
+          <resources>
+              <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+                  <item name="colorPrimary">#4F46E5</item>
+                  <item name="colorPrimaryDark">#FFFFFF</item>
+                  <item name="colorAccent">#4F46E5</item>
+                  <item name="android:statusBarColor">#FFFFFF</item>
+                  <item name="android:windowLightStatusBar">true</item>
+                  <item name="android:navigationBarColor">#FFFFFF</item>
+                  <item name="android:windowLightNavigationBar">true</item>
+                  <item name="android:windowBackground">@drawable/splash</item>
+              </style>
+              <style name="AppTheme.NoActionBar" parent="AppTheme">
+                  <item name="windowActionBar">false</item>
+                  <item name="windowNoTitle">true</item>
+                  <item name="android:background">#EEF5FD</item>
+              </style>
+          </resources>
+          EOF
+
       - name: Build Android APK via Gradle
         run: |
           cd android
