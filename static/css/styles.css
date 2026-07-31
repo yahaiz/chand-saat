@@ -257,6 +257,103 @@ input:checked + .toggle-switch-track .toggle-switch-knob {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
+/* ==========================================
+   TOAST NOTIFICATION SYSTEM (Top-Center Spring Physics)
+   ========================================== */
+#toast-container {
+    position: fixed;
+    top: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.625rem;
+    pointer-events: none;
+    width: auto;
+    max-width: 90vw;
+}
+
+.toast-item {
+    pointer-events: auto;
+    min-width: 300px;
+    max-width: 440px;
+    max-height: 120px;
+    padding: 0.75rem 1.15rem;
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        0 20px 40px -10px rgba(15, 23, 42, 0.16),
+        0 4px 12px rgba(15, 23, 42, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    direction: rtl;
+    animation: toastSpringIn 0.42s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.toast-item.toast-hiding {
+    animation: toastExit 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+    overflow: hidden !important;
+}
+
+@keyframes toastSpringIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-28px) scale(0.86);
+        filter: blur(6px);
+    }
+    70% {
+        opacity: 1;
+        transform: translateY(3px) scale(1.02);
+        filter: blur(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes toastExit {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+        max-height: 120px;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-28px) scale(0.82);
+        filter: blur(10px);
+        max-height: 0;
+        margin-top: -0.625rem;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+.toast-icon-bg {
+    width: 2.15rem;
+    height: 2.15rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.toast-success .toast-icon-bg { background: linear-gradient(180deg, #ECFDF5 0%, #D1FAE5 100%); color: #059669; border: 1px solid #A7F3D0; }
+.toast-info .toast-icon-bg { background: linear-gradient(180deg, #EEF2FF 0%, #E0E7FF 100%); color: #4F46E5; border: 1px solid #C7D2FE; }
+.toast-warning .toast-icon-bg { background: linear-gradient(180deg, #FFFBEB 0%, #FEF3C7 100%); color: #D97706; border: 1px solid #FDE68A; }
+.toast-error .toast-icon-bg { background: linear-gradient(180deg, #FFF1F2 0%, #FFE4E6 100%); color: #E11D48; border: 1px solid #FECDD3; }
+
 /* CARDS & PILLS */
 .card-morph {
     background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFC 100%);

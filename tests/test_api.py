@@ -40,3 +40,11 @@ def test_export_route():
     response = client.get("/export")
     assert response.status_code == 200
     assert response.headers["content-type"] == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+
+def test_check_update_route():
+    response = client.get("/check-update?test_version=0.1.0")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["success"] is True
+    assert data["has_update"] is True
+    assert "latest_version" in data

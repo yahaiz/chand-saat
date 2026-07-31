@@ -58,3 +58,8 @@ async def export_excel():
     except Exception as e:
         logger.error(f"Error exporting file: {e}")
         return RedirectResponse(url="/", status_code=303)
+
+@router.get("/check-update")
+async def check_update_route(test_version: str = None):
+    from services.update_service import check_github_update
+    return check_github_update(current_version=test_version)
