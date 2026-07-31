@@ -146,12 +146,14 @@ jobs:
                   <item name="android:windowLightStatusBar">true</item>
                   <item name="android:navigationBarColor">#FFFFFF</item>
                   <item name="android:windowLightNavigationBar">true</item>
-                  <item name="android:windowBackground">@drawable/splash</item>
               </style>
               <style name="AppTheme.NoActionBar" parent="AppTheme">
                   <item name="windowActionBar">false</item>
                   <item name="windowNoTitle">true</item>
                   <item name="android:background">#EEF5FD</item>
+              </style>
+              <style name="AppTheme.NoActionBarLaunch" parent="AppTheme.NoActionBar">
+                  <item name="android:background">@drawable/splash</item>
               </style>
           </resources>
           EOF
