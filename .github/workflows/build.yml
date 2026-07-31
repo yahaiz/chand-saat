@@ -78,6 +78,26 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Set up Python for Icon Padding
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Prepare Padded Icon for Android Adaptive Masking
+        run: |
+          pip install pillow
+          python -c "
+          from PIL import Image
+          img = Image.open('icon.png').convert('RGBA')
+          size = 512
+          canvas = Image.new('RGBA', (size, size), (0, 0, 0, 0))
+          target_size = int(size * 0.65)
+          resized = img.resize((target_size, target_size), Image.Resampling.LANCZOS)
+          offset = (size - target_size) // 2
+          canvas.paste(resized, (offset, offset), resized)
+          canvas.save('padded_icon.png')
+          "
+
       - name: Prepare Web Assets for Capacitor
         run: |
           mkdir -p www/static
@@ -103,23 +123,23 @@ jobs:
           mkdir -p android/app/src/main/res/mipmap-xxhdpi
           mkdir -p android/app/src/main/res/mipmap-xxxhdpi
 
-          cp icon.png android/app/src/main/res/mipmap-hdpi/ic_launcher.png
-          cp icon.png android/app/src/main/res/mipmap-mdpi/ic_launcher.png
-          cp icon.png android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
-          cp icon.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
-          cp icon.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+          cp padded_icon.png android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+          cp padded_icon.png android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
 
-          cp icon.png android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png
-          cp icon.png android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png
-          cp icon.png android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png
-          cp icon.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png
-          cp icon.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png
+          cp padded_icon.png android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png
+          cp padded_icon.png android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png
 
-          cp icon.png android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png
-          cp icon.png android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png
-          cp icon.png android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png
-          cp icon.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png
-          cp icon.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png
+          cp padded_icon.png android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png
+          cp padded_icon.png android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png
+          cp padded_icon.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png
 
           mkdir -p android/app/src/main/res/drawable
           mkdir -p android/app/src/main/res/drawable-port-hdpi
@@ -150,7 +170,7 @@ jobs:
               <style name="AppTheme.NoActionBar" parent="AppTheme">
                   <item name="windowActionBar">false</item>
                   <item name="windowNoTitle">true</item>
-                  <item name="android:background">#EEF5FD</item>
+                  <item name="android:background">@drawable/splash</item>
               </style>
               <style name="AppTheme.NoActionBarLaunch" parent="AppTheme.NoActionBar">
                   <item name="android:background">@drawable/splash</item>
