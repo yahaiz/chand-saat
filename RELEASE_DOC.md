@@ -88,3 +88,15 @@ img.save("icon.ico", format="ICO", sizes=[(256, 256)])
 
 - 💿 **فایل نصب‌کننده ویندوز (پیشنهادی)**: `ChandSaat_Setup_v1.1.0.exe`
 - 📦 **نسخه بدون نیاز به نصب (Portable)**: `ChandSaat_v1.1.0_Portable.zip`
+
+---
+
+## 🛠️ ۵. سیاست اصولی تست و انتشار در CI/CD (Best Practice Release Policy)
+
+1. **تست‌های داخلی (Internal Test Builds):**
+   - برای گرفتن خروجی‌های تستی (`.apk` یا `.exe`) هرگز نباید `Tag` یا `Release` در گیت‌هاب ایجاد شود.
+   - تمامی فایل‌های بیلد تستی باید از طریق **GitHub Actions Artifacts** (`actions/upload-artifact`) آپلود شوند تا مستقیماً از تب Actions قابل دانلود و تست باشند.
+
+2. **انتشار نهایی (Official Release):**
+   - فقط زمانی که توسعه و تست‌های یک نسخه (مثلاً `v0.3.0`) به اتمام رسید، تگ اصلی ثبت و ریلیز رسمی گیت‌هاب ایجاد می‌شود.
+
