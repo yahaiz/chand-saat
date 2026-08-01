@@ -52,3 +52,11 @@ def test_today_stats():
     today_hours, today_tests = repository.get_today_stats()
     assert today_hours >= 2.0
     assert today_tests >= 50
+
+def test_delete_entries_batch():
+    id1 = repository.add_entry(course="حذف گروهی ۱", topic="تست ۱", duration=15, tests=10, wrongs="-", notes="-")
+    id2 = repository.add_entry(course="حذف گروهی ۲", topic="تست ۲", duration=25, tests=20, wrongs="-", notes="-")
+
+    deleted_count = repository.delete_entries([id1, id2])
+    assert deleted_count == 2
+

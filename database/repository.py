@@ -56,6 +56,23 @@ def delete_entry(item_id: int) -> bool:
         finally:
             conn.close()
 
+def delete_entries(item_ids: list[int]) -> int:
+    if not item_ids:
+        return 0
+    with FILE_LOCK:
+        conn = get_connection()
+        try:
+            cursor = conn.cursor()
+            placeholders = ",".join("?" for _ in item_ids)
+            cursor.execute(f"DELETE FROM study_logs WHERE id IN ({placeholders})", item_ids)
+            conn.commit()
+            deleted_count = cursor.rowcount
+            logger.info(f"Batch deleted {deleted_count} study entries with IDs={item_ids}")
+            return deleted_count
+        finally:
+            conn.close()
+
+
 def get_today_stats() -> tuple[float, int]:
     today_str = datetime.now().strftime("%Y-%m-%d")
     with FILE_LOCK:

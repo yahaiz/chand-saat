@@ -48,3 +48,15 @@ def test_check_update_route():
     assert data["success"] is True
     assert data["has_update"] is True
     assert "latest_version" in data
+
+def test_delete_batch_route():
+    from database import repository
+    id1 = repository.add_entry(course="تست API 1", topic="مبحث", duration=20, tests=10, wrongs="-", notes="-")
+    id2 = repository.add_entry(course="تست API 2", topic="مبحث", duration=30, tests=15, wrongs="-", notes="-")
+
+    response = client.post("/delete-batch", json={"ids": [id1, id2]})
+    assert response.status_code == 200
+    data = response.json()
+    assert data["success"] is True
+    assert data["deleted"] == 2
+
