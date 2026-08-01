@@ -4,7 +4,7 @@ import zipfile
 import subprocess
 import shutil
 
-VERSION = "0.2.1"
+VERSION = "0.3.0"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DIST_DIR = os.path.join(BASE_DIR, "dist", "ChandSaat")
 OUTPUT_DIR = os.path.join(BASE_DIR, "installer")

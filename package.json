@@ -1,6 +1,6 @@
 {
   "name": "chand-saat",
-  "version": "0.3.0-beta1",
+  "version": "0.3.0",
   "description": "چند ساعت؟ - نرم‌افزار ثبت و مدیریت زمان مطالعه",
   "private": true,
   "scripts": {

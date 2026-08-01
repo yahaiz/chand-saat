@@ -1,4 +1,4 @@
-# ⏱️ چند ساعت؟ (ChandSaat) - نسخه 0.2.1
+# ⏱️ چند ساعت؟ (ChandSaat) - نسخه 0.3.0
 
 <div align="center">
 
