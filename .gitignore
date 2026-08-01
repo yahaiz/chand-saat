@@ -41,3 +41,6 @@ settings.json
 *.swp
 *.swo
 .DS_Store
+
+# Temporary scratch scripts
+scratch/

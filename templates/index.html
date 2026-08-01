@@ -214,114 +214,113 @@
                     <div id="view-timer" class="view-panel space-y-6 hidden">
                         <div id="timer-setup-panel" class="bg-white border border-slate-200 rounded-4xl md:rounded-5xl p-5 md:p-7 shadow-subtle space-y-6 card-morph">
                             
-                            <!-- Header & Mode Guidance -->
-                            <div class="border-b border-slate-100 pb-5 space-y-4">
-                                <div class="text-right">
-                                    <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
-                                        <span class="w-8 h-8 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shadow-subtle shrink-0">
-                                            <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                        </span>
-                                        <span>تنظیم روش و زمان مطالعه</span>
-                                    </h2>
-                                    <p class="text-xs text-slate-400 mt-1">روش مطالعه دلخواه خود را انتخاب کنید تا زمان‌بندی جلسه دقیقاً طبق برنامه شما پیش برود.</p>
-                                </div>
-                                
-                                <!-- 3 Clear Visual Mode Selector Cards -->
-                                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                                    <button type="button" onclick="setTimerMode('pomodoro', this)" id="mode-card-pomodoro" class="timer-mode-card active p-3.5 rounded-3xl text-right flex flex-col justify-between btn-interact">
-                                        <div class="flex items-center justify-between mb-2">
-                                            <span class="w-7 h-7 rounded-xl bg-indigo-100 border border-indigo-200 text-indigo-700 flex items-center justify-center mode-card-icon-bg">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <!-- Header & Segmented Mode Switcher -->
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between gap-3">
+                                    <div class="flex items-center gap-2">
+                                        <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                                            <span class="w-8 h-8 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shadow-subtle shrink-0">
+                                                <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                                             </span>
-                                            <span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded-full">پیش‌فرض</span>
-                                        </div>
-                                        <div>
-                                            <h3 class="text-xs font-bold text-slate-800 mode-card-title">پومودورو هوشمند</h3>
-                                            <p class="text-[10px] text-slate-400 mt-0.5 leading-snug">مطالعه با چرخه‌های استراحت منظم</p>
-                                        </div>
-                                    </button>
+                                            <span>تنظیم و شروع مطالعه</span>
+                                        </h2>
 
-                                    <button type="button" onclick="setTimerMode('countdown', this)" id="mode-card-countdown" class="timer-mode-card p-3.5 rounded-3xl text-right flex flex-col justify-between btn-interact">
-                                        <div class="flex items-center justify-between mb-2">
-                                            <span class="w-7 h-7 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 flex items-center justify-center mode-card-icon-bg">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <h3 class="text-xs font-bold text-slate-800 mode-card-title">تایمر معکوس</h3>
-                                            <p class="text-[10px] text-slate-400 mt-0.5 leading-snug">شمارش معکوس زمان مشخص</p>
-                                        </div>
-                                    </button>
+                                        <!-- Info Hint Trigger Button -->
+                                        <button type="button" onclick="toggleTimerHintManual()" title="راهنمای حالت‌ها" class="w-7 h-7 rounded-xl bg-slate-50 border border-slate-200/80 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 hover:border-indigo-200 transition-all btn-interact flex items-center justify-center shrink-0">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                        </button>
+                                    </div>
 
-                                    <button type="button" onclick="setTimerMode('stopwatch', this)" id="mode-card-stopwatch" class="timer-mode-card p-3.5 rounded-3xl text-right flex flex-col justify-between btn-interact">
-                                        <div class="flex items-center justify-between mb-2">
-                                            <span class="w-7 h-7 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 flex items-center justify-center mode-card-icon-bg">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <h3 class="text-xs font-bold text-slate-800 mode-card-title">کرنومتر آزاد</h3>
-                                            <p class="text-[10px] text-slate-400 mt-0.5 leading-snug">شمارش صعودی زمان از صفر</p>
-                                        </div>
-                                    </button>
-                                </div>
-
-                                <!-- Dynamic Mode Hint Box -->
-                                <div id="timer-mode-hint" class="bg-indigo-50/60 border border-indigo-100/80 rounded-2xl p-3 text-xs text-indigo-900 flex items-start gap-2.5 text-right">
-                                    <svg class="w-4 h-4 text-indigo-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-                                    <span id="timer-mode-hint-text" class="leading-relaxed font-medium">
-                                        <strong>روش پومودورو:</strong> زمان مطالعه شما به بازه‌های کاری و استراحت (مثلاً ۲۵ دقیقه درس + ۵ دقیقه استراحت) تقسیم می‌شود و سیستم زمان استراحت را مدیریت می‌کند.
-                                    </span>
-                                </div>
-                            </div>
-
-                            <!-- 1. COURSE & TOPIC SELECTION -->
-                            <div class="space-y-3 bg-slate-50/70 border border-slate-200/60 rounded-3xl md:rounded-4xl p-4 md:p-5 text-right">
-                                <div class="flex items-center justify-between">
-                                    <label class="block text-xs font-extrabold text-slate-800">
-                                        ۱. درسی که قصد مطالعه آن را دارید انتخاب کنید:
-                                    </label>
-                                    <span class="text-[10px] text-indigo-600 font-bold">*ثبت خودکار در گزارش</span>
-                                </div>
-
-                                <input type="hidden" id="timer-selected-course" value="">
-                                <div class="flex flex-wrap gap-2" id="timer-course-pills">
-                                    <!-- Populated dynamically -->
-                                </div>
-
-                                <div>
-                                    <input type="text" id="timer-selected-topic" placeholder="عنوان مبحث (اختیاری)..." class="w-full bg-white border border-slate-200 text-slate-900 rounded-2xl px-4 py-2.5 text-xs outline-none focus:border-indigo-500 placeholder-slate-400 font-medium">
-                                </div>
-                            </div>
-
-                            <!-- 2. DURATION ADJUSTER -->
-                            <div id="timer-duration-section" class="space-y-4">
-                                <div class="bg-slate-50 border border-slate-200 rounded-3xl md:rounded-4xl p-5 max-w-md mx-auto space-y-2.5 text-center">
-                                    <span class="text-xs font-extrabold text-slate-700 block">۲. تعیین زمان کل جلسه مطالعه</span>
-                                    <div class="flex items-center justify-center gap-6">
-                                        <button type="button" onclick="adjustTotalTargetMinutes(-5)" class="btn-tactile-slate w-11 h-11 rounded-2xl text-xl font-bold flex items-center justify-center btn-interact">-</button>
-                                        <div class="text-center w-32">
-                                            <span id="setup-target-display" class="text-4xl font-black text-indigo-600 font-mono">50</span>
-                                            <span class="block text-xs font-medium text-slate-400 mt-0.5">دقیقه</span>
-                                        </div>
-                                        <button type="button" onclick="adjustTotalTargetMinutes(5)" class="btn-tactile-slate w-11 h-11 rounded-2xl text-xl font-bold flex items-center justify-center btn-interact">+</button>
+                                    <!-- Segmented Control Tab Switcher (Top Left) -->
+                                    <div class="segmented-control">
+                                        <div id="segmented-indicator" class="segmented-indicator"></div>
+                                        <button type="button" onclick="setTimerMode('pomodoro', this)" id="mode-tab-pomodoro" class="segmented-tab active">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                            <span>پومودورو</span>
+                                        </button>
+                                        <button type="button" onclick="setTimerMode('countdown', this)" id="mode-tab-countdown" class="segmented-tab">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                            <span>معکوس</span>
+                                        </button>
+                                        <button type="button" onclick="setTimerMode('stopwatch', this)" id="mode-tab-stopwatch" class="segmented-tab">
+                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                                            <span>کرنومتر</span>
+                                        </button>
                                     </div>
                                 </div>
 
-                                <!-- SMART PRESET CHIPS -->
-                                <div class="max-w-md mx-auto space-y-2 text-center">
-                                    <span class="text-[11px] font-medium text-slate-400 block" id="preset-chips-label">زمان‌های پیشنهادی پرکاربرد</span>
-                                    <div class="grid grid-cols-4 gap-2 md:gap-3" id="preset-chips-container">
+                                <!-- Optional Dismissible Mode Hint Box -->
+                                <div id="timer-mode-hint" class="bg-indigo-50/60 border border-indigo-100/80 rounded-2xl p-3 text-xs text-indigo-900 flex items-center justify-between gap-2 text-right hidden">
+                                    <div class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-indigo-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                        <span id="timer-mode-hint-text" class="leading-relaxed font-medium text-[11px]">
+                                            روش پومودورو: زمان مطالعه شما بر اساس چرخه‌های منظم استراحت مدیریت می‌شود.
+                                        </span>
+                                    </div>
+                                    <button type="button" onclick="dismissTimerHint()" title="بستن راهنما" class="text-indigo-400 hover:text-indigo-700 text-xs font-bold px-1.5 py-0.5 rounded-lg transition-colors shrink-0">
+                                        ✕
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- 1. DURATION ADJUSTER WITH ACCELERATED HOLD (No divider border) -->
+                            <div id="timer-duration-section" class="space-y-4">
+                                <div class="bg-slate-50 border border-slate-200 rounded-3xl md:rounded-4xl p-5 max-w-lg mx-auto space-y-3 text-center">
+                                    <span class="text-xs font-extrabold text-slate-800 block">مدت زمان مطالعه</span>
+                                    
+                                    <div class="flex items-center justify-center gap-6">
+                                        <button type="button" 
+                                                onmousedown="startAdjustingTarget(-5)" 
+                                                onmouseup="stopAdjustingTarget()" 
+                                                onmouseleave="stopAdjustingTarget()" 
+                                                ontouchstart="startAdjustingTarget(-5)" 
+                                                ontouchend="stopAdjustingTarget()" 
+                                                class="btn-tactile-slate w-12 h-12 rounded-2xl text-2xl font-bold flex items-center justify-center btn-interact select-none">-</button>
+                                        
+                                        <div class="text-center w-36 select-none">
+                                            <span id="setup-target-display" class="text-4xl font-black text-indigo-600 font-mono">60</span>
+                                            <span class="block text-xs font-medium text-slate-400 mt-0.5">دقیقه</span>
+                                        </div>
+
+                                        <button type="button" 
+                                                onmousedown="startAdjustingTarget(5)" 
+                                                onmouseup="stopAdjustingTarget()" 
+                                                onmouseleave="stopAdjustingTarget()" 
+                                                ontouchstart="startAdjustingTarget(5)" 
+                                                ontouchend="stopAdjustingTarget()" 
+                                                class="btn-tactile-slate w-12 h-12 rounded-2xl text-2xl font-bold flex items-center justify-center btn-interact select-none">+</button>
+                                    </div>
+
+                                    <!-- SMART PRESET CHIPS -->
+                                    <div class="grid grid-cols-4 gap-2 pt-1 max-w-xs mx-auto" id="preset-chips-container">
                                         <!-- Populated dynamically -->
                                     </div>
                                 </div>
                             </div>
 
+                            <!-- 2. COURSE SELECTION (No title label needed) -->
+                            <div class="text-center max-w-lg mx-auto pt-2">
+                                <input type="hidden" id="timer-selected-course" value="">
+                                <div class="flex flex-wrap gap-2 justify-center" id="timer-course-pills">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
+
+                            <!-- 3. SESSION GOAL / TOPIC (Optional Input) -->
+                            <div class="max-w-md mx-auto w-full pt-1">
+                                <div class="relative flex items-center">
+                                    <span class="absolute right-3.5 text-indigo-500 pointer-events-none">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                    </span>
+                                    <input type="text" id="timer-session-goal" placeholder="هدف این جلسه مطالعه (اختیاری)... مثلاً حل ۳۰ تست فصل دوم" class="w-full bg-slate-50 border border-slate-200/80 text-slate-800 rounded-2xl pr-10 pl-4 py-2.5 text-xs outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition-all font-medium placeholder-slate-400">
+                                </div>
+                            </div>
+
                             <!-- START BUTTON -->
                             <div class="pt-2 text-center">
-                                <button onclick="startPomodoroSession()" class="w-full md:w-auto btn-tactile-indigo text-white font-bold px-10 py-3.5 rounded-2xl text-xs flex items-center justify-center gap-2 mx-auto btn-interact shadow-md">
+                                <button id="main-start-timer-btn" onclick="startPomodoroSession()" class="w-full md:w-auto btn-tactile-indigo text-white font-bold px-12 py-3.5 rounded-2xl text-xs flex items-center justify-center gap-2 mx-auto btn-interact shadow-md">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                                    <span id="start-timer-btn-text">شروع مطالعه پومودورو</span>
+                                    <span id="start-timer-btn-text">شروع مطالعه</span>
                                 </button>
                             </div>
                         </div>
@@ -632,45 +631,189 @@
     </div>
 
     <!-- MODAL 4: ACTIVE FOCUS TIMER OVERLAY -->
-    <div id="focus-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white border border-slate-200/80 rounded-5xl w-full max-w-md p-8 shadow-2xl space-y-6 modal-morph text-center relative">
-            <div class="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 rounded-full px-4 py-1.5 text-xs font-bold text-indigo-700 mx-auto">
-                <span id="focus-badge-dot" class="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse"></span>
-                <span id="focus-badge-text">جلسه مطالعه فعال</span>
+    <div id="focus-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden transition-opacity duration-350">
+        <div id="focus-overlay-card" class="bg-white border border-slate-200/80 rounded-5xl w-full max-w-md p-7 shadow-2xl space-y-6 modal-morph-no-anim text-center relative overflow-hidden">
+            <!-- Top Controls bar: Minimize & Sound toggle -->
+            <div class="flex items-center justify-between">
+                <button type="button" onclick="minimizeTimerOverlay()" title="کوچک‌سازی به ویجت شناور" class="p-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors btn-interact">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </button>
+
+                <!-- Session Counter Badge -->
+                <div id="pomodoro-session-badge" class="inline-flex items-center gap-1.5 bg-indigo-50 border border-indigo-100 rounded-full px-3.5 py-1 text-[11px] font-bold text-indigo-700">
+                    <span id="focus-badge-dot" class="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse"></span>
+                    <span id="focus-badge-text">فاز مطالعه | سشن ۱</span>
+                </div>
+
+                <button type="button" onclick="toggleTimerSoundInOverlay()" id="overlay-sound-btn" title="قطع/وصل صدا" class="p-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors btn-interact">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
+                </button>
             </div>
 
             <div class="space-y-1">
-                <h2 id="focus-course-name" class="text-lg font-extrabold text-slate-900">ریاضیات عمومی</h2>
+                <h2 id="focus-course-name" class="text-xl font-extrabold text-slate-900">ریاضیات عمومی</h2>
                 <p id="focus-topic-name" class="text-xs text-slate-400 font-medium">مبحث مشتق و انحناها</p>
             </div>
 
             <!-- CLOCK DISPLAY WITH PROGRESS RING -->
-            <div class="relative w-48 h-48 mx-auto flex items-center justify-center">
+            <div class="relative w-52 h-52 mx-auto flex items-center justify-center">
                 <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="42" stroke="#E2E8F0" stroke-width="6" fill="transparent"/>
+                    <circle cx="50" cy="50" r="42" stroke="#F1F5F9" stroke-width="5" fill="transparent"/>
                     <circle id="timer-progress-ring" cx="50" cy="50" r="42" stroke="#6366F1" stroke-width="6" stroke-linecap="round" fill="transparent" stroke-dasharray="263.89" stroke-dashoffset="0" class="transition-all duration-1000 ease-linear"/>
                 </svg>
                 <div class="absolute flex flex-col items-center">
-                    <span id="focus-clock" class="text-4xl font-black text-slate-900 font-mono tracking-tight">25:00</span>
-                    <span id="focus-status-subtitle" class="text-[11px] font-medium text-slate-400 mt-1">زمان باقی‌مانده</span>
+                    <span id="focus-clock" class="text-5xl font-black text-slate-900 font-mono tracking-tight">25:00</span>
+                    <span id="focus-status-subtitle" class="text-xs font-semibold text-slate-400 mt-1.5">زمان باقی‌مانده</span>
+                </div>
+            </div>
+
+            <!-- LIVE SESSION STATS & MOTIVATION -->
+            <div class="grid grid-cols-2 gap-2 bg-slate-50/80 border border-slate-200/60 rounded-2xl p-3 text-xs">
+                <div class="text-center pl-2 border-l border-slate-200/80">
+                    <span class="text-[10px] text-slate-400 block font-semibold mb-0.5">زمان مفید</span>
+                    <span id="live-active-time" class="font-extrabold text-indigo-700 font-mono text-sm">00:00</span>
+                </div>
+                <div class="text-center pr-2">
+                    <span class="text-[10px] text-slate-400 block font-semibold mb-0.5">زمان توقف (Pause)</span>
+                    <span id="live-paused-time" class="font-extrabold text-slate-600 font-mono text-sm">00:00</span>
                 </div>
             </div>
 
             <!-- TIMER CONTROLS -->
-            <div class="flex items-center justify-center gap-3 pt-2">
-                <button type="button" onclick="togglePauseTimer()" id="pause-btn" class="btn-tactile-indigo text-white font-bold px-6 py-3 rounded-2xl text-xs btn-interact shrink-0">
-                    توقف موقت
+            <div class="flex items-center justify-center gap-3 pt-1">
+                <button type="button" onclick="togglePauseTimer()" id="pause-btn" class="btn-tactile-indigo text-white font-bold px-6 py-3 rounded-2xl text-xs flex items-center justify-center gap-2 btn-interact shrink-0">
+                    <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                    <span>توقف موقت</span>
                 </button>
-                <button type="button" onclick="stopTimerEarly()" class="btn-tactile-emerald text-white font-bold px-6 py-3 rounded-2xl text-xs btn-interact shrink-0">
-                    پایان و ثبت جلسه
+                <button type="button" onclick="stopTimerEarly()" class="btn-tactile-emerald text-white font-bold px-6 py-3 rounded-2xl text-xs flex items-center justify-center gap-2 btn-interact shrink-0">
+                    <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                    <span>پایان و ثبت جلسه</span>
+                </button>
+                <button type="button" onclick="skipBreakOrNext()" id="skip-break-btn" class="hidden bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-4 py-3 rounded-2xl text-xs flex items-center justify-center gap-2 btn-interact shrink-0">
+                    <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M4 18l8.5-6L4 6v12zm9-12v12l8.5-6L13 6z"/></svg>
+                    <span>رد کردن استراحت</span>
                 </button>
             </div>
             
-            <div>
-                <button type="button" onclick="cancelTimerWithConfirm()" class="text-xs text-slate-400 hover:text-rose-600 font-bold transition-colors btn-interact">
-                    انصراف بدون ثبت
+            <div class="pt-1">
+                <button type="button" onclick="cancelTimerWithConfirm()" class="inline-flex items-center justify-center gap-1.5 text-xs text-slate-400 hover:text-rose-600 font-bold transition-colors btn-interact group">
+                    <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-rose-600 transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                    <span>انصراف بدون ثبت</span>
                 </button>
             </div>
+        </div>
+    </div>
+
+    <!-- FLOATING MINI TIMER CAPSULE WIDGET -->
+    <div id="mini-timer-widget" class="mini-timer-capsule hidden flex items-center gap-3 cursor-pointer select-none" onclick="expandTimerOverlay()" title="بزرگ‌سازی تایمر">
+        <!-- Expand Icon Button (Matching top modal control button styling) -->
+        <div class="p-2 rounded-2xl bg-slate-100 group-hover:bg-slate-200 text-slate-600 transition-colors shrink-0" title="بزرگ‌سازی">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/></svg>
+        </div>
+
+        <!-- Course & Phase Session Badge (Matching #pomodoro-session-badge) -->
+        <div id="mini-course-badge" class="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 rounded-full px-3 py-1 text-xs font-extrabold text-indigo-700 shrink-0">
+            <span id="mini-badge-dot" class="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse"></span>
+            <span id="mini-timer-course" class="max-w-[110px] truncate">ریاضیات عمومی</span>
+        </div>
+
+        <!-- Clock Display (Matching #focus-clock font-mono black text) -->
+        <span id="mini-timer-clock" class="text-base font-black text-slate-900 font-mono tracking-tight px-1">25:00</span>
+
+        <!-- Action Button (Matching .btn-tactile-indigo 3D button) -->
+        <button type="button" onclick="event.stopPropagation(); togglePauseTimer();" id="mini-pause-btn" class="btn-tactile-indigo w-9 h-9 rounded-2xl text-white flex items-center justify-center shrink-0 shadow-sm btn-interact" title="توقف / ادامه">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+    </div>
+
+
+    <!-- MODAL 5: TIMER SESSION SUMMARY & FAST SAVE MODAL -->
+    <div id="timer-summary-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white border border-slate-200/80 rounded-4xl w-full max-w-md p-6 shadow-2xl space-y-5 modal-morph text-right relative">
+            <div class="text-center space-y-2 border-b border-slate-100 pb-4">
+                <div class="w-12 h-12 bg-emerald-50 border border-emerald-100 text-emerald-600 rounded-3xl flex items-center justify-center mx-auto shadow-subtle">
+                    <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <h3 class="text-lg font-extrabold text-slate-900">خسته نباشید! جلسه مطالعه پایان یافت</h3>
+                <p id="summary-headline-text" class="text-xs text-slate-500 font-medium">۱ دقیقه مطالعه مفید با موفقیت به پایان رسید.</p>
+            </div>
+
+            <!-- Stats Container with Toggleable Edit Mode (Compact) -->
+            <div class="bg-slate-50 border border-slate-200/60 rounded-2xl p-2.5 space-y-2 relative">
+                <!-- Icon-Only Edit Button -->
+                <button type="button" onclick="toggleSummaryEditMode()" id="edit-summary-stats-btn" title="ویرایش درس و مدت ثبت" class="absolute top-2.5 left-2.5 p-1.5 rounded-xl bg-white border border-slate-200/80 hover:border-indigo-300 text-slate-500 hover:text-indigo-600 transition-all btn-interact shrink-0">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                </button>
+
+                <!-- READ VIEW (Compact 2-column grid) -->
+                <div id="summary-stats-read-view" class="grid grid-cols-2 gap-2 text-center pr-1 pl-8 py-0.5">
+                    <div class="pl-2 border-l border-slate-200/80">
+                        <span class="text-[10px] text-slate-400 block font-bold mb-0.5">درس</span>
+                        <span id="summary-course-name" class="text-xs font-extrabold text-slate-800 truncate block">ریاضی</span>
+                    </div>
+                    <div class="pr-2">
+                        <span class="text-[10px] text-slate-400 block font-bold mb-0.5">مدت ثبت</span>
+                        <span id="summary-duration-display" class="text-xs font-extrabold text-indigo-600"><span class="font-mono font-black text-sm">1</span> دقیقه</span>
+                    </div>
+                </div>
+
+                <!-- EDIT VIEW (Hidden by default - Pure 3D Pills / Chips, NO <select>) -->
+                <div id="summary-stats-edit-view" class="hidden space-y-2.5 bg-white border border-indigo-100/80 rounded-xl p-3 shadow-subtle text-right">
+                    <div>
+                        <span class="block text-[10px] font-bold text-slate-400 mb-1.5">تغییر درس:</span>
+                        <div id="edit-summary-course-pills" class="flex flex-wrap gap-1.5 max-h-28 overflow-y-auto custom-scrollbar p-0.5">
+                            <!-- Course Pills rendered dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="pt-2 border-t border-slate-100">
+                        <label class="block text-xs font-bold text-slate-700 mb-1">تغییر مدت مطالعه:</label>
+                        <div class="flex items-center gap-2">
+                            <button type="button" onclick="adjustSummaryDuration(-5)" class="btn-tactile-slate w-9 h-9 rounded-xl text-base font-bold flex items-center justify-center shrink-0 btn-interact">-</button>
+                            <input type="number" id="edit-summary-duration-input" min="1" max="600" value="1" oninput="syncSummaryDurationInput()" class="w-24 text-center bg-slate-50 border border-slate-200 text-slate-900 rounded-xl p-2 text-xs font-mono font-bold outline-none focus:bg-white focus:border-indigo-500">
+                            <button type="button" onclick="adjustSummaryDuration(5)" class="btn-tactile-slate w-9 h-9 rounded-xl text-base font-bold flex items-center justify-center shrink-0 btn-interact">+</button>
+                            <span class="text-xs text-slate-500 font-medium">دقیقه</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Optional Test & Notes Input Form -->
+            <form action="/add" method="POST" id="timer-direct-save-form" class="space-y-3.5">
+                <input type="hidden" name="course" id="summary-input-course">
+                <input type="hidden" name="duration" id="summary-input-duration">
+                <input type="hidden" name="topic" id="summary-input-topic">
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">مبحث مطالعه شده:</label>
+                    <input type="text" id="summary-display-topic" class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl px-3.5 py-2.5 text-xs font-bold outline-none focus:bg-white focus:border-indigo-500" onchange="document.getElementById('summary-input-topic').value = this.value">
+                </div>
+
+                <!-- Test Count with simple +/- Stepper Buttons (matching rest of app) -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">تعداد تست (اختیاری):</label>
+                    <div class="flex items-center gap-2">
+                        <button type="button" onclick="adjustSummaryTests(-5)" class="btn-tactile-slate w-9 h-9 rounded-xl text-base font-bold flex items-center justify-center shrink-0 btn-interact">-</button>
+                        <input type="number" name="tests" id="summary-tests-input" min="0" value="0" class="w-24 text-center bg-slate-50 border border-slate-200 text-slate-900 rounded-xl p-2 text-xs font-mono font-bold outline-none focus:bg-white focus:border-indigo-500">
+                        <button type="button" onclick="adjustSummaryTests(5)" class="btn-tactile-slate w-9 h-9 rounded-xl text-base font-bold flex items-center justify-center shrink-0 btn-interact">+</button>
+                        <span class="text-xs text-slate-500 font-medium">تست</span>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">نکات و یادداشت (اختیاری):</label>
+                    <textarea name="notes" id="summary-notes-input" rows="2" placeholder="نکته یا خلاصه کوتاه این جلسه..." class="w-full bg-slate-50 border border-slate-200 text-slate-900 rounded-xl p-3 text-xs outline-none focus:bg-white focus:border-indigo-500 font-medium resize-none"></textarea>
+                </div>
+
+                <div class="pt-2 flex items-center justify-end gap-2">
+                    <button type="button" onclick="closeModal('timer-summary-modal')" class="text-xs text-slate-400 hover:text-slate-600 font-bold px-4 py-2.5 rounded-xl transition-colors">
+                        انصراف
+                    </button>
+                    <button type="submit" class="btn-tactile-indigo text-white font-bold px-6 py-2.5 rounded-xl text-xs btn-interact shadow-md">
+                        ثبت قطعی در گزارش روزانه
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -744,6 +887,7 @@
 
             calculateStats();
             renderUI();
+            recoverTimerState();
 
             // Background update check (non-blocking)
             setTimeout(() => {
@@ -766,7 +910,6 @@
                     todayTests += parseInt(r['تعداد تست'] || r.tests || 0);
                 }
             });
-
             appData.today_hours = Math.round((todayMin / 60.0) * 10) / 10;
             appData.today_tests = todayTests;
             appData.total_records = (appData.records || []).length;
@@ -780,30 +923,31 @@
 
         function renderUI() {
             // Stats
-            document.getElementById('card-today-hours').textContent = appData.today_hours || 0;
-            document.getElementById('card-today-tests').textContent = appData.today_tests || 0;
-            document.getElementById('card-total-records').textContent = appData.total_records || 0;
-            document.getElementById('sidebar-total-badge').textContent = appData.total_records || 0;
+            if (document.getElementById('card-today-hours')) document.getElementById('card-today-hours').textContent = appData.today_hours || 0;
+            if (document.getElementById('card-today-tests')) document.getElementById('card-today-tests').textContent = appData.today_tests || 0;
+            if (document.getElementById('card-total-records')) document.getElementById('card-total-records').textContent = appData.total_records || 0;
+            if (document.getElementById('sidebar-total-badge')) document.getElementById('sidebar-total-badge').textContent = appData.total_records || 0;
 
-            document.getElementById('card-hours-bar').style.width = (appData.progress_hours || 0) + '%';
-            document.getElementById('card-tests-bar').style.width = (appData.progress_tests || 0) + '%';
+            if (document.getElementById('card-hours-bar')) document.getElementById('card-hours-bar').style.width = (appData.progress_hours || 0) + '%';
+            if (document.getElementById('card-tests-bar')) document.getElementById('card-tests-bar').style.width = (appData.progress_tests || 0) + '%';
 
-            document.getElementById('sidebar-hours-text').textContent = `${appData.today_hours || 0}h / ${appData.settings.daily_target_hours || 6}h`;
-            document.getElementById('sidebar-hours-bar').style.width = (appData.progress_hours || 0) + '%';
+            if (document.getElementById('sidebar-hours-text')) document.getElementById('sidebar-hours-text').textContent = `${appData.today_hours || 0}h / ${appData.settings.daily_target_hours || 6}h`;
+            if (document.getElementById('sidebar-hours-bar')) document.getElementById('sidebar-hours-bar').style.width = (appData.progress_hours || 0) + '%';
             
-            document.getElementById('sidebar-tests-text').textContent = `${appData.today_tests || 0} / ${appData.settings.daily_target_tests || 100}`;
-            document.getElementById('sidebar-tests-bar').style.width = (appData.progress_tests || 0) + '%';
+            if (document.getElementById('sidebar-tests-text')) document.getElementById('sidebar-tests-text').textContent = `${appData.today_tests || 0} / ${appData.settings.daily_target_tests || 100}`;
+            if (document.getElementById('sidebar-tests-bar')) document.getElementById('sidebar-tests-bar').style.width = (appData.progress_tests || 0) + '%';
 
             // Settings Inputs
-            document.getElementById('setting-daily-hours').value = appData.settings.daily_target_hours;
-            document.getElementById('setting-daily-tests').value = appData.settings.daily_target_tests;
-            document.getElementById('settings-pomo-study-input').value = appData.settings.pomo_study_min;
-            document.getElementById('settings-pomo-break-input').value = appData.settings.pomo_break_min;
-            document.getElementById('settings-include-break-toggle').checked = !!appData.settings.pomo_include_break;
+            if (document.getElementById('setting-daily-hours')) document.getElementById('setting-daily-hours').value = appData.settings.daily_target_hours;
+            if (document.getElementById('setting-daily-tests')) document.getElementById('setting-daily-tests').value = appData.settings.daily_target_tests;
+            if (document.getElementById('settings-pomo-study-input')) document.getElementById('settings-pomo-study-input').value = appData.settings.pomo_study_min;
+            if (document.getElementById('settings-pomo-break-input')) document.getElementById('settings-pomo-break-input').value = appData.settings.pomo_break_min;
+            if (document.getElementById('settings-include-break-toggle')) document.getElementById('settings-include-break-toggle').checked = !!appData.settings.pomo_include_break;
 
             // Render Course Pills & Preset Chips
             renderCoursePills();
             renderSmartPresetChips();
+            updatePomodoroHintText();
             
             // Render Logs
             renderRecentLogs();
@@ -811,50 +955,285 @@
         }
 
         // ==========================================
-        // TIMER ENGINE & ACTIVE FOCUS CONTROLS
+        // ADVANCED TIMER ENGINE & FOCUS CONTROLS
         // ==========================================
         let selectedTimerMode = 'pomodoro'; // 'pomodoro' | 'countdown' | 'stopwatch'
-        let totalTargetMinutesRequested = 25;
+        let timerPhase = 'FOCUS'; // 'FOCUS' | 'SHORT_BREAK'
+        let totalTargetMinutesRequested = 25; // x
+        let pomodoroSchedule = [];
+        let currentScheduleIndex = 0;
+        let pomodoroCycleCount = 1;
+        
         let timerInterval = null;
         let totalSeconds = 1500;
         let initialSeconds = 1500;
         let isPaused = false;
-        let actualStudyTimeLogged = 0;
+        let isMinimized = false;
+        let soundEnabled = true;
+
         let activeSecondsCounter = 0;
+        let pausedSecondsCounter = 0;
+        let actualStudyTimeLogged = 0;
+
+        // Formula: x = target time, z = study length, y = break length, w = include break in total
+        function buildPomodoroSchedule(x, z, y, w) {
+            const schedule = [];
+            x = parseInt(x) || 0;
+            z = Math.max(1, parseInt(z) || 25);
+            y = Math.max(1, parseInt(y) || 5);
+            w = Boolean(w);
+
+            if (x <= 0) return schedule;
+
+            if (w) {
+                // w == True: Total time x includes both study and break
+                const cycleTime = z + y;
+                const cycles = Math.floor(x / cycleTime);
+                const remainder = x % cycleTime;
+
+                for (let i = 1; i <= cycles; i++) {
+                    schedule.push({ type: 'FOCUS', durationMin: z, cycleNum: i, label: `سشن ${i}` });
+                    schedule.push({ type: 'SHORT_BREAK', durationMin: y, cycleNum: i, label: `استراحت ${i}` });
+                }
+
+                if (remainder > 0) {
+                    const focusTime = Math.min(remainder, z);
+                    schedule.push({ type: 'FOCUS', durationMin: focusTime, cycleNum: cycles + 1, label: `مطالعه پایانی (${focusTime} دقیقه)` });
+                }
+            } else {
+                // w == False: x is purely study time. Breaks (y) are inserted between z blocks.
+                const cycles = Math.floor(x / z);
+                const remainder = x % z;
+
+                for (let i = 1; i <= cycles; i++) {
+                    schedule.push({ type: 'FOCUS', durationMin: z, cycleNum: i, label: `سشن ${i}` });
+                    if (i < cycles || remainder > 0) {
+                        schedule.push({ type: 'SHORT_BREAK', durationMin: y, cycleNum: i, label: `استراحت ${i}` });
+                    }
+                }
+
+                if (remainder > 0) {
+                    schedule.push({ type: 'FOCUS', durationMin: remainder, cycleNum: cycles + 1, label: `مطالعه پایانی (${remainder} دقیقه)` });
+                }
+            }
+
+            return schedule;
+        }
+
+        // Accelerated Press & Hold timer adjusters with haptic feedback per tick
+        let targetAdjustTimer = null;
+        let targetAdjustInterval = 250;
+
+        function startAdjustingTarget(delta) {
+            triggerHaptic(8);
+            adjustTotalTargetMinutes(delta);
+            targetAdjustInterval = 250;
+
+            function step() {
+                triggerHaptic(6); // Haptic vibration feedback on every single tick change
+                adjustTotalTargetMinutes(delta);
+                targetAdjustInterval = Math.max(40, targetAdjustInterval * 0.82);
+                targetAdjustTimer = setTimeout(step, targetAdjustInterval);
+            }
+
+            targetAdjustTimer = setTimeout(step, targetAdjustInterval);
+        }
+
+        function stopAdjustingTarget() {
+            if (targetAdjustTimer) {
+                clearTimeout(targetAdjustTimer);
+                targetAdjustTimer = null;
+            }
+        }
+
+        function updateSegmentedIndicator(btnEl) {
+            const indicator = document.getElementById('segmented-indicator');
+            if (!indicator) return;
+            const targetBtn = btnEl || document.querySelector('.segmented-tab.active');
+            if (!targetBtn) return;
+            
+            const offsetLeft = targetBtn.offsetLeft;
+            const width = targetBtn.offsetWidth;
+
+            indicator.style.transform = `translateX(${offsetLeft}px)`;
+            indicator.style.width = `${width}px`;
+        }
+
+        function dismissTimerHint() {
+            triggerHaptic(6);
+            try {
+                localStorage.setItem('CS_TIMER_HINT_DISMISSED_GLOBAL', 'true');
+                localStorage.setItem('CS_HIDE_HINT_POMODORO', 'true');
+                localStorage.setItem('CS_HIDE_HINT_COUNTDOWN', 'true');
+                localStorage.setItem('CS_HIDE_HINT_STOPWATCH', 'true');
+            } catch(e){}
+            if (!appData.settings) appData.settings = {};
+            appData.settings.hide_hint_global = true;
+            appData.settings.hide_hint_pomodoro = true;
+            appData.settings.hide_hint_countdown = true;
+            appData.settings.hide_hint_stopwatch = true;
+            saveLocalStorage();
+
+            const hintEl = document.getElementById('timer-mode-hint');
+            if (hintEl) hintEl.classList.add('hidden');
+        }
+
+        function toggleTimerHintManual() {
+            triggerHaptic(8);
+            const hintEl = document.getElementById('timer-mode-hint');
+            if (!hintEl) return;
+
+            const isCurrentlyHidden = hintEl.classList.contains('hidden');
+
+            if (isCurrentlyHidden) {
+                try {
+                    localStorage.removeItem('CS_TIMER_HINT_DISMISSED_GLOBAL');
+                    localStorage.removeItem('CS_HIDE_HINT_POMODORO');
+                    localStorage.removeItem('CS_HIDE_HINT_COUNTDOWN');
+                    localStorage.removeItem('CS_HIDE_HINT_STOPWATCH');
+                } catch(e){}
+                if (appData.settings) {
+                    appData.settings.hide_hint_global = false;
+                    appData.settings.hide_hint_pomodoro = false;
+                    appData.settings.hide_hint_countdown = false;
+                    appData.settings.hide_hint_stopwatch = false;
+                }
+                hintEl.classList.remove('hidden');
+            } else {
+                dismissTimerHint();
+            }
+            saveLocalStorage();
+        }
+
+        function updatePomodoroHintText() {
+            let isDismissed = false;
+            try {
+                isDismissed = localStorage.getItem('CS_TIMER_HINT_DISMISSED_GLOBAL') === 'true' ||
+                              localStorage.getItem(`CS_HIDE_HINT_${selectedTimerMode.toUpperCase()}`) === 'true';
+            } catch(e){}
+            const appDataDismissed = Boolean(appData.settings && (appData.settings.hide_hint_global || appData.settings[`hide_hint_${selectedTimerMode}`]));
+            const isHidden = isDismissed || appDataDismissed;
+
+            const hintEl = document.getElementById('timer-mode-hint');
+            if (hintEl) {
+                if (isHidden) {
+                    hintEl.classList.add('hidden');
+                } else {
+                    hintEl.classList.remove('hidden');
+                }
+            }
+
+            const hintText = document.getElementById('timer-mode-hint-text');
+            if (!hintText) return;
+
+            if (selectedTimerMode === 'pomodoro') {
+                hintText.innerHTML = 'روش پومودورو: زمان مطالعه شما بر اساس چرخه‌های منظم استراحت مدیریت می‌شود.';
+            } else if (selectedTimerMode === 'countdown') {
+                hintText.innerHTML = 'تایمر معکوس: شمارش معکوس زمان مشخص که با اتمام آن چایم پایان به صدا درمی‌آید.';
+            } else if (selectedTimerMode === 'stopwatch') {
+                hintText.innerHTML = 'کرنومتر آزاد: زمان مطالعه شما از صفر به صورت صعودی شمارش می‌شود تا هر زمان مایل بودید پایان دهید.';
+            }
+        }
+
+        // Sound player with high quality crystal chimes & Web Audio synth fallback
+        function playChimeSound(type = 'study') {
+            if (!soundEnabled) return;
+            try {
+                const soundFile = type === 'study' ? '/static/audio/study_done.wav' : '/static/audio/break_done.wav';
+                const audio = new Audio(soundFile);
+                audio.volume = 0.85;
+                audio.play().catch(err => {
+                    console.log('Audio file play prevented, using Web Audio synth fallback:', err);
+                    playSynthChimeFallback(type);
+                });
+            } catch (e) {
+                playSynthChimeFallback(type);
+            }
+        }
+
+        function playSynthChimeFallback(type = 'study') {
+            try {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (!AudioCtx) return;
+                const ctx = new AudioCtx();
+                const now = ctx.currentTime;
+                const freqs = type === 'study' ? [523.25, 659.25, 783.99] : [659.25, 783.99, 1046.50];
+                
+                freqs.forEach((freq, index) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + index * 0.15);
+                    
+                    gain.gain.setValueAtTime(0, now + index * 0.15);
+                    gain.gain.linearRampToValueAtTime(0.25, now + index * 0.15 + 0.02);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + index * 0.15 + 1.2);
+                    
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    
+                    osc.start(now + index * 0.15);
+                    osc.stop(now + index * 0.15 + 1.25);
+                });
+            } catch(e) {
+                console.error('Synth chime error:', e);
+            }
+        }
 
         function setTimerMode(mode, btnEl) {
             triggerHaptic(10);
             selectedTimerMode = mode;
             
-            document.querySelectorAll('.timer-mode-card').forEach(el => el.classList.remove('active'));
-            if (btnEl) btnEl.classList.add('active');
+            document.querySelectorAll('.segmented-tab').forEach(el => el.classList.remove('active'));
+            let activeTab = btnEl;
+            if (!activeTab) {
+                activeTab = document.getElementById(`mode-tab-${mode}`);
+            }
+            if (activeTab) activeTab.classList.add('active');
 
-            const hintText = document.getElementById('timer-mode-hint-text');
-            const startBtnText = document.getElementById('start-timer-btn-text');
+            updateSegmentedIndicator(activeTab);
+
             const durationSection = document.getElementById('timer-duration-section');
 
-            if (mode === 'pomodoro') {
-                if (hintText) hintText.innerHTML = '<strong>روش پومودورو:</strong> زمان مطالعه شما به بازه‌های کاری و استراحت (مثلاً ۲۵ دقیقه درس + ۵ دقیقه استراحت) تقسیم می‌شود و سیستم زمان استراحت را مدیریت می‌کند.';
-                if (startBtnText) startBtnText.textContent = 'شروع مطالعه پومودورو';
-                if (durationSection) durationSection.classList.remove('hidden');
-            } else if (mode === 'countdown') {
-                if (hintText) hintText.innerHTML = '<strong>تایمر معکوس:</strong> شمارش معکوس زمان مشخص که با اتمام آن زمان جلسه مطالعه پایان می‌یابد.';
-                if (startBtnText) startBtnText.textContent = 'شروع تایمر معکوس';
+            if (mode === 'pomodoro' || mode === 'countdown') {
                 if (durationSection) durationSection.classList.remove('hidden');
             } else if (mode === 'stopwatch') {
-                if (hintText) hintText.innerHTML = '<strong>کرنومتر آزاد:</strong> زمان شما از صفر به صورت صعودی شمارش می‌شود تا هروقت خواستید پایان دهید.';
-                if (startBtnText) startBtnText.textContent = 'شروع کرنومتر آزاد';
                 if (durationSection) durationSection.classList.add('hidden');
             }
 
+            updateStartButtonsState();
+            updatePomodoroHintText();
             renderSmartPresetChips();
+        }
+
+        function updateStartButtonsState() {
+            const isTimerActive = (timerInterval !== null);
+            const mainStartBtn = document.getElementById('main-start-timer-btn');
+            
+            if (mainStartBtn) {
+                mainStartBtn.disabled = isTimerActive;
+                if (isTimerActive) {
+                    mainStartBtn.classList.add('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
+                    mainStartBtn.classList.remove('btn-interact');
+                    mainStartBtn.title = "یک جلسه مطالعه فعال در حال اجراست";
+                } else {
+                    mainStartBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
+                    mainStartBtn.classList.add('btn-interact');
+                    mainStartBtn.title = "";
+                }
+            }
+
+            const startBtnText = document.getElementById('start-timer-btn-text');
+            if (startBtnText) startBtnText.textContent = 'شروع مطالعه';
         }
 
         function adjustTotalTargetMinutes(delta) {
             triggerHaptic(8);
-            totalTargetMinutesRequested = Math.max(5, Math.min(240, totalTargetMinutesRequested + delta));
+            totalTargetMinutesRequested = Math.max(5, Math.min(300, totalTargetMinutesRequested + delta));
             const display = document.getElementById('setup-target-display');
             if (display) display.textContent = totalTargetMinutesRequested;
+            updatePomodoroHintText();
             renderSmartPresetChips();
         }
 
@@ -863,6 +1242,7 @@
             totalTargetMinutesRequested = mins;
             const display = document.getElementById('setup-target-display');
             if (display) display.textContent = totalTargetMinutesRequested;
+            updatePomodoroHintText();
             renderSmartPresetChips();
         }
 
@@ -870,7 +1250,7 @@
             const container = document.getElementById('preset-chips-container');
             if (!container) return;
 
-            const presets = [15, 25, 45, 60];
+            const presets = [30, 60, 90, 120];
             container.innerHTML = presets.map(m => `
                 <button type="button" onclick="setTargetMinutesFromPreset(${m})" class="preset-chip px-3 py-2 rounded-2xl text-xs font-bold font-mono text-slate-700 btn-interact ${totalTargetMinutesRequested === m ? 'active' : ''}">
                     ${m} دقیقه
@@ -878,11 +1258,49 @@
             `).join('');
         }
 
+        function updateOverlaySoundButtonUI() {
+            const soundBtn = document.getElementById('overlay-sound-btn');
+            if (!soundBtn) return;
+
+            if (soundEnabled) {
+                soundBtn.title = "قطع صدا";
+                soundBtn.className = "p-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors btn-interact";
+                soundBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>';
+            } else {
+                soundBtn.title = "وصل صدا";
+                soundBtn.className = "p-2 rounded-2xl bg-rose-50 border border-rose-100 hover:bg-rose-100 text-rose-500 transition-colors btn-interact";
+                soundBtn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15zM17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/></svg>';
+            }
+        }
+
+        function toggleTimerSoundInOverlay() {
+            soundEnabled = !soundEnabled;
+            const toggleBox = document.getElementById('timer-sound-toggle');
+            if (toggleBox) toggleBox.checked = soundEnabled;
+            updateOverlaySoundButtonUI();
+
+            if (soundEnabled) {
+                playChimeSound('study');
+                showToast('هشدار صوتی چایم فعال شد (پخش نمونه)', 'info');
+            } else {
+                showToast('هشدار صوتی غیرفعال شد', 'info');
+            }
+        }
+
         function startPomodoroSession() {
             triggerHaptic(15);
+
+            // Block starting another timer if one is ALREADY active!
+            if (timerInterval !== null) {
+                showToast("یک جلسه مطالعه فعال در حال اجراست! ابتدا جلسه فعلی را به پایان برسانید.", "warning");
+                expandTimerOverlay();
+                return;
+            }
+
             const courseInput = document.getElementById('timer-selected-course');
             const courseVal = courseInput ? courseInput.value : '';
-            const topicVal = document.getElementById('timer-selected-topic')?.value || '';
+            const goalVal = document.getElementById('timer-session-goal')?.value?.trim() || '';
+            soundEnabled = document.getElementById('timer-sound-toggle')?.checked ?? true;
 
             if (!courseVal || !courseVal.trim()) {
                 showToast("لطفاً ابتدا یک درس را برای مطالعه انتخاب کنید", "warning");
@@ -890,31 +1308,127 @@
             }
 
             document.getElementById('focus-course-name').textContent = courseVal;
-            document.getElementById('focus-topic-name').textContent = topicVal || 'بدون مبحث ثبت‌شده';
+            document.getElementById('focus-topic-name').textContent = goalVal || 'نشست مطالعه آزاد';
             
             isPaused = false;
+            isMinimized = false;
             activeSecondsCounter = 0;
+            pausedSecondsCounter = 0;
+
+            if (selectedTimerMode === 'pomodoro') {
+                const z = parseInt(appData.settings.pomo_study_min || 25);
+                const y = parseInt(appData.settings.pomo_break_min || 5);
+                const w = Boolean(appData.settings.pomo_include_break);
+                const x = totalTargetMinutesRequested;
+
+                pomodoroSchedule = buildPomodoroSchedule(x, z, y, w);
+                currentScheduleIndex = 0;
+            } else {
+                pomodoroSchedule = [];
+                currentScheduleIndex = 0;
+            }
+
+            setupPhaseDisplay();
+            openModal('focus-overlay');
+            saveTimerState();
+
+            startTimerLoop();
+            updateStartButtonsState();
+        }
+
+        function setupPhaseDisplay() {
+            const ring = document.getElementById('timer-progress-ring');
+            const badgeText = document.getElementById('focus-badge-text');
+            const badgeDot = document.getElementById('focus-badge-dot');
+            const statusSubtitle = document.getElementById('focus-status-subtitle');
+            const skipBtn = document.getElementById('skip-break-btn');
 
             if (selectedTimerMode === 'stopwatch') {
                 totalSeconds = 0;
                 initialSeconds = 0;
-                document.getElementById('focus-badge-text').textContent = 'کرنومتر مطالعه آزاد';
-                document.getElementById('focus-status-subtitle').textContent = 'زمان سپری‌شده';
-            } else {
+                timerPhase = 'FOCUS';
+                if (badgeText) badgeText.textContent = 'کرنومتر آزاد';
+                if (statusSubtitle) statusSubtitle.textContent = 'زمان سپری‌شده';
+                if (ring) ring.style.stroke = '#6366F1';
+                if (skipBtn) skipBtn.classList.add('hidden');
+            } else if (selectedTimerMode === 'countdown') {
                 totalSeconds = totalTargetMinutesRequested * 60;
                 initialSeconds = totalSeconds;
-                document.getElementById('focus-badge-text').textContent = selectedTimerMode === 'pomodoro' ? 'پومودورو هوشمند' : 'تایمر معکوس';
-                document.getElementById('focus-status-subtitle').textContent = 'زمان باقی‌مانده';
+                if (badgeText) badgeText.textContent = 'تایمر معکوس';
+                if (statusSubtitle) statusSubtitle.textContent = 'زمان باقی‌مانده';
+                if (ring) ring.style.stroke = '#6366F1';
+                if (skipBtn) skipBtn.classList.add('hidden');
+            } else if (selectedTimerMode === 'pomodoro') {
+                const pomoMin = timerPhase === 'FOCUS' ? 
+                    parseInt(appData.settings?.pomo_study_min || 25) : 
+                    parseInt(appData.settings?.pomo_break_min || 5);
+                totalSeconds = pomoMin * 60;
+                initialSeconds = totalSeconds;
+
+                if (badgeText) {
+                    badgeText.textContent = timerPhase === 'FOCUS' ? 
+                        `فاز مطالعه | سشن ${pomodoroCycleCount}` : 
+                        `زمان استراحت کوتاه`;
+                }
+                if (badgeDot) {
+                    badgeDot.className = timerPhase === 'FOCUS' ? 
+                        'w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse' : 
+                        'w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse';
+                }
+                if (statusSubtitle) {
+                    statusSubtitle.textContent = timerPhase === 'FOCUS' ? 'زمان باقی‌مانده مطالعه' : 'زمان باقی‌مانده استراحت';
+                }
+                if (ring) {
+                    ring.style.stroke = timerPhase === 'FOCUS' ? '#6366F1' : '#10B981';
+                }
+                if (skipBtn) {
+                    if (timerPhase === 'SHORT_BREAK') {
+                        skipBtn.classList.remove('hidden');
+                    } else {
+                        skipBtn.classList.add('hidden');
+                    }
+                }
             }
 
-            document.getElementById('pause-btn').textContent = 'توقف موقت';
-            updateClockDisplay();
-            openModal('focus-overlay');
+            const pauseBtn = document.getElementById('pause-btn');
+            if (pauseBtn) {
+                pauseBtn.innerHTML = isPaused ? 
+                    '<svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>ادامه مطالعه</span>' : 
+                    '<svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg><span>توقف موقت</span>';
+            }
 
+            // Update Floating Mini Capsule Theme
+            const miniWidget = document.getElementById('mini-timer-widget');
+            const miniCourseBadge = document.getElementById('mini-course-badge');
+            const miniDot = document.getElementById('mini-badge-dot');
+            const miniBtn = document.getElementById('mini-pause-btn');
+
+            if (miniWidget) {
+                if (timerPhase === 'SHORT_BREAK') {
+                    miniWidget.classList.add('break-mode');
+                    if (miniCourseBadge) miniCourseBadge.className = 'inline-flex items-center gap-2 bg-emerald-50 border border-emerald-100 rounded-full px-3 py-1 text-xs font-extrabold text-emerald-700 shrink-0';
+                    if (miniDot) miniDot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse';
+                    if (miniBtn) miniBtn.className = 'btn-tactile-emerald w-9 h-9 rounded-2xl text-white flex items-center justify-center shrink-0 shadow-sm btn-interact';
+                } else {
+                    miniWidget.classList.remove('break-mode');
+                    if (miniCourseBadge) miniCourseBadge.className = 'inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 rounded-full px-3 py-1 text-xs font-extrabold text-indigo-700 shrink-0';
+                    if (miniDot) miniDot.className = 'w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse';
+                    if (miniBtn) miniBtn.className = 'btn-tactile-indigo w-9 h-9 rounded-2xl text-white flex items-center justify-center shrink-0 shadow-sm btn-interact';
+                }
+            }
+
+            updateClockDisplay();
+            updateOverlaySoundButtonUI();
+        }
+
+        function startTimerLoop() {
             if (timerInterval) clearInterval(timerInterval);
             timerInterval = setInterval(() => {
                 if (!isPaused) {
-                    activeSecondsCounter++;
+                    if (timerPhase === 'FOCUS' || selectedTimerMode === 'stopwatch') {
+                        activeSecondsCounter++;
+                    }
+
                     if (selectedTimerMode === 'stopwatch') {
                         totalSeconds++;
                         updateClockDisplay();
@@ -923,19 +1437,57 @@
                             totalSeconds--;
                             updateClockDisplay();
                         } else {
-                            finishTimerSession();
+                            handleTimerPhaseComplete();
                         }
                     }
+                } else {
+                    pausedSecondsCounter++;
+                    updateLiveStatsDisplay();
                 }
+                saveTimerState();
             }, 1000);
+        }
+
+        function handleTimerPhaseComplete() {
+            if (selectedTimerMode === 'pomodoro') {
+                if (timerPhase === 'FOCUS') {
+                    playChimeSound('study');
+                    showToast(`سشن ${pomodoroCycleCount} مطالعه به پایان رسید! زمان استراحت شروع شد.`, "success");
+                    timerPhase = 'SHORT_BREAK';
+                    setupPhaseDisplay();
+                } else if (timerPhase === 'SHORT_BREAK') {
+                    playChimeSound('break');
+                    pomodoroCycleCount++;
+                    showToast(`استراحت به پایان رسید. شروع سشن ${pomodoroCycleCount} مطالعه!`, "info");
+                    timerPhase = 'FOCUS';
+                    setupPhaseDisplay();
+                }
+            } else {
+                playChimeSound('study');
+                finishTimerSession();
+            }
+        }
+
+        function skipBreakOrNext() {
+            triggerHaptic(10);
+            if (timerPhase === 'SHORT_BREAK') {
+                pomodoroCycleCount++;
+                timerPhase = 'FOCUS';
+                setupPhaseDisplay();
+                showToast("استراحت رد شد. شروع چرخه جدید مطالعه", "info");
+            }
         }
 
         function updateClockDisplay() {
             let m = Math.floor(totalSeconds / 60);
             let s = totalSeconds % 60;
             let str = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+            
             const clockEl = document.getElementById('focus-clock');
             if (clockEl) clockEl.textContent = str;
+
+            const miniClock = document.getElementById('mini-timer-clock');
+            if (miniClock) miniClock.textContent = str;
 
             const ring = document.getElementById('timer-progress-ring');
             if (ring) {
@@ -947,6 +1499,30 @@
                     ring.style.strokeDashoffset = circumference * (1 - fraction);
                 }
             }
+
+            const miniProgress = document.getElementById('mini-timer-progress');
+            if (miniProgress && initialSeconds > 0 && selectedTimerMode !== 'stopwatch') {
+                let fraction = totalSeconds / initialSeconds;
+                miniProgress.style.strokeDasharray = `${fraction * 100}, 100`;
+            }
+
+            updateLiveStatsDisplay();
+        }
+
+        function updateLiveStatsDisplay() {
+            const activeEl = document.getElementById('live-active-time');
+            if (activeEl) {
+                let am = Math.floor(activeSecondsCounter / 60);
+                let as = activeSecondsCounter % 60;
+                activeEl.textContent = (am < 10 ? '0' : '') + am + ':' + (as < 10 ? '0' : '') + as;
+            }
+
+            const pausedEl = document.getElementById('live-paused-time');
+            if (pausedEl) {
+                let pm = Math.floor(pausedSecondsCounter / 60);
+                let ps = pausedSecondsCounter % 60;
+                pausedEl.textContent = (pm < 10 ? '0' : '') + pm + ':' + (ps < 10 ? '0' : '') + ps;
+            }
         }
 
         function togglePauseTimer() {
@@ -954,9 +1530,132 @@
             isPaused = !isPaused;
             const pauseBtn = document.getElementById('pause-btn');
             if (pauseBtn) {
-                pauseBtn.textContent = isPaused ? 'ادامه مطالعه' : 'توقف موقت';
+                pauseBtn.innerHTML = isPaused ? 
+                    '<svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>ادامه مطالعه</span>' : 
+                    '<svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg><span>توقف موقت</span>';
             }
-            showToast(isPaused ? 'تایمر متوقف شد' : 'تایمر دوباره فعال شد', 'info');
+            const miniPauseBtn = document.getElementById('mini-pause-btn');
+            if (miniPauseBtn) {
+                miniPauseBtn.innerHTML = isPaused ? 
+                    '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>' : 
+                    '<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+            }
+            showToast(isPaused ? 'تایمر متوقف شد' : 'تایمر فعال شد', 'info');
+        }
+
+        function minimizeTimerOverlay() {
+            triggerHaptic(10);
+            isMinimized = true;
+
+            const overlay = document.getElementById('focus-overlay');
+            const card = document.getElementById('focus-overlay-card');
+            const widget = document.getElementById('mini-timer-widget');
+            const courseVal = document.getElementById('timer-selected-course')?.value || document.getElementById('focus-course-name')?.textContent || 'مطالعه';
+            
+            const miniCourse = document.getElementById('mini-timer-course');
+            if (miniCourse) miniCourse.textContent = courseVal;
+
+            if (!card || !widget || !overlay) {
+                closeModal('focus-overlay');
+                if (widget) widget.classList.remove('hidden');
+                saveTimerState();
+                return;
+            }
+
+            // Remove any old dynamic morph element if present
+            const oldMorph = document.getElementById('active-morph-element');
+            if (oldMorph) oldMorph.remove();
+
+            // 1. Animate Modal Card shrinking & scaling down slightly into dismissal
+            card.style.transition = 'transform 0.22s cubic-bezier(0.4, 0, 1, 1), opacity 0.22s ease';
+            card.style.transform = 'scale(0.88) translateY(30px)';
+            card.style.opacity = '0';
+
+            overlay.style.transition = 'opacity 0.22s ease';
+            overlay.style.opacity = '0';
+
+            // 2. Once modal disappears (220ms), reveal mini capsule widget with a spring pop-in
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+                overlay.style.opacity = '';
+                overlay.style.transition = '';
+
+                card.style.transform = '';
+                card.style.opacity = '';
+                card.style.transition = '';
+
+                // Show Widget with Spring Pop-In Animation
+                widget.classList.remove('hidden');
+                widget.style.transition = 'none';
+                widget.style.transform = 'scale(0.7) translateY(20px)';
+                widget.style.opacity = '0';
+
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        widget.style.transition = 'transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease';
+                        widget.style.transform = 'scale(1) translateY(0)';
+                        widget.style.opacity = '1';
+                    });
+                });
+            }, 220);
+
+            saveTimerState();
+        }
+
+        function expandTimerOverlay() {
+            triggerHaptic(10);
+            isMinimized = false;
+
+            const overlay = document.getElementById('focus-overlay');
+            const card = document.getElementById('focus-overlay-card');
+            const widget = document.getElementById('mini-timer-widget');
+            const clockText = document.getElementById('mini-timer-clock')?.textContent || '25:00';
+            const focusClock = document.getElementById('focus-clock');
+            if (focusClock) focusClock.textContent = clockText;
+
+            if (!card || !widget || !overlay) {
+                if (widget) widget.classList.add('hidden');
+                openModal('focus-overlay');
+                saveTimerState();
+                return;
+            }
+
+            // Remove any old dynamic morph element if present
+            const oldMorph = document.getElementById('active-morph-element');
+            if (oldMorph) oldMorph.remove();
+
+            // 1. Scale down and hide widget springily
+            widget.style.transition = 'transform 0.18s ease-in, opacity 0.18s ease-in';
+            widget.style.transform = 'scale(0.8) translateY(10px)';
+            widget.style.opacity = '0';
+
+            setTimeout(() => {
+                widget.classList.add('hidden');
+                widget.style.transform = '';
+                widget.style.opacity = '';
+                widget.style.transition = '';
+
+                // 2. Open Overlay Modal with Spring Scale Up
+                overlay.style.opacity = '0';
+                overlay.classList.remove('hidden');
+
+                card.style.transition = 'none';
+                card.style.transform = 'scale(0.88) translateY(24px)';
+                card.style.opacity = '0';
+
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        overlay.style.transition = 'opacity 0.25s ease';
+                        overlay.style.opacity = '1';
+
+                        card.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease';
+                        card.style.transform = 'scale(1) translateY(0)';
+                        card.style.opacity = '1';
+                    });
+                });
+            }, 180);
+
+            saveTimerState();
         }
 
         function stopTimerEarly() {
@@ -964,28 +1663,244 @@
         }
 
         function cancelTimerWithConfirm() {
-            if (confirm("آیا قصد انصراف از این جلسه مطالعه را دارید؟")) {
-                if (timerInterval) clearInterval(timerInterval);
+            if (confirm("آیا قصد انصراف از این جلسه مطالعه را دارید؟ داده‌ها ذخیره نخواهند شد.")) {
+                clearTimerState();
                 closeModal('focus-overlay');
+                const widget = document.getElementById('mini-timer-widget');
+                if (widget) widget.classList.add('hidden');
                 showToast("جلسه مطالعه لغو شد", "info");
             }
         }
 
+        function toggleSummaryEditMode() {
+            triggerHaptic(8);
+            const readView = document.getElementById('summary-stats-read-view');
+            const editView = document.getElementById('summary-stats-edit-view');
+            const editBtn = document.getElementById('edit-summary-stats-btn');
+            if (!readView || !editView) return;
+
+            if (editView.classList.contains('hidden')) {
+                readView.classList.add('hidden');
+                editView.classList.remove('hidden');
+                if (editBtn) {
+                    editBtn.className = "absolute top-2.5 left-2.5 p-1.5 rounded-xl bg-indigo-50 border border-indigo-200 text-indigo-600 transition-all btn-interact shrink-0 shadow-sm";
+                    editBtn.title = "بستن حالت ویرایش";
+                }
+            } else {
+                editView.classList.add('hidden');
+                readView.classList.remove('hidden');
+                if (editBtn) {
+                    editBtn.className = "absolute top-2.5 left-2.5 p-1.5 rounded-xl bg-white border border-slate-200/80 hover:border-indigo-300 text-slate-500 hover:text-indigo-600 transition-all btn-interact shrink-0";
+                    editBtn.title = "ویرایش درس و مدت ثبت";
+                }
+            }
+        }
+
+        function adjustSummaryDuration(delta) {
+            triggerHaptic(8);
+            const durationInput = document.getElementById('edit-summary-duration-input');
+            if (!durationInput) return;
+
+            let currentVal = parseInt(durationInput.value || 1);
+            let newVal = Math.max(1, Math.min(600, currentVal + delta));
+            durationInput.value = newVal;
+            syncSummaryDurationInput();
+        }
+
+        function syncSummaryDurationInput() {
+            const durationInput = document.getElementById('edit-summary-duration-input');
+            if (!durationInput) return;
+            const val = Math.max(1, parseInt(durationInput.value || 1));
+
+            const inDuration = document.getElementById('summary-input-duration');
+            if (inDuration) inDuration.value = val;
+
+            const dispDuration = document.getElementById('summary-duration-display');
+            if (dispDuration) dispDuration.innerHTML = `<span class="font-mono font-black text-sm">${val}</span> دقیقه`;
+
+            const headlineEl = document.getElementById('summary-headline-text');
+            if (headlineEl) headlineEl.innerHTML = `<span class="font-mono font-bold text-slate-800 text-sm">${val}</span> دقیقه مطالعه مفید با موفقیت به پایان رسید.`;
+        }
+
+        function renderSummaryCoursePills(selectedCourse) {
+            const container = document.getElementById('edit-summary-course-pills');
+            if (!container) return;
+            const courses = appData.settings?.courses || DEFAULT_STATE.settings.courses;
+
+            container.innerHTML = courses.map(c => {
+                const isSelected = (c === selectedCourse);
+                const activeClass = isSelected ? 
+                    'bg-indigo-600 border-indigo-600 text-white shadow-sm font-extrabold' : 
+                    'bg-slate-50 border-slate-200/80 text-slate-700 hover:bg-slate-100 font-bold';
+                return `<button type="button" onclick="selectSummaryEditCourse('${c}', this)" class="summary-course-pill px-3 py-1.5 rounded-xl text-xs transition-all btn-interact border ${activeClass}">${c}</button>`;
+            }).join('');
+        }
+
+        function selectSummaryEditCourse(courseName, btnEl) {
+            triggerHaptic(10);
+            document.querySelectorAll('#edit-summary-course-pills .summary-course-pill').forEach(el => {
+                el.className = 'summary-course-pill px-3 py-1.5 rounded-xl text-xs transition-all btn-interact border bg-slate-50 border-slate-200/80 text-slate-700 hover:bg-slate-100 font-bold';
+            });
+            if (btnEl) {
+                btnEl.className = 'summary-course-pill px-3 py-1.5 rounded-xl text-xs transition-all btn-interact border bg-indigo-600 border-indigo-600 text-white shadow-sm font-extrabold';
+            }
+
+            const inCourse = document.getElementById('summary-input-course');
+            if (inCourse) inCourse.value = courseName;
+
+            const dispCourse = document.getElementById('summary-course-name');
+            if (dispCourse) dispCourse.textContent = courseName;
+        }
+
+        function adjustSummaryTests(delta) {
+            triggerHaptic(8);
+            const testInput = document.getElementById('summary-tests-input');
+            if (!testInput) return;
+
+            let currentVal = parseInt(testInput.value || 0);
+            let newVal = Math.max(0, currentVal + delta);
+            testInput.value = newVal;
+        }
+
         function finishTimerSession() {
-            if (timerInterval) clearInterval(timerInterval);
+            clearTimerState();
             closeModal('focus-overlay');
+            const widget = document.getElementById('mini-timer-widget');
+            if (widget) widget.classList.add('hidden');
 
             actualStudyTimeLogged = Math.max(1, Math.round(activeSecondsCounter / 60));
             const courseVal = document.getElementById('timer-selected-course')?.value || 'سایر';
-            const topicVal = document.getElementById('timer-selected-topic')?.value || '-';
+            const topicVal = document.getElementById('timer-session-goal')?.value?.trim() || document.getElementById('timer-selected-topic')?.value || '-';
 
-            document.getElementById('manual-wizard-course').value = courseVal;
-            document.getElementById('manual-wizard-duration').value = actualStudyTimeLogged;
-            document.getElementById('manual-wizard-topic').value = topicVal;
+            // Reset summary edit view to read mode
+            const readView = document.getElementById('summary-stats-read-view');
+            const editView = document.getElementById('summary-stats-edit-view');
+            const editBtn = document.getElementById('edit-summary-stats-btn');
+            if (readView) readView.classList.remove('hidden');
+            if (editView) editView.classList.add('hidden');
+            if (editBtn) {
+                editBtn.className = "absolute top-2.5 left-2.5 p-1.5 rounded-xl bg-white border border-slate-200/80 hover:border-indigo-300 text-slate-500 hover:text-indigo-600 transition-all btn-interact shrink-0";
+                editBtn.title = "ویرایش درس و مدت ثبت";
+            }
 
-            openManualWizard();
-            goManualWizardStep(3);
-            showToast(`خسته نباشید! ${actualStudyTimeLogged} دقیقه مطالعه ثبت گردید.`, "success");
+            // Populate course selector pills in edit view
+            renderSummaryCoursePills(courseVal);
+
+            const durationInput = document.getElementById('edit-summary-duration-input');
+            if (durationInput) durationInput.value = actualStudyTimeLogged;
+
+            const testsInput = document.getElementById('summary-tests-input');
+            if (testsInput) testsInput.value = 0;
+
+            const notesInput = document.getElementById('summary-notes-input');
+            if (notesInput) notesInput.value = '';
+
+            // Populate Summary Modal Read View
+            const headlineEl = document.getElementById('summary-headline-text');
+            if (headlineEl) headlineEl.innerHTML = `<span class="font-mono font-bold text-slate-800 text-sm">${actualStudyTimeLogged}</span> دقیقه مطالعه مفید با موفقیت به پایان رسید.`;
+            
+            const summaryCourse = document.getElementById('summary-course-name');
+            if (summaryCourse) summaryCourse.textContent = courseVal;
+            
+            const summaryDuration = document.getElementById('summary-duration-display');
+            if (summaryDuration) summaryDuration.innerHTML = `<span class="font-mono font-black text-sm">${actualStudyTimeLogged}</span> دقیقه`;
+
+            const inCourse = document.getElementById('summary-input-course');
+            if (inCourse) inCourse.value = courseVal;
+            
+            const inDuration = document.getElementById('summary-input-duration');
+            if (inDuration) inDuration.value = actualStudyTimeLogged;
+            
+            const inTopic = document.getElementById('summary-input-topic');
+            if (inTopic) inTopic.value = topicVal;
+            
+            const dispTopic = document.getElementById('summary-display-topic');
+            if (dispTopic) dispTopic.value = topicVal;
+
+            openModal('timer-summary-modal');
+            triggerHaptic(20);
+        }
+
+        // State persistence helpers
+        function saveTimerState() {
+            if (!timerInterval) return;
+            const state = {
+                selectedTimerMode,
+                timerPhase,
+                totalTargetMinutesRequested,
+                pomodoroSchedule,
+                currentScheduleIndex,
+                pomodoroCycleCount,
+                totalSeconds,
+                initialSeconds,
+                isPaused,
+                isMinimized,
+                activeSecondsCounter,
+                pausedSecondsCounter,
+                courseVal: document.getElementById('timer-selected-course')?.value,
+                topicVal: document.getElementById('timer-session-goal')?.value || document.getElementById('timer-selected-topic')?.value,
+                timestamp: Date.now()
+            };
+            localStorage.setItem('chandSaat_active_timer', JSON.stringify(state));
+        }
+
+        function clearTimerState() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = null;
+            localStorage.removeItem('chandSaat_active_timer');
+            updateStartButtonsState();
+        }
+
+        function recoverTimerState() {
+            try {
+                const saved = localStorage.getItem('chandSaat_active_timer');
+                if (!saved) return;
+                const state = JSON.parse(saved);
+                
+                // If saved state is older than 6 hours, discard
+                if (Date.now() - state.timestamp > 6 * 3600 * 1000) {
+                    clearTimerState();
+                    return;
+                }
+
+                selectedTimerMode = state.selectedTimerMode || 'pomodoro';
+                timerPhase = state.timerPhase || 'FOCUS';
+                totalTargetMinutesRequested = state.totalTargetMinutesRequested || 25;
+                pomodoroSchedule = state.pomodoroSchedule || [];
+                currentScheduleIndex = state.currentScheduleIndex || 0;
+                pomodoroCycleCount = state.pomodoroCycleCount || 1;
+                totalSeconds = state.totalSeconds || 0;
+                initialSeconds = state.initialSeconds || 0;
+                isPaused = state.isPaused || false;
+                isMinimized = state.isMinimized || false;
+                activeSecondsCounter = state.activeSecondsCounter || 0;
+                pausedSecondsCounter = state.pausedSecondsCounter || 0;
+
+                if (state.courseVal) {
+                    const cInput = document.getElementById('timer-selected-course');
+                    if (cInput) cInput.value = state.courseVal;
+                    const fCourse = document.getElementById('focus-course-name');
+                    if (fCourse) fCourse.textContent = state.courseVal;
+                    const mCourse = document.getElementById('mini-timer-course');
+                    if (mCourse) mCourse.textContent = state.courseVal;
+                }
+                if (state.topicVal) {
+                    const tInput = document.getElementById('timer-selected-topic');
+                    if (tInput) tInput.value = state.topicVal;
+                    document.getElementById('focus-topic-name').textContent = state.topicVal;
+                }
+
+                setupPhaseDisplay();
+                if (isMinimized) {
+                    minimizeTimerOverlay();
+                } else {
+                    openModal('focus-overlay');
+                }
+                startTimerLoop();
+                updateStartButtonsState();
+            } catch (e) {
+                console.error('Error recovering timer state:', e);
+            }
         }
 
         function askDelete(id) {
@@ -1089,6 +2004,7 @@
                             <span class="text-[10px] font-mono text-slate-400 bg-slate-100 px-2.5 py-0.5 rounded-full">${r['تاریخ'] || r.date}</span>
                         </div>
                         <p class="text-xs text-slate-500 font-light">${r['مبحث'] || r.topic || '-'}</p>
+                        ${(r['نکات'] || r.notes) ? `<p class="text-[11px] text-slate-600 bg-slate-50 border border-slate-200/60 rounded-xl px-2.5 py-1 mt-1 font-medium leading-relaxed">${r['نکات'] || r.notes}</p>` : ''}
                     </div>
 
                     <div class="flex items-center gap-4">
@@ -1126,6 +2042,11 @@
                 if (el) {
                     if (v === viewName) {
                         el.classList.remove('hidden');
+                        if (v === 'timer') {
+                            setTimeout(() => {
+                                updateSegmentedIndicator();
+                            }, 50);
+                        }
                     } else {
                         el.classList.add('hidden');
                     }
@@ -1278,12 +2199,65 @@
 
         function openModal(id) {
             triggerHaptic(10);
-            document.getElementById(id).classList.remove('hidden');
+            const modalEl = document.getElementById(id);
+            if (!modalEl) return;
+
+            if (id === 'focus-overlay') {
+                const card = document.getElementById('focus-overlay-card');
+                modalEl.style.opacity = '0';
+                modalEl.classList.remove('hidden');
+
+                if (card) {
+                    card.style.transition = 'none';
+                    card.style.transform = 'scale(0.86) translateY(24px)';
+                    card.style.opacity = '0';
+
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            modalEl.style.transition = 'opacity 0.28s ease';
+                            modalEl.style.opacity = '1';
+
+                            card.style.transition = 'transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease';
+                            card.style.transform = 'scale(1) translateY(0)';
+                            card.style.opacity = '1';
+                        });
+                    });
+                } else {
+                    modalEl.style.opacity = '1';
+                }
+            } else {
+                modalEl.classList.remove('hidden');
+            }
         }
 
         function closeModal(id) {
             triggerHaptic(10);
-            document.getElementById(id).classList.add('hidden');
+            const modalEl = document.getElementById(id);
+            if (!modalEl) return;
+
+            if (id === 'focus-overlay') {
+                const card = document.getElementById('focus-overlay-card');
+                if (card) {
+                    card.style.transition = 'transform 0.22s ease-in, opacity 0.22s ease-in';
+                    card.style.transform = 'scale(0.9) translateY(18px)';
+                    card.style.opacity = '0';
+                }
+                modalEl.style.transition = 'opacity 0.22s ease-in';
+                modalEl.style.opacity = '0';
+
+                setTimeout(() => {
+                    modalEl.classList.add('hidden');
+                    modalEl.style.opacity = '';
+                    modalEl.style.transition = '';
+                    if (card) {
+                        card.style.transform = '';
+                        card.style.opacity = '';
+                        card.style.transition = '';
+                    }
+                }, 220);
+            } else {
+                modalEl.classList.add('hidden');
+            }
         }
 
         function openManualWizard() {

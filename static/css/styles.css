@@ -66,6 +66,16 @@ button, a, input, select, textarea, .btn-interact {
         0 10px 20px -5px rgba(0, 0, 0, 0.1) !important;
 }
 
+.modal-morph-no-anim {
+    background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%) !important;
+    border: 1px solid rgba(203, 213, 225, 0.9) !important;
+    box-shadow: 
+        inset 0 2px 2px rgba(255, 255, 255, 1),
+        inset 0 -2.5px 5px rgba(15, 23, 42, 0.05),
+        0 25px 60px -10px rgba(15, 23, 42, 0.35),
+        0 10px 20px -5px rgba(0, 0, 0, 0.1) !important;
+}
+
 @keyframes modalFadeIn {
     0% { opacity: 0; transform: scale(0.96); }
     100% { opacity: 1; transform: scale(1); }
@@ -163,6 +173,23 @@ button, a, input, select, textarea, .btn-interact {
         border-color: #CBD5E1 !important;
         background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%) !important;
     }
+    .mini-timer-capsule:hover {
+        transform: translateY(-3px) scale(1.02);
+        border-color: #818CF8 !important;
+        background: linear-gradient(180deg, #FFFFFF 0%, #EEF2FF 100%) !important;
+        box-shadow: 
+            inset 0 2px 2px rgba(255, 255, 255, 1),
+            0 18px 36px -8px rgba(15, 23, 42, 0.22),
+            0 6px 20px rgba(79, 70, 229, 0.25) !important;
+    }
+    .mini-timer-capsule.break-mode:hover {
+        border-color: #34D399 !important;
+        background: linear-gradient(180deg, #FFFFFF 0%, #ECFDF5 100%) !important;
+        box-shadow: 
+            inset 0 2px 2px rgba(255, 255, 255, 1),
+            0 18px 36px -8px rgba(6, 78, 59, 0.2),
+            0 6px 20px rgba(16, 185, 129, 0.22) !important;
+    }
 }
 
 /* TOUCH & CLICK ACTIVE PRESS STATES (Must come AFTER :hover to override on click) */
@@ -209,6 +236,14 @@ button, a, input, select, textarea, .btn-interact {
         inset 0 1px 2px rgba(0, 0, 0, 0.3) !important;
     transform: translateY(1px) scale(0.98) !important;
     opacity: 0.98 !important;
+}
+
+.mini-timer-capsule:active,
+.mini-timer-capsule:hover:active {
+    transform: scale(0.97) translateY(0) !important;
+    box-shadow: 
+        inset 0 2px 4px rgba(15, 23, 42, 0.12),
+        0 4px 12px rgba(15, 23, 42, 0.1) !important;
 }
 
 button:active,
@@ -406,26 +441,148 @@ main {
     scrollbar-gutter: stable;
 }
 
-.timer-mode-card {
-    background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
-    border: 1.5px solid #E2E8F0;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1.5px 3px rgba(0, 0, 0, 0.03);
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+/* Segmented Control Container with Sliding Active Indicator */
+
+/* Segmented Control Container with Sliding Active Indicator */
+.segmented-control {
+    position: relative;
+    display: inline-flex;
+    background: #F1F5F9;
+    border: 1px solid #E2E8F0;
+    border-radius: 1rem;
+    padding: 3px;
 }
 
-.timer-mode-card.active {
-    background: linear-gradient(180deg, #EEF2FF 0%, #E0E7FF 100%) !important;
-    border-color: #6366F1 !important;
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9), 0 4px 12px -2px rgba(79, 70, 229, 0.15) !important;
+.segmented-indicator {
+    position: absolute;
+    top: 3px;
+    bottom: 3px;
+    left: 0;
+    width: 0;
+    background: #FFFFFF;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px -2px rgba(79, 70, 229, 0.18), 0 1px 3px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
 }
 
-.timer-mode-card.active .mode-card-title {
-    color: #4338CA !important;
-    font-weight: 800 !important;
+.segmented-tab,
+.segmented-tab:hover,
+.segmented-tab:active,
+.segmented-tab:focus,
+.segmented-tab:focus-visible,
+.segmented-tab.active,
+.segmented-tab.active:hover,
+.segmented-tab.active:active,
+.segmented-tab.active:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
 }
 
-.timer-mode-card.active .mode-card-icon-bg {
-    background-color: #6366F1 !important;
-    color: #FFFFFF !important;
-    border-color: #4338CA !important;
+.segmented-tab {
+    position: relative;
+    z-index: 2;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748B;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
+
+.segmented-tab.active {
+    color: #4F46E5 !important;
+}
+
+.segmented-tab.active svg {
+    stroke: #4F46E5 !important;
+}
+
+/* Floating Mini Timer Widget - Unified ChandSaat Design Tokens */
+.mini-timer-capsule {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 45;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%) !important;
+    border: 1px solid rgba(203, 213, 225, 0.9) !important;
+    border-radius: 9999px;
+    padding: 8px 16px 8px 12px;
+    box-shadow: 
+        inset 0 2px 2px rgba(255, 255, 255, 1),
+        inset 0 -2px 4px rgba(15, 23, 42, 0.05),
+        0 15px 35px -8px rgba(15, 23, 42, 0.2),
+        0 4px 20px rgba(79, 70, 229, 0.12) !important;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    transform-origin: bottom left;
+}
+
+.mini-timer-capsule:hover {
+    transform: translateY(-4px) scale(1.02);
+    border-color: #C7D2FE !important;
+    box-shadow: 
+        inset 0 2px 2px rgba(255, 255, 255, 1),
+        0 20px 40px -8px rgba(15, 23, 42, 0.25),
+        0 6px 24px rgba(79, 70, 229, 0.22) !important;
+}
+
+.mini-timer-capsule.break-mode:hover {
+    transform: translateY(-4px) scale(1.02);
+    border-color: #6EE7B7 !important;
+    box-shadow: 
+        inset 0 2px 2px rgba(255, 255, 255, 1),
+        0 20px 40px -8px rgba(6, 78, 59, 0.22),
+        0 6px 24px rgba(16, 185, 129, 0.28) !important;
+}
+
+/* Hide number input spin arrows globally */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.mini-timer-capsule.break-mode {
+    border-color: #A7F3D0 !important;
+    box-shadow: 
+        inset 0 2px 2px rgba(255, 255, 255, 1),
+        0 15px 35px -8px rgba(6, 78, 59, 0.18),
+        0 4px 20px rgba(16, 185, 129, 0.18) !important;
+}
+
+/* Pulsing effect for active focus & break */
+@keyframes ringPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.03); opacity: 0.85; }
+}
+
+.animate-pulse-glow {
+    animation: ringPulse 3s infinite ease-in-out;
+}
+
+/* Smooth Timer Progress Ring */
+#timer-progress-ring {
+    transition: stroke-dashoffset 1s linear, stroke 0.5s ease;
+}
+
+/* Active Morph Container Shadow */
+#active-morph-element {
+    will-change: left, top, width, height, border-radius, box-shadow;
+}
+
+
+
