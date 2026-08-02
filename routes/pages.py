@@ -78,3 +78,9 @@ async def get_splash():
         return FileResponse(splash_path, media_type="image/png")
     return HTMLResponse(status_code=404)
 
+@router.get("/svg_showcase.html", response_class=HTMLResponse)
+@router.get("/showcase", response_class=HTMLResponse)
+async def get_svg_showcase(request: Request):
+    return templates.TemplateResponse(request=request, name="svg_showcase.html")
+
+

@@ -584,5 +584,163 @@ input[type=number] {
     will-change: left, top, width, height, border-radius, box-shadow;
 }
 
+/* ==========================================
+   FULLSCREEN FOCUS MODE (حالت تمرکز کامل)
+   ========================================== */
+
+#focus-overlay.is-focus-fullscreen {
+    background-color: #F8FAFC !important;
+    backdrop-filter: blur(20px) !important;
+    padding: 0 !important;
+    transition: background-color 0.3s ease, opacity 0.3s ease !important;
+}
+
+#focus-overlay.is-focus-fullscreen #focus-overlay-card {
+    max-width: 100vw !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: max(1.5rem, env(safe-area-inset-top, 1.5rem)) max(2.5rem, env(safe-area-inset-right, 2.5rem)) max(2rem, env(safe-area-inset-bottom, 2rem)) max(2.5rem, env(safe-area-inset-left, 2.5rem)) !important;
+    overflow-y: auto !important;
+}
+
+/* Widescreen Landscape 2-Column Grid Layout */
+#focus-overlay.is-focus-fullscreen #focus-body-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 2rem !important;
+    width: 100% !important;
+    max-width: 1100px !important;
+    margin: auto 0 !important;
+}
+
+@media (min-width: 768px) {
+    #focus-overlay.is-focus-fullscreen #focus-body-content {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        align-items: center !important;
+        justify-items: center !important;
+        gap: 3.5rem !important;
+    }
+
+    #focus-overlay.is-focus-fullscreen #focus-details-col {
+        text-align: right !important;
+        align-items: flex-start !important;
+        width: 100% !important;
+    }
+
+    #focus-overlay.is-focus-fullscreen #focus-stats-grid {
+        max-width: 100% !important;
+    }
+
+    #focus-overlay.is-focus-fullscreen #focus-controls-bar {
+        justify-content: flex-start !important;
+        width: 100% !important;
+    }
+
+    #focus-overlay.is-focus-fullscreen #focus-cancel-bar {
+        text-align: right !important;
+        width: 100% !important;
+    }
+}
+
+/* Scaled up clock container in Fullscreen Focus Mode */
+#focus-overlay.is-focus-fullscreen #focus-clock-container {
+    width: clamp(260px, 42vh, 420px) !important;
+    height: clamp(260px, 42vh, 420px) !important;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    margin: 0 auto !important;
+}
+
+#focus-overlay.is-focus-fullscreen #focus-clock {
+    font-size: clamp(3.2rem, 7vw, 6rem) !important;
+    transition: all 0.3s ease !important;
+}
+
+#focus-header-info {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.625rem !important;
+}
+
+#focus-overlay.is-focus-fullscreen #focus-header-info {
+    gap: 0.875rem !important;
+}
+
+#focus-overlay.is-focus-fullscreen #focus-course-name {
+    font-size: clamp(1.6rem, 3.2vw, 2.75rem) !important;
+    line-height: 1.25 !important;
+}
+
+#focus-overlay.is-focus-fullscreen #focus-topic-name {
+    font-size: clamp(0.95rem, 1.6vw, 1.2rem) !important;
+    line-height: 1.45 !important;
+}
+
+/* Hide Time Numbers Only Mode (When clock area is clicked) */
+#focus-overlay.hide-time-numbers #focus-clock,
+#focus-overlay.hide-time-numbers #focus-status-subtitle,
+#focus-overlay.hide-time-numbers #live-active-time,
+#focus-overlay.hide-time-numbers #live-paused-time {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: scale(0.9) !important;
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease !important;
+}
+
+#focus-overlay.hide-time-numbers #focus-hidden-icon {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: scale(1) !important;
+    transition: opacity 0.3s ease 0.1s, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s, visibility 0.3s ease !important;
+}
+
+#focus-hidden-icon {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.85);
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease !important;
+}
+
+#focus-overlay.hide-time-numbers #live-active-time-box::after,
+#focus-overlay.hide-time-numbers #live-paused-time-box::after {
+    content: "•• : ••";
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #94A3B8;
+}
+
+#focus-overlay #focus-clock,
+#focus-overlay #focus-status-subtitle,
+#focus-overlay #live-active-time,
+#focus-overlay #live-paused-time {
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease !important;
+}
+
+/* Slow Rotating Aura Orbit for Custom Study Emblem */
+@keyframes spinSlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+    animation: spinSlow 24s linear infinite;
+    transform-origin: 32px 32px;
+}
+
+
+
+
 
 
