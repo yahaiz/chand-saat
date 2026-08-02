@@ -747,17 +747,11 @@
     <!-- MODAL 4: ACTIVE FOCUS TIMER OVERLAY -->
     <div id="focus-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden transition-opacity duration-350">
         <div id="focus-overlay-card" class="bg-white border border-slate-200/80 rounded-5xl w-full max-w-md p-7 shadow-2xl space-y-6 modal-morph-no-anim text-center relative overflow-hidden">
-            <!-- Top Controls bar: Minimize, Session Badge, Sound toggle & Fullscreen toggle -->
+            <!-- Top Controls bar: Minimize, Sound toggle & Fullscreen toggle -->
             <div id="focus-top-bar" class="flex items-center justify-between w-full">
                 <button type="button" onclick="minimizeTimerOverlay()" title="کوچک‌سازی به ویجت شناور" class="p-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors btn-interact">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                 </button>
-
-                <!-- Session Counter Badge -->
-                <div id="pomodoro-session-badge" class="inline-flex items-center gap-1.5 bg-indigo-50 border border-indigo-100 rounded-full px-3.5 py-1 text-[11px] font-bold text-indigo-700">
-                    <span id="focus-badge-dot" class="w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse"></span>
-                    <span id="focus-badge-text">فاز مطالعه | سشن ۱</span>
-                </div>
 
                 <div class="flex items-center gap-1.5">
                     <button type="button" onclick="toggleTimerSoundInOverlay()" id="overlay-sound-btn" title="قطع/وصل صدا" class="p-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors btn-interact">
@@ -781,10 +775,11 @@
                             <circle cx="50" cy="50" r="42" stroke="#F1F5F9" stroke-width="5" fill="transparent"/>
                             <circle id="timer-progress-ring" cx="50" cy="50" r="42" stroke="#6366F1" stroke-width="6" stroke-linecap="round" fill="transparent" stroke-dasharray="263.89" stroke-dashoffset="0" class="transition-all duration-1000 ease-linear"/>
                         </svg>
-                        <!-- Digits Overlay -->
-                        <div class="absolute flex flex-col items-center pointer-events-none z-20">
-                            <span id="focus-clock" class="text-5xl font-black text-slate-900 font-mono tracking-tight">25:00</span>
-                            <span id="focus-status-subtitle" class="text-xs font-semibold text-slate-400 mt-1.5">زمان باقی‌مانده</span>
+                        <!-- Digits & Step Overlay (Perfect Balanced Centered Clock) -->
+                        <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-20">
+                            <span id="focus-badge-text" class="text-[10px] font-semibold text-indigo-600/90 tracking-wide leading-none mb-1.5 -mt-1">گام ۱</span>
+                            <span id="focus-clock" class="text-5xl font-black text-slate-900 font-mono tracking-tight -mt-1.5 mb-1 leading-none">25:00</span>
+                            <span id="focus-status-subtitle" class="text-[11px] font-semibold text-slate-400 tracking-tight leading-none">زمان باقی‌مانده</span>
                         </div>
                         <!-- Circular Masked purple-scene-01.svg Artwork tucked seamlessly under progress ring (Zero white space) -->
                         <div id="focus-hidden-icon" class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 transition-all duration-300 transform scale-100 z-0">
@@ -1528,7 +1523,7 @@
                     fullscreenBtnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>';
                 }
                 triggerNativeWindowFullscreen(true);
-                showToast('حالت تمرکز کامل فعال شد (کلید F برای خروج، کلیک روی دایره برای مخفی‌سازی اعداد زمان)', 'info');
+                showToast('حالت تمرکز کامل فعال شد', 'info');
             } else {
                 overlay.classList.remove('is-focus-fullscreen');
                 if (fullscreenBtn) fullscreenBtn.title = "تمرکز کامل (تمام صفحه)";
@@ -1570,7 +1565,6 @@
             isTimeNumbersHidden = !isTimeNumbersHidden;
             applyTimeNumbersHiddenState();
             saveTimerState();
-            showToast(isTimeNumbersHidden ? 'ارقام زمان مخفی شدند (کلیک مجدد برای نمایش)' : 'ارقام زمان نمایان شدند', 'info');
         }
 
         // Global keyboard listener for Focus Timer shortcuts
@@ -1655,14 +1649,14 @@
                 totalSeconds = 0;
                 initialSeconds = 0;
                 timerPhase = 'FOCUS';
-                if (badgeText) badgeText.textContent = 'کرنومتر آزاد';
+                if (badgeText) badgeText.textContent = 'آزاد';
                 if (statusSubtitle) statusSubtitle.textContent = 'زمان سپری‌شده';
                 if (ring) ring.style.stroke = '#6366F1';
                 if (skipBtn) skipBtn.classList.add('hidden');
             } else if (selectedTimerMode === 'countdown') {
                 totalSeconds = totalTargetMinutesRequested * 60;
                 initialSeconds = totalSeconds;
-                if (badgeText) badgeText.textContent = 'تایمر معکوس';
+                if (badgeText) badgeText.textContent = 'معکوس';
                 if (statusSubtitle) statusSubtitle.textContent = 'زمان باقی‌مانده';
                 if (ring) ring.style.stroke = '#6366F1';
                 if (skipBtn) skipBtn.classList.add('hidden');
@@ -1673,15 +1667,15 @@
                 totalSeconds = pomoMin * 60;
                 initialSeconds = totalSeconds;
 
+                const pomoBadge = document.getElementById('pomodoro-session-badge');
+
                 if (badgeText) {
                     badgeText.textContent = timerPhase === 'FOCUS' ? 
-                        `فاز مطالعه | سشن ${pomodoroCycleCount}` : 
-                        `زمان استراحت کوتاه`;
-                }
-                if (badgeDot) {
-                    badgeDot.className = timerPhase === 'FOCUS' ? 
-                        'w-2.5 h-2.5 rounded-full bg-indigo-500 animate-pulse' : 
-                        'w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse';
+                        `گام ${pomodoroCycleCount}` : 
+                        `استراحت`;
+                    badgeText.className = timerPhase === 'FOCUS' ?
+                        'text-[10px] font-semibold text-indigo-600/90 tracking-wide leading-none mb-1.5 -mt-1' :
+                        'text-[10px] font-semibold text-emerald-600/90 tracking-wide leading-none mb-1.5 -mt-1';
                 }
                 if (statusSubtitle) {
                     statusSubtitle.textContent = timerPhase === 'FOCUS' ? 'زمان باقی‌مانده مطالعه' : 'زمان باقی‌مانده استراحت';

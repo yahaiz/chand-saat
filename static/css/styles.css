@@ -693,6 +693,16 @@ input[type=number] {
     transition: all 0.3s ease !important;
 }
 
+#focus-overlay.is-focus-fullscreen #focus-badge-text {
+    font-size: clamp(0.95rem, 1.6vw, 1.35rem) !important;
+    margin-bottom: 0.5rem !important;
+    margin-top: 0 !important;
+}
+
+#focus-overlay.is-focus-fullscreen #focus-status-subtitle {
+    font-size: clamp(0.85rem, 1.3vw, 1.1rem) !important;
+}
+
 #focus-header-info {
     display: flex !important;
     flex-direction: column !important;
@@ -727,7 +737,8 @@ input[type=number] {
 
 /* Hide Time Numbers Mode (Clock area clicked) */
 #focus-overlay.hide-time-numbers #focus-clock,
-#focus-overlay.hide-time-numbers #focus-status-subtitle {
+#focus-overlay.hide-time-numbers #focus-status-subtitle,
+#focus-overlay.hide-time-numbers #focus-badge-text {
     opacity: 0 !important;
     visibility: hidden !important;
     transform: scale(0.9) !important;
@@ -761,7 +772,8 @@ input[type=number] {
 }
 
 #focus-overlay #focus-clock,
-#focus-overlay #focus-status-subtitle {
+#focus-overlay #focus-status-subtitle,
+#focus-overlay #focus-badge-text {
     transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease !important;
 }
 
