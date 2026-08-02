@@ -246,7 +246,7 @@ button, a, input, select, textarea, .btn-interact {
         0 4px 12px rgba(15, 23, 42, 0.1) !important;
 }
 
-button:active,
+button:active:not(.btn-no-tactile),
 .btn-interact:active,
 .timer-course-pill:active,
 .wizard-course-pill:active,
@@ -255,6 +255,13 @@ button:active,
     box-shadow: inset 0 2.5px 5px rgba(0, 0, 0, 0.25) !important;
     transform: translateY(1px) scale(0.98) !important;
     opacity: 0.98 !important;
+}
+
+.btn-no-tactile:active,
+#focus-cancel-bar button:active {
+    box-shadow: none !important;
+    transform: scale(0.98) !important;
+    opacity: 0.75 !important;
 }
 
 /* TOGGLE SWITCH */
@@ -666,7 +673,10 @@ input[type=number] {
 
     #focus-overlay.is-focus-fullscreen #focus-cancel-bar {
         text-align: right !important;
+        display: flex !important;
+        justify-content: flex-start !important;
         width: 100% !important;
+        margin-top: 0.25rem !important;
     }
 }
 

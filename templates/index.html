@@ -838,13 +838,67 @@
                         </button>
                     </div>
                     
-                    <div id="focus-cancel-bar" class="pt-1 text-center w-full">
-                        <button type="button" onclick="cancelTimerWithConfirm()" class="inline-flex items-center justify-center gap-1.5 text-xs text-slate-400 hover:text-rose-600 font-bold transition-colors btn-interact group">
+                    <div id="focus-cancel-bar" class="pt-1 text-center w-full flex justify-center">
+                        <button type="button" onclick="openCancelTimerConfirmModal()" class="btn-no-tactile inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-slate-400 hover:text-rose-600 hover:bg-rose-50/70 border border-transparent hover:border-rose-100 transition-colors group select-none shadow-none active:shadow-none outline-none">
                             <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-rose-600 transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                             <span>انصراف بدون ثبت</span>
                         </button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: CUSTOM CONFIRMATION FOR CANCELING TIMER SESSION -->
+    <div id="timer-cancel-confirm-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white border border-slate-200/80 rounded-3xl w-full max-w-sm p-6 shadow-2xl space-y-5 modal-morph text-center relative">
+            <div class="w-12 h-12 bg-rose-50 border border-rose-100 text-rose-500 rounded-2xl flex items-center justify-center mx-auto shadow-xs">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+            </div>
+            
+            <div class="space-y-1.5">
+                <h3 class="text-base font-extrabold text-slate-900">انصراف از جلسه مطالعه؟</h3>
+                <p class="text-xs text-slate-500 font-medium leading-relaxed">
+                    با انصراف، این جلسه متوقف شده و داده‌های زمان آن ذخیره نخواهند شد.
+                </p>
+            </div>
+
+            <div class="flex items-center gap-3 pt-2">
+                <button type="button" onclick="confirmCancelTimerSession()" class="flex-1 bg-rose-600 hover:bg-rose-700 active:scale-95 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-all shadow-sm btn-interact">
+                    بله، انصراف
+                </button>
+                <button type="button" onclick="closeModal('timer-cancel-confirm-modal')" class="flex-1 bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-700 font-bold py-2.5 px-4 rounded-xl text-xs transition-all btn-interact">
+                    بازگشت به مطالعه
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: CUSTOM CONFIRMATION FOR FINISHING STUDY SESSION -->
+    <div id="timer-finish-confirm-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white border border-slate-200/80 rounded-3xl w-full max-w-sm p-6 shadow-2xl space-y-5 modal-morph text-center relative">
+            <div class="w-12 h-12 bg-emerald-50 border border-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto shadow-xs">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
+            
+            <div class="space-y-1.5">
+                <h3 class="text-base font-extrabold text-slate-900">پایان و ثبت جلسه مطالعه؟</h3>
+                <p class="text-xs text-slate-500 font-medium leading-relaxed">
+                    با تایید، این جلسه مطالعه متوقف شده و به صفحه خلاصه و ثبت نهایی منتقل می‌شوید.
+                </p>
+            </div>
+
+            <div class="flex items-center gap-3 pt-2">
+                <button type="button" onclick="confirmFinishTimerSession()" class="flex-1 btn-tactile-emerald text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-all shadow-sm btn-interact">
+                    تایید و ثبت جلسه
+                </button>
+                <button type="button" onclick="closeModal('timer-finish-confirm-modal')" class="flex-1 bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-700 font-bold py-2.5 px-4 rounded-xl text-xs transition-all btn-interact">
+                    ادامه مطالعه
+                </button>
             </div>
         </div>
     </div>
@@ -1471,7 +1525,7 @@
                 overlay.classList.add('is-focus-fullscreen');
                 if (fullscreenBtn) fullscreenBtn.title = "خروج از تمرکز کامل";
                 if (fullscreenBtnIcon) {
-                    fullscreenBtnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>';
+                    fullscreenBtnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/>';
                 }
                 triggerNativeWindowFullscreen(true);
                 showToast('حالت تمرکز کامل فعال شد (کلید F برای خروج، کلیک روی دایره برای مخفی‌سازی اعداد زمان)', 'info');
@@ -1913,17 +1967,29 @@
         }
 
         function stopTimerEarly() {
+            triggerHaptic(8);
+            openModal('timer-finish-confirm-modal');
+        }
+
+        function confirmFinishTimerSession() {
+            triggerHaptic(15);
+            closeModal('timer-finish-confirm-modal');
             finishTimerSession();
         }
 
-        function cancelTimerWithConfirm() {
-            if (confirm("آیا قصد انصراف از این جلسه مطالعه را دارید؟ داده‌ها ذخیره نخواهند شد.")) {
-                clearTimerState();
-                closeModal('focus-overlay');
-                const widget = document.getElementById('mini-timer-widget');
-                if (widget) widget.classList.add('hidden');
-                showToast("جلسه مطالعه لغو شد", "info");
-            }
+        function openCancelTimerConfirmModal() {
+            triggerHaptic(8);
+            openModal('timer-cancel-confirm-modal');
+        }
+
+        function confirmCancelTimerSession() {
+            triggerHaptic(12);
+            closeModal('timer-cancel-confirm-modal');
+            clearTimerState();
+            closeModal('focus-overlay');
+            const widget = document.getElementById('mini-timer-widget');
+            if (widget) widget.classList.add('hidden');
+            showToast("جلسه مطالعه لغو شد", "info");
         }
 
         function toggleSummaryEditMode() {
