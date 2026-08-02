@@ -1114,6 +1114,7 @@
         let initialSeconds = 1500;
         let isPaused = false;
         let isMinimized = false;
+        let isTimeNumbersHidden = false;
         let soundEnabled = true;
 
         let activeSecondsCounter = 0;
@@ -1476,24 +1477,46 @@
                 showToast('حالت تمرکز کامل فعال شد (کلید F برای خروج، کلیک روی دایره برای مخفی‌سازی اعداد زمان)', 'info');
             } else {
                 overlay.classList.remove('is-focus-fullscreen');
-                overlay.classList.remove('hide-time-numbers');
                 if (fullscreenBtn) fullscreenBtn.title = "تمرکز کامل (تمام صفحه)";
                 if (fullscreenBtnIcon) {
                     fullscreenBtnIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>';
                 }
                 triggerNativeWindowFullscreen(false);
             }
+
+            applyTimeNumbersHiddenState();
             saveTimerState();
+        }
+
+        function applyTimeNumbersHiddenState() {
+            const overlay = document.getElementById('focus-overlay');
+            const miniWidget = document.getElementById('mini-timer-widget');
+
+            if (overlay) {
+                if (isTimeNumbersHidden) {
+                    overlay.classList.add('hide-time-numbers');
+                } else {
+                    overlay.classList.remove('hide-time-numbers');
+                }
+            }
+
+            if (miniWidget) {
+                if (isTimeNumbersHidden) {
+                    miniWidget.classList.add('hide-time-numbers');
+                } else {
+                    miniWidget.classList.remove('hide-time-numbers');
+                }
+            }
         }
 
         function toggleTimeNumbersHide(e) {
             if (e) e.stopPropagation();
             triggerHaptic(8);
-            const overlay = document.getElementById('focus-overlay');
-            if (!overlay) return;
 
-            const isHidden = overlay.classList.toggle('hide-time-numbers');
-            showToast(isHidden ? 'ارقام زمان مخفی شدند (کلیک مجدد برای نمایش)' : 'ارقام زمان نمایان شدند', 'info');
+            isTimeNumbersHidden = !isTimeNumbersHidden;
+            applyTimeNumbersHiddenState();
+            saveTimerState();
+            showToast(isTimeNumbersHidden ? 'ارقام زمان مخفی شدند (کلیک مجدد برای نمایش)' : 'ارقام زمان نمایان شدند', 'info');
         }
 
         // Global keyboard listener for Focus Timer shortcuts
@@ -1508,10 +1531,7 @@
                 e.preventDefault();
                 toggleTimerFullscreen();
             } else if (e.key === 'Escape') {
-                if (focusOverlay.classList.contains('hide-time-numbers')) {
-                    e.preventDefault();
-                    focusOverlay.classList.remove('hide-time-numbers');
-                } else if (isFocusFullscreen) {
+                if (isFocusFullscreen) {
                     e.preventDefault();
                     toggleTimerFullscreen(false);
                 }
@@ -2070,6 +2090,7 @@
                 isPaused,
                 isMinimized,
                 isFocusFullscreen,
+                isTimeNumbersHidden,
                 activeSecondsCounter,
                 pausedSecondsCounter,
                 courseVal: document.getElementById('timer-selected-course')?.value,
@@ -2082,6 +2103,8 @@
         function clearTimerState() {
             if (timerInterval) clearInterval(timerInterval);
             timerInterval = null;
+            isTimeNumbersHidden = false;
+            applyTimeNumbersHiddenState();
             if (isFocusFullscreen) {
                 toggleTimerFullscreen(false);
             }
@@ -2111,6 +2134,7 @@
                 initialSeconds = state.initialSeconds || 0;
                 isPaused = state.isPaused || false;
                 isMinimized = state.isMinimized || false;
+                isTimeNumbersHidden = state.isTimeNumbersHidden || false;
                 const savedFullscreen = state.isFocusFullscreen || false;
                 activeSecondsCounter = state.activeSecondsCounter || 0;
                 pausedSecondsCounter = state.pausedSecondsCounter || 0;
@@ -2128,6 +2152,8 @@
                     if (tInput) tInput.value = state.topicVal;
                     document.getElementById('focus-topic-name').textContent = state.topicVal;
                 }
+
+                applyTimeNumbersHiddenState();
 
                 setupPhaseDisplay();
                 if (isMinimized) {
