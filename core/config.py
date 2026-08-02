@@ -60,7 +60,7 @@ logging.basicConfig(
 
 logger = logging.getLogger("ChandSaat")
 
-APP_VERSION = "0.3.0"
+APP_VERSION = "0.3.1"
 
 DB_FILE = os.path.join(APP_DATA_DIR, "study_log.db")
 EXCEL_FILE = os.path.join(APP_DATA_DIR, "study_log.xlsx")
